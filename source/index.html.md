@@ -1,239 +1,127 @@
 ---
-title: API Reference
+title: Pooul开发者中心
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - json示例
+#  - shell
+#  - ruby
+#  - python
+#  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://pooul.com/'>返回网站首页</a>
 
 includes:
+  - introduction.md
+  - version.md
   - errors
 
 search: true
 ---
 
-# Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# API 文档简介
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Pooul API 采用 REST 风格设计。所有接口请求地址都是可预期的以及面向资源的。使用规范的 HTTP 响应代码来表示请求结果的正确或错误信息。使用 HTTP 内置的特性，如 HTTP Authentication 和 HTTP 请求方法让接口易于理解。所有的 API 请求都会以规范友好的 JSON 对象格式返回（包括错误信息）。
 
-# Authentication
+> rest
 
-> To authorize, use this code:
+# Authentication 认证
 
-```ruby
-require 'kittn'
+## Login
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> 请求：Post /web/user/session/login_name
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "user_name":"",
+    "password":"" 
 }
 ```
 
-This endpoint retrieves a specific kitten.
+> 响应：Header
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+```
+Authorization: d991da83657a01ae4640a61828b546934d05de37
 ```
 
-```python
-import kittn
+> 响应：Body
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+```
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "_id": 11,
+        "_type": "Ns::User::PooulSuperUser",
+        "created_at": 1526979441,
+        "curr_merchant_id": "9609932494323355",
+        "login_name": [
+            "abc"
+        ],
+        "sex": 0,
+        "updated_at": 1529749887,
+        "user_name": "abc",
+        "wechat_binded": false
+    }
+}
 ```
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
 
-```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
+使用用户名与密码调用登录接口获取Authorization
 
-> The above command returns JSON structured like this:
+
+
+
+## RSA
+
+> Json格式数据
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+    "pay_type":"wechat.scan",
+    "mch_trade_id":"alextest.scan.109",
+    "total_fee": 2113, 
+    "spbill_create_ip":"127.0.0.1",
+    "notify_url":"http://112.74.184.236:3006/fake-recv",
+    "body":"Alex Test Scan",
+    "device_info":"alex device",
+    "op_user_id":"301",
+    "openid": "oRXdVs59x_E6nVTBHXHkuSjsNVKw",
+    "attach":"Alex attach"
 }
 ```
 
-This endpoint deletes a specific kitten.
+1. 按照接口文档参数要求，将请求数据写成 json 格式
 
-### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+2. 使用程序语言的JWT包（JWT支持各种语言，在 http://jwt.io 上均有下载和DEMO），将 json 数据编码，签名算法使用RSA算法，可选包括：RS256, RS384, RS512 (分别是RSA使用不同位数的SHA摘要算法)
 
-### URL Parameters
+`token = JWT.encode(data, rsa_private_key, 'RS256')`
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+3. 将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。
+
+`http.post(url, body: token, headers: {'Content-Type': 'text/plain'})`
+
+4. 接口响应是 json 格式，code == 0 表示成功，其他为错误代码，同时msg包含对应的错误信息。
+
+> 同步响应
+
+```json
+{
+  "code": 0,
+  "msg": "成功信息或错误信息"
+}
+```
+
+
+
+
+
+
+
+
+
 
