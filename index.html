@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Pooul开发者中心</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,293 +210,899 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
-        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#5f83e7f6a1" class="toc-h1 toc-link" data-title="">基础</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#d0ca8bd887" class="toc-h2 toc-link" data-title="">文档简介</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#4e5ec025a2" class="toc-h2 toc-link" data-title="">阅读对象</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#8506f9cb91" class="toc-h2 toc-link" data-title="">版本说明</a>
+                  </li>
+                  <li>
+                    <a href="#49469dfec8" class="toc-h2 toc-link" data-title="">名词解释</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#e143d8ad12" class="toc-h3 toc-link" data-title="">关于商户</a>
+                          </li>
+                          <li>
+                            <a href="#d3695129bf" class="toc-h3 toc-link" data-title="">关于费率</a>
+                          </li>
+                          <li>
+                            <a href="#abf6da0501" class="toc-h3 toc-link" data-title="">关于支付</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#498e295d61" class="toc-h2 toc-link" data-title="">商户参数</a>
+                  </li>
+                  <li>
+                    <a href="#c97d67a28a" class="toc-h2 toc-link" data-title="">协议规则</a>
+                  </li>
+                  <li>
+                    <a href="#4194e6ee88" class="toc-h2 toc-link" data-title="">参数约定</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#b36db63db4" class="toc-h3 toc-link" data-title="">涉及时间</a>
+                          </li>
+                          <li>
+                            <a href="#6122bf692c" class="toc-h3 toc-link" data-title="">涉及金额</a>
+                          </li>
+                          <li>
+                            <a href="#47e4f4f6b5" class="toc-h3 toc-link" data-title="">涉及费率</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#openid" class="toc-h2 toc-link" data-title="openid">获取openid</a>
+                  </li>
+                  <li>
+                    <a href="#2fd51d31a7" class="toc-h2 toc-link" data-title="">状态码</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#6d3f20bdee" class="toc-h3 toc-link" data-title="">商户状态码</a>
+                          </li>
+                          <li>
+                            <a href="#trade_state" class="toc-h3 toc-link" data-title="trade_state">支付状态码 trade_state</a>
+                          </li>
+                      </ul>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="authentication">Authentication 认证</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#login" class="toc-h2 toc-link" data-title="login">Login</a>
+                  </li>
+                  <li>
+                    <a href="#rsa" class="toc-h2 toc-link" data-title="rsa">RSA</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#rsa-2" class="toc-h3 toc-link" data-title="rsa">生成RSA密钥</a>
+                          </li>
+                          <li>
+                            <a href="#2bdf467b5e" class="toc-h3 toc-link" data-title="">上传应用公钥</a>
+                          </li>
+                          <li>
+                            <a href="#6588bb7331" class="toc-h3 toc-link" data-title="">获取普尔公钥</a>
+                          </li>
+                          <li>
+                            <a href="#jwt" class="toc-h3 toc-link" data-title="jwt">使用JWT生成请求数据</a>
+                          </li>
+                          <li>
+                            <a href="#jwt-2" class="toc-h3 toc-link" data-title="jwt">使用普尔公钥验签 JWT</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#6caa437239" class="toc-h1 toc-link" data-title="">收款</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#41b1dd6847" class="toc-h2 toc-link" data-title="">请求支付</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#de992c5ef7" class="toc-h3 toc-link" data-title="">公共请求参数</a>
+                          </li>
+                          <li>
+                            <a href="#common-micro" class="toc-h3 toc-link" data-title="common-micro">common.micro 统一反扫支付</a>
+                          </li>
+                          <li>
+                            <a href="#wechat-scan" class="toc-h3 toc-link" data-title="wechat-scan">wechat.scan 微信扫码支付</a>
+                          </li>
+                          <li>
+                            <a href="#wechat-jsapi" class="toc-h3 toc-link" data-title="wechat-jsapi">wechat.jsapi 微信公众号支付</a>
+                          </li>
+                          <li>
+                            <a href="#wechat-jsminipg" class="toc-h3 toc-link" data-title="wechat-jsminipg">wechat.jsminipg 微信小程序支付</a>
+                          </li>
+                          <li>
+                            <a href="#wechat-app-app" class="toc-h3 toc-link" data-title="wechat-app-app">wechat.app 微信APP支付</a>
+                          </li>
+                          <li>
+                            <a href="#wechat-wap-h5" class="toc-h3 toc-link" data-title="wechat-wap-h5">wechat.wap 微信H5支付</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#90376e83a0" class="toc-h2 toc-link" data-title="">查询订单</a>
+                  </li>
+                  <li>
+                    <a href="#d410627d39" class="toc-h2 toc-link" data-title="">关闭订单</a>
+                  </li>
+                  <li>
+                    <a href="#4e53c0fccd" class="toc-h2 toc-link" data-title="">撤销订单</a>
+                  </li>
+                  <li>
+                    <a href="#e7f928864f" class="toc-h2 toc-link" data-title="">申请退款</a>
+                  </li>
+                  <li>
+                    <a href="#5f0d8c4302" class="toc-h2 toc-link" data-title="">退款查询</a>
+                  </li>
+                  <li>
+                    <a href="#b16fed15e7" class="toc-h2 toc-link" data-title="">下载对账单</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#5b2e372ece" class="toc-h3 toc-link" data-title="">日对账单</a>
+                          </li>
+                          <li>
+                            <a href="#049e654a9b" class="toc-h3 toc-link" data-title="">对账单格式</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#e3456510f6" class="toc-h2 toc-link" data-title="">支付结果通知</a>
+                  </li>
+                  <li>
+                    <a href="#679fc60863" class="toc-h2 toc-link" data-title="">退款结果通知</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#f8519014aa" class="toc-h1 toc-link" data-title="">附录</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#pay-type" class="toc-h2 toc-link" data-title="pay-type">Pay Type 支付类型编码</a>
+                  </li>
+              </ul>
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://www.pooul.com/'>返回网站</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
+        <h1 id='5f83e7f6a1'>基础</h1><h2 id='d0ca8bd887'>文档简介</h2>
+<p>Pooul API 采用 REST 风格设计。所有接口请求地址都是可预期的以及面向资源的。使用规范的 HTTP 响应代码来表示请求结果的正确或错误信息。使用 HTTP 内置的特性，如 HTTP Authentication 和 HTTP 请求方法让接口易于理解。所有的 API 请求都会以规范友好的 JSON 对象格式返回（包括错误信息）。</p>
+<h2 id='4e5ec025a2'>阅读对象</h2>
+<p>本文阅读对象：商户系统（在线购物平台、人工收银系统、自动化智能收银系统或其他）集成普尔系统涉及的技术架构师，研发工程师，测试工程师，系统运维工程师。</p>
+<h2 id='8506f9cb91'>版本说明</h2><h2 id='49469dfec8'>名词解释</h2><h3 id='e143d8ad12'>关于商户</h3>
+<ul>
+<li>平台商户：指平台商户或集团商户</li>
+<li>入驻商户：平台商户下属商户</li>
+<li>普通商户：不属于平台商户与入驻商户的其他普通商户类型</li>
+<li>终端商户：指发起交易的商户，可以是普通商户、也可以是入驻商户，平台商户不允许发起交易</li>
+</ul>
+<h3 id='d3695129bf'>关于费率</h3>
+<ul>
+<li>结算费率：指结算时支付渠道或银行需扣除的费率</li>
+<li>协议费率：指商户与普尔合作签约的费率 </li>
+</ul>
+<h3 id='abf6da0501'>关于支付</h3>
+<ul>
+<li>支付方式：如：微信支付、支付宝、银联分期</li>
+<li>支付类型：如：正扫、反扫、公众号、APP、H5等场景</li>
+</ul>
+<h2 id='498e295d61'>商户参数</h2><h2 id='c97d67a28a'>协议规则</h2>
+<ul>
+<li>传输方式：为保证交易安全性，采用HTTPS传输</li>
+<li>提交方式：采用 Post、Get、put、delete 方法提交</li>
+<li>数据格式：提交和返回数据都为json格式</li>
+<li>字符编码：统一采用UTF-8字符编码</li>
+<li>签名算法：RSA，JWT加密传输</li>
+<li>签名要求：请求和接收数据均需要校验签名，详细方法请参考安全规范-签名算法</li>
+<li>证书要求：调用申请退款、撤销订单接口需要商户证书</li>
+<li>判断逻辑：先判断协议字段返回，再判断业务返回，最后判断交易状态</li>
+</ul>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace `meowmeowmeow` with your personal API key.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='4194e6ee88'>参数约定</h2><h3 id='b36db63db4'>涉及时间</h3>
+<ul>
+<li>所有涉及到时间的地方都使用Unix时间戳 </li>
+<li>时间戳：自1970年1月1日 0点0分0秒以来的秒数。注意：部分系统取到的值为毫秒级，需要转换成秒(10位数字)。</li>
+</ul>
+<h3 id='6122bf692c'>涉及金额</h3>
+<ul>
+<li>所有涉及到金额的单位都是分 </li>
+<li>最小的单位是 1 分，都为整数，不能有小数出现</li>
+</ul>
+<h3 id='47e4f4f6b5'>涉及费率</h3>
+<ul>
+<li>费率的格式为int，万分之，比如：30代表万分之30，千分之3，百分之0.3</li>
+</ul>
+<h2 id='openid'>获取openid</h2>
+<p>微信公众平台：
+openid是微信用户在公众号appid下的唯一用户标识（appid不同，则获取到的openid就不同），可用于永久标记一个用户，同时也是微信公众号支付的必传参数。</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842">网页授权获取用户openid接口文档</a></p>
+<h2 id='2fd51d31a7'>状态码</h2><h3 id='6d3f20bdee'>商户状态码</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>status</th>
+<th>status_desc</th>
+<th>说明</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>0</td>
+<td>审核通过</td>
+<td>上游渠道审核成功，并配置好路由等相关交易信息，商户可以正常交易</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>1</td>
+<td>入驻申请</td>
+<td>代理商通过接口或后台提交成功商户资料至普尔商户系统，等待普尔提交至上游渠道</td>
+</tr>
+<tr>
+<td>2</td>
+<td>审核中</td>
+<td>普尔提交商户资料至上游渠道，等待上游渠道审核</td>
+</tr>
+<tr>
+<td>3</td>
+<td>审核失败</td>
+<td>商户审核失败（a.上游渠道返回审核失败，b.普尔审核失败）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>商户停用</td>
+<td>商户状态停用（a.上游渠道停用商户，b. 普尔停用商户）</td>
 </tr>
 </tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
+<h3 id='trade_state'>支付状态码 trade_state</h3>
+<table><thead>
+<tr>
+<th>trade_state</th>
+<th>trade_info</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>交易成功</td>
+</tr>
+<tr>
+<td>1</td>
+<td>转入退款</td>
+</tr>
+<tr>
+<td>2</td>
+<td>未支付</td>
+</tr>
+<tr>
+<td>3</td>
+<td>已关闭</td>
+</tr>
+<tr>
+<td>4</td>
+<td>已冲正</td>
+</tr>
+<tr>
+<td>5</td>
+<td>已撤销</td>
+</tr>
+<tr>
+<td>6</td>
+<td>支付中</td>
+</tr>
+<tr>
+<td>7</td>
+<td>支付失败</td>
+</tr>
+</tbody></table>
+<h1 id='authentication'>Authentication 认证</h1><h2 id='login'>Login</h2>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>请求：Post /web/user/session/login_name</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"user_name"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="s2">""</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<blockquote>
+<p>响应：Header</p>
+</blockquote>
+<pre class="highlight plaintext"><code>Authorization: d991da83657a01ae4640a61828b546934d05de37
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>响应：Body</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ns::User::PooulSuperUser"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1526979441</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"curr_merchant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9609932494323355"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"login_name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"abc"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"sex"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529749887</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"wechat_binded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p>使用用户名与密码调用登录接口获取Authorization</p>
+<h2 id='rsa'>RSA</h2><h3 id='rsa-2'>生成RSA密钥</h3>
+<blockquote>
+<p>生成 PKCS#1 2048 位私钥</p>
+</blockquote>
+<pre class="highlight plaintext"><code>OpenSSL&gt;genrsa -out rsa_private_key.pem 2048  #默认生成PKCS#1的私钥，2048表示私钥的长度，我们建议是2048位，这样安全，如果由于某些限制，可以改为1024，表示1024位长度，我们仍然支持
+OpenSSL&gt;rsa -in rsa_private_key.pem -pubout -out app_public_key.pem  #从私钥导出对应的公钥，默认此公钥是PKCS#8的
+OpenSSL&gt;pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt -out rsa_private_key_pkcs8.pem  #Java开发者需要将私钥转换成PKCS8格式
+OpenSSL&gt;exit  #退出OpenSSL程序
+</code></pre>
+<p>我们建议可以使用OpenSSL工具命令，或取得信任的密钥生成工具来生成密钥。</p>
+<h3 id='2bdf467b5e'>上传应用公钥</h3>
+<blockquote>
+<p>put /cms/merchants/#{merchant_id}/public_key</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"public_key"</span><span class="p">:</span><span class="s2">"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg/AchA3vsfR4a/hXK2d7Y97B/2XCK/p2wbvQRwMfqqrrB5o/NiIeqmOn8o5Bc/LwRgpY2foxD7kDL26q73Wwo19qBbsK5agkRZMWoZsea5mSHiFL9ClrE3+xytErZAsivDwPbkaxFCYTIDpPmXNpJQnTXkymOy6Pz/RAMiLgkrTjD1r6MCLZ9pqg0Pt8yKj2SfPqMyfeA7ld2yOa3VNcJXypgvvEARxmxrEI0EOTun9VUKWrA7FvvDICvc/ZAMrXg/UOVfch6oQrAlPc+3A1SDIlfKaFLl2zbb11CZy5J3mwz4N6SVQNS+QApGUdf+DZnMxlgn6eMN2iYziVw9YR9QIDAQAB"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='6588bb7331'>获取普尔公钥</h3>
+<p>下载普尔公钥：</p>
+
+<blockquote>
+<p>Get /cms/pooul_public_key</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-----BEGIN PUBLIC KEY-----</span><span class="se">\n</span><span class="s2">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+Vd3j0McNfR3VvT7mZp/7M6UL</span><span class="se">\n</span><span class="s2">FJSc3dh3/56JP8DZk+cDlXC2LR0z0OELJeyTitFeBjpPWzWH3OOFI/OL3nD5/oNZ</span><span class="se">\n</span><span class="s2">fK+wHd4Tzxj2SdWlyuqRhNv3xG2obUUYZ9urUvkCvxL1SclaXW7cq22V/TTNSgJq</span><span class="se">\n</span><span class="s2">7CGdc+q/XLNqcmLt7QIDAQAB</span><span class="se">\n</span><span class="s2">-----END PUBLIC KEY-----</span><span class="se">\n</span><span class="s2">"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='jwt'>使用JWT生成请求数据</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"wechat.scan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="s2">"alextest.scan.109"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">2113</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"spbill_create_ip"</span><span class="p">:</span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notify_url"</span><span class="p">:</span><span class="s2">"http://112.74.184.236:3006/fake-recv"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="s2">"Alex Test Scan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"device_info"</span><span class="p">:</span><span class="s2">"alex device"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"op_user_id"</span><span class="p">:</span><span class="s2">"301"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"openid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oRXdVs59x_E6nVTBHXHkuSjsNVKw"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attach"</span><span class="p">:</span><span class="s2">"Alex attach"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<ol>
+<li><p>按照接口文档参数要求，将请求数据写成 json 格式</p></li>
+<li><p>使用程序语言的JWT包（JWT支持各种语言，在 http://jwt.io 上均有下载和DEMO），将 json 数据编码，签名算法使用RSA算法，可选包括：RS256, RS384, RS512 (分别是RSA使用不同位数的SHA摘要算法)</p></li>
+</ol>
+
+<p><code>token = JWT.encode(data, rsa_private_key, &#39;RS256&#39;)</code></p>
+
+<ol>
+<li>将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。</li>
+</ol>
+
+<p><code>http.post(url, body: token, headers: {&#39;Content-Type&#39;: &#39;text/plain&#39;})</code></p>
+
+<ol>
+<li>接口响应是 json 格式，code == 0 表示成功，其他为错误代码，同时msg包含对应的错误信息。</li>
+</ol>
+
+<blockquote>
+<p>同步响应</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"成功信息或错误信息"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<ul>
+<li>普尔翰达会用JSON格式响应同步请求;</li>
+<li>响应都会使用MD5进行签名, 响应中会带有签名;</li>
+<li>签名只针对data中的数据</li>
+</ul>
+<h3 id='jwt-2'>使用普尔公钥验签 JWT</h3><h1 id='6caa437239'>收款</h1><h2 id='41b1dd6847'>请求支付</h2><h3 id='de992c5ef7'>公共请求参数</h3>
+<blockquote>
+<p>Post /v2/pay?merchant_id=#{merchant_id}</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"wechat.scan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="s2">"alextest.scan.113"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">221</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"spbill_create_ip"</span><span class="p">:</span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notify_url"</span><span class="p">:</span><span class="s2">"http://112.74.184.236:3006/fake-recv"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="s2">"Alex Test Scan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"device_info"</span><span class="p">:</span><span class="s2">"alex device"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"op_user_id"</span><span class="p">:</span><span class="s2">"301"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attach"</span><span class="p">:</span><span class="s2">"Alex attach"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>参数</th>
+<th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>pay_type <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>支付类型，<a href="#pay-type">查看支付类型编码</a></td>
+</tr>
+<tr>
+<td>nonce_str  <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>随机字符串</td>
+</tr>
+<tr>
+<td>mch_trade_id <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>商户订单号，在同一个merchant_id 下每次请求必须为唯一</td>
+</tr>
+<tr>
+<td>total_fee  <br> <strong>必填</strong> <br> <code>int</code></td>
+<td>支付总金额，单位为分</td>
+</tr>
+<tr>
+<td>spbill_create_ip <br> <strong>选填</strong> <br> <code>string</code></td>
+<td>发起支付的终端IP，APP、jsapi、jsminipg、wap支付提交用户端ip，scan、micro支付填调用支付API的服务端IP。微信支付必填、支付宝选填</td>
+</tr>
+<tr>
+<td>notify_url  <br> <strong>选填</strong> <br> <code>string</code></td>
+<td>支付结果通知地址</td>
+</tr>
+<tr>
+<td>time_start  <br> <strong>选填</strong> <br> <code>int</code></td>
+<td>订单开始时间，为10位 UNIX 时间戳</td>
+</tr>
+<tr>
+<td>time_expire  <br> <strong>选填</strong> <br> <code>int</code></td>
+<td>订单失效时间，为10位 UNIX 时间戳</td>
+</tr>
+<tr>
+<td>device_info  <br> <strong>选填</strong> <br> <code>string</code></td>
+<td>设备编号</td>
+</tr>
+<tr>
+<td>op_user_id  <br> <strong>选填</strong> <br> <code>string</code></td>
+<td>操作员编码</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+<h3 id='common-micro'>common.micro 统一反扫支付</h3>
+<p>包含微信刷卡支付、支付宝付款码支付，此模式下商家扫码消费者付款码</p>
 
-<p>The Kittn API uses the following error codes:</p>
+<blockquote>
+<p>请求</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"common.micro"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="s2">"alextest.micro.78"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">1223</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"spbill_create_ip"</span><span class="p">:</span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="s2">"Alex Test Micro"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auth_code"</span><span class="p">:</span><span class="s2">"136345610916464024"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>响应：付款成功</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b378a0601c9117d162f281c"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alextest.micro.78"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"merchant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5399355381712172"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_state"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"支付成功"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>响应：需要用户输入密码</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USERPAYING, 需要用户输入支付密码"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b378a0601c9117d162f281c"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alextest.micro.78"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"merchant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5399355381712172"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_state"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"支付中, USERPAYING, 需要用户输入支付密码"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>增加请求参数</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>参数</th>
+<th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request sucks.</td>
+<td>auth_code <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>微信支付或支付宝支付授权码</td>
+</tr>
+</tbody></table>
+<h3 id='wechat-scan'>wechat.scan 微信扫码支付</h3>
+<blockquote>
+<p>请求</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"wechat.scan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="s2">"alextest.scan.113"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">221</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"spbill_create_ip"</span><span class="p">:</span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notify_url"</span><span class="p">:</span><span class="s2">"http://112.74.184.236:3006/fake-recv"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="s2">"Alex Test Scan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"device_info"</span><span class="p">:</span><span class="s2">"alex device"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"op_user_id"</span><span class="p">:</span><span class="s2">"301"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attach"</span><span class="p">:</span><span class="s2">"Alex attach"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"code_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"weixin://wxpay/bizpayurl?pr=oB8TuWO"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prepay_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wx302121541410392cf43ee7773887304578"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b3783f101c9117d132f2813"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alextest.scan.113"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"merchant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5399355381712172"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>请将接收到的 code_url 提供给前端生成二维码展示给客户扫码</p>
+<h3 id='wechat-jsapi'>wechat.jsapi 微信公众号支付</h3>
+<blockquote>
+<p>请求</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"wechat.jsapi"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="s2">"alextest.jsapi.34"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">9872</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"spbill_create_ip"</span><span class="p">:</span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notify_url"</span><span class="p">:</span><span class="s2">"http://112.74.184.236:3006/fake-recv"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="s2">"Alex Test Jsapi"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sub_appid"</span><span class="p">:</span><span class="s2">"wx069eb0cbbdd45873"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sub_openid"</span><span class="p">:</span><span class="s2">"outOWs-bgUH2QiCE0vNZhyCj2FJI"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"prepay_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wx012307229175165bd79bbb6b3297639794"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b38ee2a01c9113d0cc907a6"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alextest.jsapi.34"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"merchant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5399355381712172"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">appId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">wx26a0ffd6bfa99df7</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">timeStamp</span><span class="se">\"</span><span class="s2">:1530457643,</span><span class="se">\"</span><span class="s2">nonceStr</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">5b38ee2b01c9113d0cc907a8</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">package</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">prepay_id=wx012307229175165bd79bbb6b3297639794</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">signType</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">MD5</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">paySign</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">5c8d2742f597d01f38886d78769d3132</span><span class="se">\"</span><span class="s2">}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='wechat-jsminipg'>wechat.jsminipg 微信小程序支付</h3>
+<blockquote>
+<p>请求</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"wechat.jsminipg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="s2">"alextest.jsminipg.19"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"spbill_create_ip"</span><span class="p">:</span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="s2">"Alex Test jsminipg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sub_appid"</span><span class="p">:</span><span class="s2">"wx758379be100f9991"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sub_openid"</span><span class="p">:</span><span class="s2">"o2uCJ5RGOOylP75Ipvncazz0bFAI"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"prepay_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wx01231242671738eafc7c4ce10632795388"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b38ef6a01c9113d0cc907aa"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alextest.jsminipg.19"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"merchant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5399355381712172"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">appId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">wx758379be100f9991</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">timeStamp</span><span class="se">\"</span><span class="s2">:1530457962,</span><span class="se">\"</span><span class="s2">nonceStr</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">5b38ef6a01c9113d0cc907ac</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">package</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">prepay_id=wx01231242671738eafc7c4ce10632795388</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">signType</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">MD5</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">paySign</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">052f1f7098d4c70a9e5244990a9d7391</span><span class="se">\"</span><span class="s2">}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='wechat-app-app'>wechat.app 微信APP支付</h3>
+<blockquote>
+<p>请求</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"wechat.app"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="s2">"alextest.app.18"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"spbill_create_ip"</span><span class="p">:</span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="s2">"Alex Test app"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notify_url"</span><span class="p">:</span><span class="s2">"http://112.74.184.236:3006/fake-recv"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sub_appid"</span><span class="p">:</span><span class="s2">"wx2fbcb61b6e5b1384"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"prepay_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wx01231852292289b6404b67123767183767"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b38f0dc01c9113d0cc907ae"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alextest.app.18"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"merchant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5399355381712172"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">appid</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">wx2fbcb61b6e5b1384</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">partnerid</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">1507497331</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">prepayid</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">wx01231852292289b6404b67123767183767</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">package</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Sign=WXPay</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">noncestr</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">5b38f0dc01c9113d0cc907b0</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">timestamp</span><span class="se">\"</span><span class="s2">:1530458332,</span><span class="se">\"</span><span class="s2">sign</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">a4aea5fff088a73d18e4afc8da663615</span><span class="se">\"</span><span class="s2">}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='wechat-wap-h5'>wechat.wap 微信H5支付</h3><h2 id='90376e83a0'>查询订单</h2>
+<blockquote>
+<p>Post /v2/pay/query?merchant_id=#{merchant_id} </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "code":0,
+    "msg":"success",
+    "data":{
+        ……  
+    }
+}
+
+</code></pre>
+<p>该接口提供所有支付订单的查询，商户可以通过查询订单接口主动查询订单状态，完成下一步的业务逻辑。</p>
+
+<p>需要调用查询接口的情况：</p>
+
+<ul>
+<li>当商户后台、网络、服务器等出现异常，商户系统最终未接收到支付通知；</li>
+<li>调用支付接口后，返回系统错误或未知交易状态情况；</li>
+<li>调用反扫支付API，返回支付中的状态；</li>
+<li>调用关单或撤销接口API之前，需确认支付状态；</li>
+</ul>
+
+<p>以trade_state确认支付状态，<a href="#trade_state">状态码</a></p>
+<h2 id='d410627d39'>关闭订单</h2>
+<blockquote>
+<p>Post /v2/pay/close?merchant_id=#{merchant_id} </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="err">#商户订单号</span><span class="w">
+    </span><span class="s2">"nonce_str"</span><span class="p">:</span><span class="w"> </span><span class="err">#随机字符串</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="err">为成功，非</span><span class="mi">0</span><span class="err">为失败</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>以下情况需要调用关单接口：</p>
+
+<ul>
+<li>商户订单支付失败需要生成新单号重新发起支付，要对原订单号调用关单，避免重复支付；</li>
+<li>系统下单后，用户支付超时，系统退出不再受理，避免用户继续，请调用关单接口。</li>
+</ul>
+
+<p>注意：订单生成后不能马上调用关单接口，最短调用时间建议间隔为5分钟。</p>
+<h2 id='4e53c0fccd'>撤销订单</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="err">#商户订单号</span><span class="w">
+    </span><span class="s2">"nonce_str"</span><span class="p">:</span><span class="w"> </span><span class="err">#随机字符串</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="err">为成功，非</span><span class="mi">0</span><span class="err">为失败</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>支付交易返回失败或支付系统超时，调用该接口撤销交易。如果此订单用户支付失败，支付渠道会将此订单关闭；如果用户支付成功，支付渠道会将此订单资金退还给用户。</p>
+
+<p>注意：7天以内的交易单可调用撤销，其他正常支付的单如需实现相同功能请调用申请退款API。提交支付交易后调用【查询订单API】，没有明确的支付结果再调用【撤销订单API】。</p>
+
+<p>调用支付接口后请勿立即调用撤销订单API，建议支付后至少15s后再调用撤销订单接口。</p>
+
+<p>可用支付渠道：微信支付、支付宝</p>
+<h2 id='e7f928864f'>申请退款</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="s2">"alextest.scan.112"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refund_fee"</span><span class="p">:</span><span class="mi">8872</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refund_desc"</span><span class="p">:</span><span class="s2">"Alex Test"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notify_url"</span><span class="p">:</span><span class="s2">"http://112.74.184.236:3006/fake-recv"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="err">为成功，非</span><span class="mi">0</span><span class="err">为失败</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>接口说明
+- 当交易发生之后一段时间内，由于买家或者卖家的原因需要退款时，卖家可以通过退款接口将支付款退还给买家，支付渠道将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退到买家帐号上。
+- 交易超过约定时间的订单无法进行退款
+- 退款支持单笔交易分多次退款，多次退款需要提交原支付订单的商户订单号和设置不同的退款单号。
+- 一笔退款失败后重新提交，要采用原来的退款单号。
+- 总退款金额不能超过用户实际支付金额
+- 退款有一定延时，用零钱支付的退款20分钟内到账，银行卡支付的退款3个工作日后重新查询退款状态。</p>
+
+<p>注意 </p>
+
+<ol>
+<li>微信支付交易时间超过一年的订单无法提交退款，支付宝为签约时设置的可退款时间 </li>
+<li>微信支付每个支付订单的部分退款次数不能超过50次</li>
+</ol>
+<h2 id='5f0d8c4302'>退款查询</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="s2">"alextest.scan.112"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"cash_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">9872</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"out_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4200000114201806284156184664"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">9872</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b34b9a901c9112ae61fb8bc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alextest.jsapi.33"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"merchant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5399355381712172"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat.jsapi"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_state"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"转入退款, "</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"refunds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"refund_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b34ba3d01c9112ae61fb8c1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"refund_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"refund_state"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"refund_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b34ba4501c9112ae61fb8c3"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"refund_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"refund_state"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"refund_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b34ba4f01c9112ae61fb8c5"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"refund_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">1283</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"refund_state"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"refund_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b34ba5b01c9112ae61fb8c7"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"refund_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">4332</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"refund_state"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>提交退款申请后，通过调用该接口查询退款状态。退款有一定延时，用零钱支付的退款20分钟内到账，银行卡支付的退款3个工作日后重新查询退款状态。</p>
+
+<p>注意：如果单个支付订单部分退款次数多次时使用商户订单号查询会返回多条退款记录</p>
+<h2 id='b16fed15e7'>下载对账单</h2>
+<p>认证方式：基于Login权限，<a href="#login">查看Login认证说明</a></p>
+<h3 id='5b2e372ece'>日对账单</h3>
+<blockquote>
+<p>Get /cms/pooul_bills/download_by_date?merchant_id=5399355381712172&amp;bill_date=20180628</p>
+</blockquote>
+
+<p>get /cms/pooul_bills/download_by_date</p>
+
+<p>下载当前商户不需要merchant_id参数，下载下级商户对账单在网址后加上 merchant_id 参数</p>
+<h3 id='049e654a9b'>对账单格式</h3><h4 id='82436dcd19'>明细文件格式：</h4>
+<p>成功时，数据以文本表格的方式返回，第一行为表头，后面各行为对应的字段内容，字段内容跟查询订单或退款结果一致，具体字段说明可查阅相应接口。</p>
+
+<p>第一行为表头：
+创建时间 付款完成时间 支付单号 商户单号 原始单号 支付类型 商户编号 支付状态 结算状态 付款总金额 代金券金额 结算手续费率 结算手续费 应结算金额 退款单号 退款金额 代金券退款金额 退款状态 退款完成时间 订单标题(兼容支付宝) 商品描述 商家数据包 设备编号 操作员编号 公众号APPID 付款人信息 付款银行 货币种类</p>
+
+<p>从第二行起，为数据记录
+各参数以逗号分隔，字段顺序与表头一致。</p>
+<h4 id='169fa2dd1d'>汇总文件格式：</h4>
+<p>第一行为表头：
+总订单笔数 总交易金额 结算手续费总金额 应结算总金额 总退款金额</p>
+
+<p>从第二行起，为数据记录
+各参数以逗号分隔，字段顺序与表头一致。</p>
+<h2 id='e3456510f6'>支付结果通知</h2>
+<p>支付完成后，系统会把相关支付结果和用户信息发送给商户，商户需要接收处理，并需要响应字符串&quot;success&quot;（大小写皆可）。</p>
+
+<p>对后台通知交互时，如果微信收到商户的应答不是成功或超时，系统认为通知失败，系统会通过一定的策略定期重新发起通知，尽可能提高通知的成功率，但系统不保证通知最终能成功。 （通知频率为15/15/30/180/1800/1800/1800/1800/3600，单位：秒）</p>
+
+<p>注意：同样的通知可能会多次发送给商户系统。商户系统必须能够正确处理重复的通知。
+推荐的做法是，当收到通知进行处理时，首先检查对应业务数据的状态，判断该通知是否已经处理过，如果没有处理过再进行处理，如果处理过直接返回结果成功。在对业务数据进行状态检查和处理之前，要采用数据锁进行并发控制，以避免函数重入造成的数据混乱。</p>
+
+<p>特别提醒：商户系统对于支付结果通知的内容一定要做签名验证,并校验返回的订单金额是否与商户侧的订单金额一致，防止数据泄漏导致出现“假通知”，造成资金损失。</p>
+<h2 id='679fc60863'>退款结果通知</h2>
+<p>退款成功后系统会将退款成功状态发给商户，商户需要接收处理，方式与支付结果通知一样</p>
+<h1 id='f8519014aa'>附录</h1><h2 id='pay-type'>Pay Type 支付类型编码</h2>
+<table><thead>
+<tr>
+<th>pay_type</th>
+<th>参数说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>common.micro</td>
+<td>统一反扫支付</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>wechat.scan</td>
+<td>微信扫码支付</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>wechat.jsapi</td>
+<td>微信公众号支付-原生</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>wechat.wap</td>
+<td>微信WAP支付</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>wechat.app</td>
+<td>微信APP支付</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>wechat.jsminipg</td>
+<td>微信公众号支付-跳转</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>alipay.scan</td>
+<td>支付宝正扫</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>alipay.jsapi</td>
+<td>支付宝服务窗支付</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>alipay.wap</td>
+<td>支付宝WAP支付</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>alipay.app</td>
+<td>支付宝APP支付</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
-          </div>
       </div>
     </div>
   </body>
