@@ -17,6 +17,7 @@ includes:
   - pay
   - introduction
   - appendix
+  - faq
 
 search: true
 ---

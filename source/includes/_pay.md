@@ -25,15 +25,15 @@
 参数|	描述
 --|--
 pay_type <br> **必填** <br> `string` | 支付类型，[查看支付类型编码](#pay-type)
-nonce_str  <br> **必填** <br> `string` | 随机字符串
-mch_trade_id <br> **必填** <br> `string` | 商户订单号，在同一个merchant_id 下每次请求必须为唯一
-total_fee  <br> **必填** <br> `int` | 支付总金额，单位为分
-spbill_create_ip <br> **选填** <br> `string` | 发起支付的终端IP，APP、jsapi、jsminipg、wap支付提交用户端ip，scan、micro支付填调用支付API的服务端IP。微信支付必填、支付宝选填
-notify_url  <br> **选填** <br> `string` | 支付结果通知地址
-time_start  <br> **选填** <br> `int` | 订单开始时间，为10位 UNIX 时间戳
-time_expire  <br> **选填** <br> `int` | 订单失效时间，为10位 UNIX 时间戳
-device_info  <br> **选填** <br> `string` | 设备编号
-op_user_id  <br> **选填** <br> `string` | 操作员编码
+nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
+mch_trade_id <br> **必填** <br> `string` | 商户订单号，在同一个merchant_id 下每次请求必须为唯一，如：alextest.scan.113
+total_fee  <br> **必填** <br> `int` | 支付总金额，单位为分，只能为整数，如：888 代表8.88元
+spbill_create_ip <br> **选填** <br> `string` | 发起支付的终端IP，APP、jsapi、jsminipg、wap支付提交用户端ip，scan、micro支付填调用支付API的服务端IP。<br>微信支付必填、支付宝选填
+notify_url  <br> **选填** <br> `string` | 支付结果通知地址，接收支付结果异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。如：http://pay.pooul.com/notify
+time_start  <br> **选填** <br> `int` | 订单开始时间，为10位 UNIX 时间戳，如：1530759545
+time_expire  <br> **选填** <br> `int` | 订单失效时间，为10位 UNIX 时间戳，如：1530759574
+device_info  <br> **选填** <br> `string` | 终端设备号(门店号或收银设备ID)，注意：PC网页或APP支付请传"WEB"
+op_user_id  <br> **选填** <br> `string` | 操作员或收银员编号
 
 
 
