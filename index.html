@@ -306,7 +306,7 @@
               </ul>
           </li>
           <li>
-            <a href="#493ac4c0e8" class="toc-h1 toc-link" data-title="">收款收款收款收款</a>
+            <a href="#6caa437239" class="toc-h1 toc-link" data-title="">收款</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#41b1dd6847" class="toc-h2 toc-link" data-title="">请求支付</a>
@@ -623,7 +623,7 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 <li>响应都会使用MD5进行签名, 响应中会带有签名;</li>
 <li>签名只针对data中的数据</li>
 </ul>
-<h3 id='jwt-2'>使用普尔公钥验签 JWT</h3><h1 id='493ac4c0e8'>收款收款收款收款</h1><h2 id='41b1dd6847'>请求支付</h2><h3 id='de992c5ef7'>公共请求参数</h3>
+<h3 id='jwt-2'>使用普尔公钥验签 JWT</h3><h1 id='6caa437239'>收款</h1><h2 id='41b1dd6847'>请求支付</h2><h3 id='de992c5ef7'>公共请求参数</h3>
 <blockquote>
 <p>Post /v2/pay?merchant_id=#{merchant_id}</p>
 </blockquote>
@@ -688,8 +688,6 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 </tr>
 </tbody></table>
 <h3 id='common-micro'>common.micro 统一反扫支付</h3>
-<p>包含微信刷卡支付、支付宝付款码支付，此模式下商家扫码消费者付款码</p>
-
 <blockquote>
 <p>请求</p>
 </blockquote>
@@ -732,6 +730,10 @@ OpenSSL&gt;exit  #退出OpenSSL程序
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<aside class="notice">
+包含微信刷卡支付、支付宝付款码支付，此模式下商家扫码消费者付款码
+</aside>
+
 <p>增加请求参数</p>
 
 <table><thead>
