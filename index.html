@@ -306,7 +306,7 @@
               </ul>
           </li>
           <li>
-            <a href="#6caa437239" class="toc-h1 toc-link" data-title="">收款</a>
+            <a href="#493ac4c0e8" class="toc-h1 toc-link" data-title="">收款收款收款收款</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#41b1dd6847" class="toc-h2 toc-link" data-title="">请求支付</a>
@@ -376,9 +376,12 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#faq" class="toc-h1 toc-link" data-title="faq">FAQ</a>
+          </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='https://pooul.com/'>返回网站首页</a></li>
+            <li><a href='https://www.pooul.com/'>返回网站</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -620,7 +623,7 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 <li>响应都会使用MD5进行签名, 响应中会带有签名;</li>
 <li>签名只针对data中的数据</li>
 </ul>
-<h3 id='jwt-2'>使用普尔公钥验签 JWT</h3><h1 id='6caa437239'>收款</h1><h2 id='41b1dd6847'>请求支付</h2><h3 id='de992c5ef7'>公共请求参数</h3>
+<h3 id='jwt-2'>使用普尔公钥验签 JWT</h3><h1 id='493ac4c0e8'>收款收款收款收款</h1><h2 id='41b1dd6847'>请求支付</h2><h3 id='de992c5ef7'>公共请求参数</h3>
 <blockquote>
 <p>Post /v2/pay?merchant_id=#{merchant_id}</p>
 </blockquote>
@@ -649,39 +652,39 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 </tr>
 <tr>
 <td>nonce_str  <br> <strong>必填</strong> <br> <code>string</code></td>
-<td>随机字符串</td>
+<td>随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL</td>
 </tr>
 <tr>
 <td>mch_trade_id <br> <strong>必填</strong> <br> <code>string</code></td>
-<td>商户订单号，在同一个merchant_id 下每次请求必须为唯一</td>
+<td>商户订单号，在同一个merchant_id 下每次请求必须为唯一，如：alextest.scan.113</td>
 </tr>
 <tr>
 <td>total_fee  <br> <strong>必填</strong> <br> <code>int</code></td>
-<td>支付总金额，单位为分</td>
+<td>支付总金额，单位为分，只能为整数，如：888 代表8.88元</td>
 </tr>
 <tr>
 <td>spbill_create_ip <br> <strong>选填</strong> <br> <code>string</code></td>
-<td>发起支付的终端IP，APP、jsapi、jsminipg、wap支付提交用户端ip，scan、micro支付填调用支付API的服务端IP。微信支付必填、支付宝选填</td>
+<td>发起支付的终端IP，APP、jsapi、jsminipg、wap支付提交用户端ip，scan、micro支付填调用支付API的服务端IP。<br>微信支付必填、支付宝选填</td>
 </tr>
 <tr>
 <td>notify_url  <br> <strong>选填</strong> <br> <code>string</code></td>
-<td>支付结果通知地址</td>
+<td>支付结果通知地址，接收支付结果异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。如：http://pay.pooul.com/notify</td>
 </tr>
 <tr>
 <td>time_start  <br> <strong>选填</strong> <br> <code>int</code></td>
-<td>订单开始时间，为10位 UNIX 时间戳</td>
+<td>订单开始时间，为10位 UNIX 时间戳，如：1530759545</td>
 </tr>
 <tr>
 <td>time_expire  <br> <strong>选填</strong> <br> <code>int</code></td>
-<td>订单失效时间，为10位 UNIX 时间戳</td>
+<td>订单失效时间，为10位 UNIX 时间戳，如：1530759574</td>
 </tr>
 <tr>
 <td>device_info  <br> <strong>选填</strong> <br> <code>string</code></td>
-<td>设备编号</td>
+<td>终端设备号(门店号或收银设备ID)，注意：PC网页或APP支付请传&quot;WEB&quot;</td>
 </tr>
 <tr>
 <td>op_user_id  <br> <strong>选填</strong> <br> <code>string</code></td>
-<td>操作员编码</td>
+<td>操作员或收银员编号</td>
 </tr>
 </tbody></table>
 <h3 id='common-micro'>common.micro 统一反扫支付</h3>
@@ -1100,7 +1103,7 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 <td>支付宝APP支付</td>
 </tr>
 </tbody></table>
-
+<h1 id='faq'>FAQ</h1>
       </div>
       <div class="dark-box">
       </div>
