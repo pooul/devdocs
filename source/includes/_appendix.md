@@ -8,7 +8,7 @@ wechat.scan | 微信扫码支付
 wechat.jsapi | 微信公众号支付-原生
 wechat.wap | 微信WAP支付
 wechat.app | 微信APP支付
-wechat.jsminipg | 微信公众号支付-跳转
+wechat.jsminipg | 微信小程序支付
 alipay.scan | 支付宝正扫
 alipay.jsapi | 支付宝服务窗支付
 alipay.wap | 支付宝WAP支付
