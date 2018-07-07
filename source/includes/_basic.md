@@ -91,15 +91,21 @@ trade_state | trade_info |
 6|支付中| 
 7|支付失败| 
 
-# 认证 Authentication
+# 认证 Authenticate
 
 ## Login
+
+### 获得登录用户
+
+请联系对接的商务经理
+
+### 使用登录接口获取 Authorization
 
 > 请求：Post /web/user/session/login_name
 
 ```json
 {
-    "user_name":"",
+    "login_name":"",
     "password":"" 
 }
 ```
@@ -132,10 +138,14 @@ Authorization: d991da83657a01ae4640a61828b546934d05de37
 }
 ```
 
+参数| 描述
+--|--
+login_name <br> **必填** <br> `string` | 登录名，可以为手机号码、用户名、邮箱任意一种
+password  <br> **必填** <br> `string` | 登录密码
 
 
-使用用户名与密码调用登录接口获取Authorization
-
+使用用户名与密码调用登录接口获取 Authorization, 在登录成功以后，下发 Authorization 在http头，请求Login鉴权的接口时需要在请求头中带上 Authorization 
+Authorization 默认有效期为 30 分钟，如果用户在使用的情况下，15 分钟时后端会下发新的 Authorization，此时需要使用新的 Authorization 来调用，如果持续 30 分钟以上没有任何操作，重新操作 Authorization 会失效需要重新登录获取新的 Authorization
 
 
 

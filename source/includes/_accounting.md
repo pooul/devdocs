@@ -1,8 +1,10 @@
 # 账务 Accounting
 
+- 认证方式：基于Login权限，[查看Login认证说明](#login)
+- 所需权限：账务查询
+
 ## 下载对账单 Downloads bills
 
-认证方式：基于Login权限，[查看Login认证说明](#login)
 
 ### 日对账单 Day bills
 
@@ -32,10 +34,64 @@
 
 ## 获取交易汇总 Summary
 
-主要分为两种种维度的汇总方式，
+主要分为三种维度的汇总方式，
 
 - 实时交易汇总：指查询汇总当日0点至查询当时的交易金额汇总
-- 已对账交易汇总：已对账完成的交易汇总，可按日或月两种时间范围进行汇总
+- 日汇总：已对账完成的交易汇总，按日汇总
+- 月汇总：已对账完成的交易汇总，按月汇总
+
+### 实时汇总 Today summary
+
+> get /cms/pooul_bills/today?merchant_id=#{merchant_id}&desc={true/false}
+
+```json
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "total": {
+            "total_fee": 4390,
+            "total_trade_fee": 10,
+            "total_settle_fee": 4367,
+            "order_count": 6,
+            "amount_settle_fee": 1960,
+            "total_refund_fee": 2420
+        },
+        "wechat.scan": {
+            "total_fee": 1377,
+            "total_trade_fee": 4,
+            "total_settle_fee": 1370,
+            "order_count": 3,
+            "amount_settle_fee": 861,
+            "total_refund_fee": 512
+        },
+        "wechat.micro": {
+            "total_fee": 901,
+            "total_trade_fee": 3,
+            "total_settle_fee": 896,
+            "order_count": 2,
+            "amount_settle_fee": 563,
+            "total_refund_fee": 335
+        },
+        "wechat.jsapi": {
+            "total_fee": 2112,
+            "total_trade_fee": 3,
+            "total_settle_fee": 2101,
+            "order_count": 1,
+            "amount_settle_fee": 536,
+            "total_refund_fee": 1573
+        }
+    }
+}
+```
+
+- 请求方式：GET /cms/pooul_bills/today
+
+参数 | 描述
+-- | -- 
+merchant_id | 要查询的商户编号
+desc | 留空则返回本商户汇总，desc=1则返回下属商户汇总
+
 
 ### 日汇总 Day summary
 
@@ -155,6 +211,15 @@
 ```
 使用此接口在请求中输入月份信息可以查询当月所有日期的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总
 
+
+- 请求方式：GET /cms/pooul_bills/day_summary
+
+参数 | 描述
+-- | -- 
+merchant_id | 要查询的商户编号
+desc | 留空则返回本商户汇总，desc=1则返回下属商户汇总
+month | 月份，如：201807， 则返回2018年7月所有日期的交易汇总数据
+
 ### 月汇总 Month summary
 
 > get /cms/pooul_bills/month_summary?merchant_id=#{merchant_id}&year=#{year}&desc={true/false}
@@ -230,7 +295,13 @@
 
 使用此接口在请求中输入年份信息可以查询当月所有月份的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总
 
+`请求方式：GET /cms/pooul_bills/month_summary`
 
+参数 | 描述
+-- | -- 
+merchant_id | 要查询的商户编号
+desc | 留空则返回本商户汇总，desc=1则返回下属商户汇总
+year | 年份，如：2018， 则返回2018年所有月份的交易汇总数据
 
 
 
