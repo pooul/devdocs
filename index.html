@@ -259,9 +259,6 @@
                       </ul>
                   </li>
                   <li>
-                    <a href="#openid" class="toc-h2 toc-link" data-title="openid">获取openid</a>
-                  </li>
-                  <li>
                     <a href="#2fd51d31a7" class="toc-h2 toc-link" data-title="">状态码</a>
                       <ul class="toc-list-h3">
                           <li>
@@ -441,7 +438,40 @@
 <li>支付方式：如：微信支付、支付宝、银联分期</li>
 <li>支付类型：如：正扫、反扫、公众号、APP、H5等场景</li>
 </ul>
-<h2 id='498e295d61'>商户参数</h2><h2 id='c97d67a28a'>协议规则</h2>
+<h2 id='498e295d61'>商户参数</h2>
+<blockquote>
+<p>测试商户号：5399355381712172</p>
+
+<p>测试证书私钥：</p>
+</blockquote>
+<pre class="highlight plaintext"><code>-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAw3Djq8ynUbfDfBMVWxMPVtogSUXwtPssniinXuoAmiTMRhkE
+cWq84xsrFzBl+s13DPvb5Lr172e8bB75lFk2DD7QVNFfm6eBVbuUy0Y9Q5bW6CLz
+5Yu/ZG6//ai94f6WzN3cnkS4x71Ihge3uaRWRf1UzqAfaq2vbaABNi5SYWsQCzYv
+nxoG4PYQtrc/rzuHERKsx7QWlxFmWXaxJHGvF8cr/+GXUxwjeoRB0n1mMzxhjlFO
+m200iJ65mFs+HqS0JpZh4HTdxru5WZe80vv+1AuXO9/AVtZLc1BWrTGWLfTe1ySf
+KzxEQqLq8ls0hS9V1MNYlD9ha1B/480zrGZAnwIDAQABAoIBAE2w3pA4tnqhljAI
+VgDyPrLD2vnFt7356u6kMoRkeQDNh/aFk2KSj6un7SU2tBNTAfRDWlI+j+0vS5Of
+bI8wN2/+uEo/QMZbe+pcuvVjYo8vsxZsbo/dUaPW8rMfFPx1e/TMbRrtLpcYA3Bk
+OQCu9yyzW7cXp+V8TbRCWrjzCQR4HMqnUExyDOyJflatQ2641Q4Q2YaAF1NCxJyq
+uTyxAPdpvvQ9SAj7eXsF1l0OIfW/4aACrOuvg9aOwPhbrKaT6s0dk8fKhfAm5rAu
+Q2tsubzwA5D+mJQqjVwnRHGiN+4GuIcAynevj4IdkznOP81wG/ksP34MkQpFnJ4j
+pBZxvQECgYEA6qFWBk9XQpYMVecS4RWvvRyolbKF6HgVEp0ji8euocLIfgJWEFXK
+Eb+Ood3NNSff4SpjpGOuzXBbyZiimWAQdzuo4LXwHLfd0cHOW07Lqx7UXsm5+wVp
+rzNuZzkQMtRqNqXAfSAdBziSfiMPSIZanqW3zv59oSHLengAAAI4zmECgYEA1T3Q
+BFO1J0duKacA6hjQ+DqOkfWuLo9NOFhMK4oFOiMCoFTrgoaU+7HEwPvWSe0d7rku
+HhuivGhhha9Viw41Gpfo5Z5oymL5McW52+YPLjugAV5G2dkT68c/C6CPMZYB7PYk
+4AtCYsvA5VP6qRmFQ6acm/822kela5RxAeIDbv8CgYEA0dzq8AvpdfJ2KCPePBvE
+q/dFR1h989fsqVCKac16gs+RuzvltQi3DDb1ogydLu1yj5j1tSVARhs4zlHLJjrJ
+n4xqWkwB7/3511Ntezg4bd/OftYals9Zn072cjeVKJHcSvLpAEJIFJxiU5aSZgFe
+bsa1aN0yi3yJ3woUne1e2CECgYEA0qobXHr6B5EI4ztqqtrTb7gh607Ewpit2BFb
+RtQ278VwrcbXV/7vJmzsDR9/B0+q95GYXwQ8VFfmqHScVSE3E0uqOVay/eajeyl0
+wSraKnmbTF7ALi3IAXG49hqr/HfO9TQDIBffgMz8h1Lc2rwsrLXoGDEdFq4bXVmr
+/wkzDS8CgYArNrvZ04EfGTdlgQLcxgGKhQcTibz9/QUkJ/RZPOnCxZFWwgfDIoAQ
+99IthRkneZglfhm/R5Znn1t65B8IEXejTZcYN11EugqI1/cOkJ/PySmtUMaeD+/o
+Am6x0mszgYThpY+2mM2w2hWTirUbvXS07LbCN0R29fT/a88Kwd2gGQ==
+-----END RSA PRIVATE KEY-----
+</code></pre><h2 id='c97d67a28a'>协议规则</h2>
 <ul>
 <li>传输方式：为保证交易安全性，采用HTTPS传输</li>
 <li>提交方式：采用 Post、Get、put、delete 方法提交</li>
@@ -470,11 +500,6 @@ You must replace `meowmeowmeow` with your personal API key.
 <ul>
 <li>费率的格式为int，万分之，比如：30代表万分之30，千分之3，百分之0.3</li>
 </ul>
-<h2 id='openid'>获取openid</h2>
-<p>微信公众平台：
-openid是微信用户在公众号appid下的唯一用户标识（appid不同，则获取到的openid就不同），可用于永久标记一个用户，同时也是微信公众号支付的必传参数。</p>
-
-<p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842">网页授权获取用户openid接口文档</a></p>
 <h2 id='2fd51d31a7'>状态码</h2><h3 id='6d3f20bdee'>商户状态码</h3>
 <table><thead>
 <tr>
@@ -899,6 +924,13 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 <aside class="notice">
 公众号支付是指用户在微信中打开商户的H5页面，商户在H5页面通过调用微信支付提供的JSAPI接口调起微信支付模块来完成支付。适用于在公众号、朋友圈、聊天窗口等微信内完成支付的场景。
 </aside>
+
+<p>获取openid</p>
+
+<p>微信公众平台：
+openid是微信用户在公众号appid下的唯一用户标识（appid不同，则获取到的openid就不同），可用于永久标记一个用户，同时也是微信公众号支付的必传参数。</p>
+
+<p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842">网页授权获取用户openid接口文档</a></p>
 <h3 id='wechat-jsminipg'>微信小程序支付 wechat.jsminipg</h3>
 <blockquote>
 <p>请求</p>
