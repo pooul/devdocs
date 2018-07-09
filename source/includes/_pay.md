@@ -2,10 +2,7 @@
 
 ## 统一支付 Pay order
 
-
-### 公共请求参数
-
-> Post /v2/pay?merchant_id=#{merchant_id}
+> Post /v2/pay?merchant_id=5399355381712172
 
 ```json
 {
@@ -21,6 +18,15 @@
 }
 
 ```
+
+URL请求参数
+
+参数|	描述
+--|--
+merchant_id <br> **必填** <br> `string` | 发起支付的商户编号
+
+
+Body公共请求参数
 
 参数|	描述
 --|--
@@ -41,7 +47,7 @@ op_user_id  <br> **选填** <br> `string` | 操作员或收银员编号
 ### 统一反扫支付 common.micro 
 
 
-> 请求
+> Post /v2/pay?merchant_id=5399355381712172
 
 ```json
 {
@@ -91,21 +97,20 @@ op_user_id  <br> **选填** <br> `string` | 操作员或收银员编号
 
 收银员使用扫码设备读取微信/支付宝用户刷卡授权码以后，二维码或条码信息传送至商户收银台，由商户收银台或者商户后台调用该接口发起支付。
 
-提醒1：提交支付请求后系统会同步返回支付结果。当返回结果为“系统错误”时，商户系统等待5秒后调用【查询订单API】，查询支付实际交易结果；当返回结果为“USERPAYING”时，商户系统可设置间隔时间(建议10秒)重新查询支付结果，直到支付成功或超时(建议30秒)；
+提醒1：提交支付请求后系统会同步返回支付结果。当返回结果为“系统错误”时，商户系统等待5秒后调用【查询订单API】，查询支付实际交易结果；当返回trade_state为“6”时，商户系统可设置间隔时间(建议10秒)重新查询支付结果，直到支付成功或超时(建议30秒)；
 
 提醒2：在调用查询接口返回后，如果交易状况不明晰，请调用【撤销订单API】，此时如果交易失败则关闭订单，该单不能再支付成功；如果交易成功，则将扣款退回到用户账户。当撤销无返回或错误时，请再次调用。注意：请勿扣款后立即调用【撤销订单API】,建议至少15秒后再调用。
 
-增加请求参数
-
+Body需增加请求参数
 
 参数|	描述
 --|--
-auth_code <br> **必填** <br> `string` | 微信支付或支付宝支付授权码
+auth_code <br> **必填** <br> `string` | 微信支付或支付宝支付授权码，设备读取用户微信中的条码或者二维码信息转换成字符
 
 
 ### 微信扫码支付 wechat.scan 
 
-> 请求
+> Post /v2/pay?merchant_id=5399355381712172
 
 ```json
 {
@@ -170,7 +175,7 @@ auth_code <br> **必填** <br> `string` | 微信支付或支付宝支付授权�
 
 ### 微信公众号支付 wechat.jsapi 
 
-> 请求
+> Post /v2/pay?merchant_id=5399355381712172
 
 ```json
 {
@@ -204,17 +209,17 @@ auth_code <br> **必填** <br> `string` | 微信支付或支付宝支付授权�
 公众号支付是指用户在微信中打开商户的H5页面，商户在H5页面通过调用微信支付提供的JSAPI接口调起微信支付模块来完成支付。适用于在公众号、朋友圈、聊天窗口等微信内完成支付的场景。
 </aside>
 
-获取openid
 
-微信公众平台：
-openid是微信用户在公众号appid下的唯一用户标识（appid不同，则获取到的openid就不同），可用于永久标记一个用户，同时也是微信公众号支付的必传参数。
+Body需增加请求参数
 
-[网页授权获取用户openid接口文档](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842)
-
+参数|	描述
+--|--
+sub_appid <br> **必填** <br> `string` | 与发起支付商户主体一致的公众号appid，公众号必须为认证的服务号
+sub_openid <br> **必填** <br> `string` | 用户在商户appid下的唯一标识，下单前需要调用[网页授权获取用户openid接口文档](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842)接口获取到用户的Openid
 
 ### 微信小程序支付 wechat.jsminipg 
 
-> 请求
+> Post /v2/pay?merchant_id=5399355381712172
 
 ```json
 {
@@ -243,14 +248,20 @@ openid是微信用户在公众号appid下的唯一用户标识（appid不同，�
 	}
 }
 ```
-
 <aside class="notice">
 用户在微信小程序中使用微信支付的场景
 </aside>
 
+Body需增加请求参数
+
+参数|	描述
+--|--
+sub_appid <br> **必填** <br> `string` | 与发起支付商户主体一致的小程序APPID
+sub_openid <br> **必填** <br> `string` | 用户在商户appid下的唯一标识，下单前需要调用[网页授权获取用户openid接口文档](https://developers.weixin.qq.com/miniprogram/dev/api/api-login.html)接口获取到用户的Openid
+
 ### 微信APP支付 wechat.app 
 
-> 请求
+> Post /v2/pay?merchant_id=5399355381712172
 
 ```json
 {
@@ -284,6 +295,12 @@ openid是微信用户在公众号appid下的唯一用户标识（appid不同，�
 APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信支付模块来完成支付。适用于在移动端APP中集成微信支付功能的场景。
 </aside>
 
+Body需增加请求参数
+
+参数|	描述
+--|--
+sub_appid <br> **必填** <br> `string` | 商户在微信开放平台上申请的APPID，开发平台认证主体需与商户主体一致
+
 ### 微信H5支付 wechat.wap 
 
 <aside class="notice">
@@ -292,7 +309,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 
 ## 查询订单 Query
 
-> Post /v2/pay/query?merchant_id=#{merchant_id} 
+> Post /v2/pay/query?merchant_id=5399355381712172
 
 ```json
 {
@@ -325,7 +342,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 
 ## 关闭订单 Close
 
->  Post /v2/pay/close?merchant_id=#{merchant_id} 
+>  Post /v2/pay/close?merchant_id=5399355381712172
 
 ```json
 {
@@ -352,7 +369,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 
 ## 撤销订单 Reverse
 
-> Post /v2/pay/reverse?merchant_id=#{merchant_id} 
+> Post /v2/pay/reverse?merchant_id=5399355381712172
 
 
 ```json
@@ -380,7 +397,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 
 ## 申请退款 Refund
 
-> Post /v2/pay/refund?merchant_id=#{merchant_id} 
+> Post /v2/pay/refund?merchant_id=5399355381712172
 
 ```json
 {
@@ -415,7 +432,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 
 ## 退款查询 Refund query
 
-> Post /v2/pay/refund_query?merchant_id=#{merchant_id} 
+> Post /v2/pay/refund_query?merchant_id=5399355381712172
 
 ```json
 {
