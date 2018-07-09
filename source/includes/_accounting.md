@@ -67,7 +67,7 @@
 }
 ```
 
-请求方式：/cms/pooul_bills/search_order?
+请求方式：post /cms/pooul_bills/search_order?
 
 URL参数说明
 
