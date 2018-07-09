@@ -724,6 +724,8 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
+<p>请求方式：Post /v2/pay?</p>
+
 <p>URL请求参数</p>
 
 <table><thead>
@@ -1116,6 +1118,8 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 
 <p>以trade_state确认支付状态，<a href="#trade_state">状态码</a></p>
 
+<p>请求方式：Post /v2/pay/query?</p>
+
 <p>URL请求参数</p>
 
 <table><thead>
@@ -1174,6 +1178,8 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 
 <p>注意：订单生成后不能马上调用关单接口，最短调用时间建议间隔为5分钟。</p>
 
+<p>请求方式：Post /v2/pay/close?</p>
+
 <p>URL请求参数</p>
 
 <table><thead>
@@ -1230,6 +1236,8 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <p>调用支付接口后请勿立即调用撤销订单API，建议支付后至少15s后再调用撤销订单接口。</p>
 
 <p>可用支付渠道：微信支付、支付宝</p>
+
+<p>请求方式：Post /v2/pay/reverse?</p>
 
 <p>URL请求参数</p>
 
@@ -1296,6 +1304,8 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <li>微信支付交易时间超过一年的订单无法提交退款，支付宝为签约时设置的可退款时间 </li>
 <li>微信支付每个支付订单的部分退款次数不能超过50次</li>
 </ol>
+
+<p>请求方式：Post /v2/pay/refund?</p>
 
 <p>URL请求参数</p>
 
@@ -1392,6 +1402,8 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <p>提交退款申请后，通过调用该接口查询退款状态。退款有一定延时，用零钱支付的退款20分钟内到账，银行卡支付的退款3个工作日后重新查询退款状态。</p>
 
 <p>注意：如果单个支付订单部分退款次数多次时使用商户订单号查询会返回多条退款记录</p>
+
+<p>请求方式：Post /v2/pay/refund_query?</p>
 
 <p>URL请求参数</p>
 
@@ -1502,7 +1514,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>请求方式：/cms/pooul_bills/search_order?</p>
+<p>请求方式：post /cms/pooul_bills/search_order?</p>
 
 <p>URL参数说明</p>
 
