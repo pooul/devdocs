@@ -733,8 +733,8 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 </tr>
 </thead><tbody>
 <tr>
-<td>merchant_id <br> <strong>必填</strong> <br> <code>string</code></td>
-<td>发起支付的商户编号</td>
+<td>merchant_id <br> <strong>必填</strong></td>
+<td>发起支付的商户编号，16位数字，由普尔瀚达分配</td>
 </tr>
 </tbody></table>
 
@@ -1065,6 +1065,24 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <aside class="notice">
 用户在微信以外的手机浏览器请求微信支付的场景唤起微信支付
 </aside>
+
+<p>Body需增加请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub_appid <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>与发起支付商户主体一致的小程序APPID</td>
+</tr>
+<tr>
+<td>sub_openid <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>用户在商户appid下的唯一标识，下单前需要调用<a href="https://developers.weixin.qq.com/miniprogram/dev/api/api-login.html">网页授权获取用户openid接口文档</a>接口获取到用户的Openid</td>
+</tr>
+</tbody></table>
 <h2 id='query'>查询订单 Query</h2>
 <blockquote>
 <p>Post /v2/pay/query?merchant_id=5399355381712172</p>
@@ -1097,6 +1115,38 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </ul>
 
 <p>以trade_state确认支付状态，<a href="#trade_state">状态码</a></p>
+
+<p>URL请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchant_id <br> <strong>必填</strong></td>
+<td>发起支付的商户编号，16位数字，由普尔瀚达分配</td>
+</tr>
+</tbody></table>
+
+<p>Body请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mch_trade_id <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>商户订单号</td>
+</tr>
+<tr>
+<td>nonce_str  <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL</td>
+</tr>
+</tbody></table>
 <h2 id='close'>关闭订单 Close</h2>
 <blockquote>
 <p>Post /v2/pay/close?merchant_id=5399355381712172</p>
@@ -1123,6 +1173,38 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </ul>
 
 <p>注意：订单生成后不能马上调用关单接口，最短调用时间建议间隔为5分钟。</p>
+
+<p>URL请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchant_id <br> <strong>必填</strong></td>
+<td>发起支付的商户编号，16位数字，由普尔瀚达分配</td>
+</tr>
+</tbody></table>
+
+<p>Body请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mch_trade_id <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>商户订单号</td>
+</tr>
+<tr>
+<td>nonce_str  <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL</td>
+</tr>
+</tbody></table>
 <h2 id='reverse'>撤销订单 Reverse</h2>
 <blockquote>
 <p>Post /v2/pay/reverse?merchant_id=5399355381712172</p>
@@ -1148,6 +1230,38 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <p>调用支付接口后请勿立即调用撤销订单API，建议支付后至少15s后再调用撤销订单接口。</p>
 
 <p>可用支付渠道：微信支付、支付宝</p>
+
+<p>URL请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchant_id <br> <strong>必填</strong></td>
+<td>发起支付的商户编号，16位数字，由普尔瀚达分配</td>
+</tr>
+</tbody></table>
+
+<p>Body请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mch_trade_id <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>商户订单号</td>
+</tr>
+<tr>
+<td>nonce_str  <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL</td>
+</tr>
+</tbody></table>
 <h2 id='refund'>申请退款 Refund</h2>
 <blockquote>
 <p>Post /v2/pay/refund?merchant_id=5399355381712172</p>
@@ -1182,6 +1296,50 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <li>微信支付交易时间超过一年的订单无法提交退款，支付宝为签约时设置的可退款时间 </li>
 <li>微信支付每个支付订单的部分退款次数不能超过50次</li>
 </ol>
+
+<p>URL请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchant_id <br> <strong>必填</strong></td>
+<td>发起支付的商户编号，16位数字，由普尔瀚达分配</td>
+</tr>
+</tbody></table>
+
+<p>Body请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mch_trade_id <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>商户订单号</td>
+</tr>
+<tr>
+<td>refund_fee <br> <strong>必填</strong> <br> <code>int</code></td>
+<td>退款金额，单位为分</td>
+</tr>
+<tr>
+<td>refund_desc <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>退款原因</td>
+</tr>
+<tr>
+<td>notify_url <br> <strong>选填</strong> <br> <code>string</code></td>
+<td>异步接收退款结果通知的回调地址，通知URL必须为外网可访问的url，不允许带参数</td>
+</tr>
+<tr>
+<td>nonce_str  <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL</td>
+</tr>
+</tbody></table>
 <h2 id='refund-query'>退款查询 Refund query</h2>
 <blockquote>
 <p>Post /v2/pay/refund_query?merchant_id=5399355381712172</p>
@@ -1234,6 +1392,38 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <p>提交退款申请后，通过调用该接口查询退款状态。退款有一定延时，用零钱支付的退款20分钟内到账，银行卡支付的退款3个工作日后重新查询退款状态。</p>
 
 <p>注意：如果单个支付订单部分退款次数多次时使用商户订单号查询会返回多条退款记录</p>
+
+<p>URL请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchant_id <br> <strong>必填</strong></td>
+<td>发起支付的商户编号，16位数字，由普尔瀚达分配</td>
+</tr>
+</tbody></table>
+
+<p>Body请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mch_trade_id <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>商户订单号</td>
+</tr>
+<tr>
+<td>nonce_str  <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL</td>
+</tr>
+</tbody></table>
 <h2 id='pay-notify'>支付结果通知 Pay notify</h2>
 <p>支付完成后，系统会把相关支付结果和用户信息发送给商户，商户需要接收处理，并需要响应字符串&quot;success&quot;（大小写皆可）。</p>
 
