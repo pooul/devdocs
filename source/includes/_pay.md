@@ -23,7 +23,7 @@ URL请求参数
 
 参数|	描述
 --|--
-merchant_id <br> **必填** <br> `string` | 发起支付的商户编号
+merchant_id <br> **必填** | 发起支付的商户编号，16位数字，由普尔瀚达分配
 
 
 Body公共请求参数
@@ -307,6 +307,13 @@ sub_appid <br> **必填** <br> `string` | 商户在微信开放平台上申请�
 用户在微信以外的手机浏览器请求微信支付的场景唤起微信支付
 </aside>
 
+Body需增加请求参数
+
+参数|	描述
+--|--
+sub_appid <br> **必填** <br> `string` | 与发起支付商户主体一致的小程序APPID
+sub_openid <br> **必填** <br> `string` | 用户在商户appid下的唯一标识，下单前需要调用[网页授权获取用户openid接口文档](https://developers.weixin.qq.com/miniprogram/dev/api/api-login.html)接口获取到用户的Openid
+
 ## 查询订单 Query
 
 > Post /v2/pay/query?merchant_id=5399355381712172
@@ -329,6 +336,7 @@ sub_appid <br> **必填** <br> `string` | 商户在微信开放平台上申请�
 
 ``` 
 
+
 该接口提供所有支付订单的查询，商户可以通过查询订单接口主动查询订单状态，完成下一步的业务逻辑。
 
 需要调用查询接口的情况：
@@ -339,6 +347,20 @@ sub_appid <br> **必填** <br> `string` | 商户在微信开放平台上申请�
 - 调用关单或撤销接口API之前，需确认支付状态；
 
 以trade_state确认支付状态，[状态码](#trade_state)
+
+URL请求参数
+
+参数|	描述
+--|--
+merchant_id <br> **必填** | 发起支付的商户编号，16位数字，由普尔瀚达分配
+
+
+Body请求参数
+
+参数|	描述
+--|--
+mch_trade_id <br> **必填** <br> `string` | 商户订单号
+nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
 
 ## 关闭订单 Close
 
@@ -367,6 +389,20 @@ sub_appid <br> **必填** <br> `string` | 商户在微信开放平台上申请�
 
 注意：订单生成后不能马上调用关单接口，最短调用时间建议间隔为5分钟。
 
+URL请求参数
+
+参数|	描述
+--|--
+merchant_id <br> **必填** | 发起支付的商户编号，16位数字，由普尔瀚达分配
+
+
+Body请求参数
+
+参数|	描述
+--|--
+mch_trade_id <br> **必填** <br> `string` | 商户订单号
+nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
+
 ## 撤销订单 Reverse
 
 > Post /v2/pay/reverse?merchant_id=5399355381712172
@@ -394,6 +430,20 @@ sub_appid <br> **必填** <br> `string` | 商户在微信开放平台上申请�
 调用支付接口后请勿立即调用撤销订单API，建议支付后至少15s后再调用撤销订单接口。
 
 可用支付渠道：微信支付、支付宝
+
+URL请求参数
+
+参数|	描述
+--|--
+merchant_id <br> **必填** | 发起支付的商户编号，16位数字，由普尔瀚达分配
+
+
+Body请求参数
+
+参数|	描述
+--|--
+mch_trade_id <br> **必填** <br> `string` | 商户订单号
+nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
 
 ## 申请退款 Refund
 
@@ -429,6 +479,23 @@ sub_appid <br> **必填** <br> `string` | 商户在微信开放平台上申请�
 
 1. 微信支付交易时间超过一年的订单无法提交退款，支付宝为签约时设置的可退款时间 
 2. 微信支付每个支付订单的部分退款次数不能超过50次
+
+URL请求参数
+
+参数|	描述
+--|--
+merchant_id <br> **必填** | 发起支付的商户编号，16位数字，由普尔瀚达分配
+
+
+Body请求参数
+
+参数|	描述
+--|--
+mch_trade_id <br> **必填** <br> `string` | 商户订单号
+refund_fee <br> **必填** <br> `int` | 退款金额，单位为分
+refund_desc <br> **必填** <br> `string` | 退款原因
+notify_url <br> **选填** <br> `string` | 异步接收退款结果通知的回调地址，通知URL必须为外网可访问的url，不允许带参数
+nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
 
 ## 退款查询 Refund query
 
@@ -483,6 +550,20 @@ sub_appid <br> **必填** <br> `string` | 商户在微信开放平台上申请�
 提交退款申请后，通过调用该接口查询退款状态。退款有一定延时，用零钱支付的退款20分钟内到账，银行卡支付的退款3个工作日后重新查询退款状态。
 
 注意：如果单个支付订单部分退款次数多次时使用商户订单号查询会返回多条退款记录
+
+URL请求参数
+
+参数|	描述
+--|--
+merchant_id <br> **必填** | 发起支付的商户编号，16位数字，由普尔瀚达分配
+
+
+Body请求参数
+
+参数|	描述
+--|--
+mch_trade_id <br> **必填** <br> `string` | 商户订单号
+nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
 
 
 ## 支付结果通知 Pay notify
