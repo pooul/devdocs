@@ -95,11 +95,11 @@ trade_state | trade_info |
 
 ## Login
 
-### 获得登录用户
+### 1. 获得登录用户 Get user
 
 请联系对接的商务经理
 
-### 使用登录接口获取 Authorization
+### 2. 获取 Authorization
 
 > 请求：Post /web/user/session/login_name
 

@@ -10,12 +10,13 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 
 toc_footers:
-  - <a href='https://www.pooul.com/'>返回网站首页</a>
+  - <a href='http://www.pooul.com/'>返回网站首页</a>
 
 includes:
   - basic
   - pay
   - accounting
+  - merchants
   - appendix
   - faq
   - log
