@@ -324,9 +324,6 @@
                     <a href="#pay-order" class="toc-h2 toc-link" data-title="pay-order">统一支付 Pay order</a>
                       <ul class="toc-list-h3">
                           <li>
-                            <a href="#de992c5ef7" class="toc-h3 toc-link" data-title="">公共请求参数</a>
-                          </li>
-                          <li>
                             <a href="#common-micro" class="toc-h3 toc-link" data-title="common-micro">统一反扫支付 common.micro</a>
                           </li>
                           <li>
@@ -373,17 +370,6 @@
             <a href="#accounting" class="toc-h1 toc-link" data-title="accounting">账务 Accounting</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#downloads-bills" class="toc-h2 toc-link" data-title="downloads-bills">下载对账单 Downloads bills</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#day-bills" class="toc-h3 toc-link" data-title="day-bills">日对账单 Day bills</a>
-                          </li>
-                          <li>
-                            <a href="#049e654a9b" class="toc-h3 toc-link" data-title="">对账单格式</a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
                     <a href="#pay-order-query" class="toc-h2 toc-link" data-title="pay-order-query">获取交易明细 Pay order query</a>
                   </li>
                   <li>
@@ -397,6 +383,17 @@
                           </li>
                           <li>
                             <a href="#month-summary" class="toc-h3 toc-link" data-title="month-summary">月汇总 Month summary</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#downloads-bills" class="toc-h2 toc-link" data-title="downloads-bills">下载对账单 Downloads bills</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#day-bills" class="toc-h3 toc-link" data-title="day-bills">日对账单 Day bills</a>
+                          </li>
+                          <li>
+                            <a href="#049e654a9b" class="toc-h3 toc-link" data-title="">对账单格式</a>
                           </li>
                       </ul>
                   </li>
@@ -548,7 +545,7 @@ You must replace `meowmeowmeow` with your personal API key.
 <table><thead>
 <tr>
 <th>trade_state</th>
-<th>trade_info</th>
+<th>说明</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -557,15 +554,15 @@ You must replace `meowmeowmeow` with your personal API key.
 </tr>
 <tr>
 <td>1</td>
-<td>转入退款</td>
+<td>转入退款：支付成功后调用退款接口转入退款，只代表退款业务提交成功，具体退款状态请调用退款查询接口</td>
 </tr>
 <tr>
 <td>2</td>
-<td>未支付</td>
+<td>未支付：订单未支付</td>
 </tr>
 <tr>
 <td>3</td>
-<td>已关闭</td>
+<td>已关闭：订单已关闭</td>
 </tr>
 <tr>
 <td>4</td>
@@ -573,15 +570,15 @@ You must replace `meowmeowmeow` with your personal API key.
 </tr>
 <tr>
 <td>5</td>
-<td>已撤销</td>
+<td>已撤销：用于反扫，未确认状态的订单使用撤销订单接口进行撤销，如果未付款订单则会关闭订单，已付款订单会进行退款</td>
 </tr>
 <tr>
 <td>6</td>
-<td>支付中</td>
+<td>支付中：用于反扫，当用户需要输入密码时的状态</td>
 </tr>
 <tr>
 <td>7</td>
-<td>支付失败</td>
+<td>支付失败：交易结果确认失败</td>
 </tr>
 </tbody></table>
 <h1 id='authenticate'>认证 Authenticate</h1><h2 id='login'>Login</h2><h3 id='1-get-user'>1. 获得登录用户 Get user</h3>
@@ -710,9 +707,9 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 <li>响应都会使用MD5进行签名, 响应中会带有签名;</li>
 <li>签名只针对data中的数据</li>
 </ul>
-<h3 id='jwt-2'>使用普尔公钥验签 JWT</h3><h1 id='pay'>收款 Pay</h1><h2 id='pay-order'>统一支付 Pay order</h2><h3 id='de992c5ef7'>公共请求参数</h3>
+<h3 id='jwt-2'>使用普尔公钥验签 JWT</h3><h1 id='pay'>收款 Pay</h1><h2 id='pay-order'>统一支付 Pay order</h2>
 <blockquote>
-<p>Post /v2/pay?merchant_id=#{merchant_id}</p>
+<p>Post /v2/pay?merchant_id=5399355381712172</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"wechat.scan"</span><span class="p">,</span><span class="w">
@@ -727,6 +724,22 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
+<p>URL请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchant_id <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>发起支付的商户编号</td>
+</tr>
+</tbody></table>
+
+<p>Body公共请求参数</p>
+
 <table><thead>
 <tr>
 <th>参数</th>
@@ -776,7 +789,7 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 </tbody></table>
 <h3 id='common-micro'>统一反扫支付 common.micro</h3>
 <blockquote>
-<p>请求</p>
+<p>Post /v2/pay?merchant_id=5399355381712172</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"common.micro"</span><span class="p">,</span><span class="w">
@@ -823,11 +836,11 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 
 <p>收银员使用扫码设备读取微信/支付宝用户刷卡授权码以后，二维码或条码信息传送至商户收银台，由商户收银台或者商户后台调用该接口发起支付。</p>
 
-<p>提醒1：提交支付请求后系统会同步返回支付结果。当返回结果为“系统错误”时，商户系统等待5秒后调用【查询订单API】，查询支付实际交易结果；当返回结果为“USERPAYING”时，商户系统可设置间隔时间(建议10秒)重新查询支付结果，直到支付成功或超时(建议30秒)；</p>
+<p>提醒1：提交支付请求后系统会同步返回支付结果。当返回结果为“系统错误”时，商户系统等待5秒后调用【查询订单API】，查询支付实际交易结果；当返回trade_state为“6”时，商户系统可设置间隔时间(建议10秒)重新查询支付结果，直到支付成功或超时(建议30秒)；</p>
 
 <p>提醒2：在调用查询接口返回后，如果交易状况不明晰，请调用【撤销订单API】，此时如果交易失败则关闭订单，该单不能再支付成功；如果交易成功，则将扣款退回到用户账户。当撤销无返回或错误时，请再次调用。注意：请勿扣款后立即调用【撤销订单API】,建议至少15秒后再调用。</p>
 
-<p>增加请求参数</p>
+<p>Body需增加请求参数</p>
 
 <table><thead>
 <tr>
@@ -837,12 +850,12 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 </thead><tbody>
 <tr>
 <td>auth_code <br> <strong>必填</strong> <br> <code>string</code></td>
-<td>微信支付或支付宝支付授权码</td>
+<td>微信支付或支付宝支付授权码，设备读取用户微信中的条码或者二维码信息转换成字符</td>
 </tr>
 </tbody></table>
 <h3 id='wechat-scan'>微信扫码支付 wechat.scan</h3>
 <blockquote>
-<p>请求</p>
+<p>Post /v2/pay?merchant_id=5399355381712172</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"wechat.scan"</span><span class="p">,</span><span class="w">
@@ -903,7 +916,7 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 <p>（12）商户确认订单已支付后给用户发货。</p>
 <h3 id='wechat-jsapi'>微信公众号支付 wechat.jsapi</h3>
 <blockquote>
-<p>请求</p>
+<p>Post /v2/pay?merchant_id=5399355381712172</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"wechat.jsapi"</span><span class="p">,</span><span class="w">
@@ -935,15 +948,26 @@ OpenSSL&gt;exit  #退出OpenSSL程序
 公众号支付是指用户在微信中打开商户的H5页面，商户在H5页面通过调用微信支付提供的JSAPI接口调起微信支付模块来完成支付。适用于在公众号、朋友圈、聊天窗口等微信内完成支付的场景。
 </aside>
 
-<p>获取openid</p>
+<p>Body需增加请求参数</p>
 
-<p>微信公众平台：
-openid是微信用户在公众号appid下的唯一用户标识（appid不同，则获取到的openid就不同），可用于永久标记一个用户，同时也是微信公众号支付的必传参数。</p>
-
-<p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842">网页授权获取用户openid接口文档</a></p>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub_appid <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>与发起支付商户主体一致的公众号appid，公众号必须为认证的服务号</td>
+</tr>
+<tr>
+<td>sub_openid <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>用户在商户appid下的唯一标识，下单前需要调用<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842">网页授权获取用户openid接口文档</a>接口获取到用户的Openid</td>
+</tr>
+</tbody></table>
 <h3 id='wechat-jsminipg'>微信小程序支付 wechat.jsminipg</h3>
 <blockquote>
-<p>请求</p>
+<p>Post /v2/pay?merchant_id=5399355381712172</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"wechat.jsminipg"</span><span class="p">,</span><span class="w">
@@ -973,9 +997,27 @@ openid是微信用户在公众号appid下的唯一用户标识（appid不同，�
 <aside class="notice">
 用户在微信小程序中使用微信支付的场景
 </aside>
+
+<p>Body需增加请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub_appid <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>与发起支付商户主体一致的小程序APPID</td>
+</tr>
+<tr>
+<td>sub_openid <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>用户在商户appid下的唯一标识，下单前需要调用<a href="https://developers.weixin.qq.com/miniprogram/dev/api/api-login.html">网页授权获取用户openid接口文档</a>接口获取到用户的Openid</td>
+</tr>
+</tbody></table>
 <h3 id='app-wechat-app'>微信APP支付 wechat.app</h3>
 <blockquote>
-<p>请求</p>
+<p>Post /v2/pay?merchant_id=5399355381712172</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pay_type"</span><span class="p">:</span><span class="s2">"wechat.app"</span><span class="p">,</span><span class="w">
@@ -1005,13 +1047,27 @@ openid是微信用户在公众号appid下的唯一用户标识（appid不同，�
 <aside class="notice">
 APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信支付模块来完成支付。适用于在移动端APP中集成微信支付功能的场景。
 </aside>
+
+<p>Body需增加请求参数</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub_appid <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>商户在微信开放平台上申请的APPID，开发平台认证主体需与商户主体一致</td>
+</tr>
+</tbody></table>
 <h3 id='h5-wechat-wap'>微信H5支付 wechat.wap</h3>
 <aside class="notice">
 用户在微信以外的手机浏览器请求微信支付的场景唤起微信支付
 </aside>
 <h2 id='query'>查询订单 Query</h2>
 <blockquote>
-<p>Post /v2/pay/query?merchant_id=#{merchant_id} </p>
+<p>Post /v2/pay/query?merchant_id=5399355381712172</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w">
@@ -1043,7 +1099,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <p>以trade_state确认支付状态，<a href="#trade_state">状态码</a></p>
 <h2 id='close'>关闭订单 Close</h2>
 <blockquote>
-<p>Post /v2/pay/close?merchant_id=#{merchant_id} </p>
+<p>Post /v2/pay/close?merchant_id=5399355381712172</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="err">#商户订单号</span><span class="w">
@@ -1069,7 +1125,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <p>注意：订单生成后不能马上调用关单接口，最短调用时间建议间隔为5分钟。</p>
 <h2 id='reverse'>撤销订单 Reverse</h2>
 <blockquote>
-<p>Post /v2/pay/reverse?merchant_id=#{merchant_id} </p>
+<p>Post /v2/pay/reverse?merchant_id=5399355381712172</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="w"> </span><span class="err">#商户订单号</span><span class="w">
@@ -1094,7 +1150,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <p>可用支付渠道：微信支付、支付宝</p>
 <h2 id='refund'>申请退款 Refund</h2>
 <blockquote>
-<p>Post /v2/pay/refund?merchant_id=#{merchant_id} </p>
+<p>Post /v2/pay/refund?merchant_id=5399355381712172</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="s2">"alextest.scan.112"</span><span class="p">,</span><span class="w">
@@ -1128,7 +1184,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </ol>
 <h2 id='refund-query'>退款查询 Refund query</h2>
 <blockquote>
-<p>Post /v2/pay/refund_query?merchant_id=#{merchant_id} </p>
+<p>Post /v2/pay/refund_query?merchant_id=5399355381712172</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"mch_trade_id"</span><span class="p">:</span><span class="s2">"alextest.scan.112"</span><span class="w">
@@ -1194,26 +1250,6 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <li>认证方式：基于Login权限，<a href="#login">查看Login认证说明</a></li>
 <li>所需权限：账务查询</li>
 </ul>
-<h2 id='downloads-bills'>下载对账单 Downloads bills</h2><h3 id='day-bills'>日对账单 Day bills</h3>
-<blockquote>
-<p>get /cms/pooul_bills/download_by_date</p>
-</blockquote>
-
-<p>下载当前商户不需要merchant_id参数，下载下级商户对账单在网址后加上 merchant_id 参数</p>
-<h3 id='049e654a9b'>对账单格式</h3><h4 id='82436dcd19'>明细文件格式：</h4>
-<p>成功时，数据以文本表格的方式返回，第一行为表头，后面各行为对应的字段内容，字段内容跟查询订单或退款结果一致，具体字段说明可查阅相应接口。</p>
-
-<p>第一行为表头：
-创建时间 付款完成时间 支付单号 商户单号 原始单号 支付类型 商户编号 支付状态 结算状态 付款总金额 代金券金额 结算手续费率 结算手续费 应结算金额 退款单号 退款金额 代金券退款金额 退款状态 退款完成时间 订单标题(兼容支付宝) 商品描述 商家数据包 设备编号 操作员编号 公众号APPID 付款人信息 付款银行 货币种类</p>
-
-<p>从第二行起，为数据记录
-各参数以逗号分隔，字段顺序与表头一致。</p>
-<h4 id='169fa2dd1d'>汇总文件格式：</h4>
-<p>第一行为表头：
-总订单笔数 总交易金额 结算手续费总金额 应结算总金额 总退款金额</p>
-
-<p>从第二行起，为数据记录
-各参数以逗号分隔，字段顺序与表头一致。</p>
 <h2 id='pay-order-query'>获取交易明细 Pay order query</h2>
 <blockquote>
 <p>Post /cms/pooul_bills/search_order?merchant_id=9609932494323355&amp;desc=1&amp;time_start=1531115400&amp;time_end=1531115700</p>
@@ -1343,7 +1379,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </ul>
 <h3 id='today-summary'>实时汇总 Today summary</h3>
 <blockquote>
-<p>get /cms/pooul_bills/today?merchant_id=#{merchant_id}&amp;desc={1/0}</p>
+<p>get /cms/pooul_bills/today?merchant_id=9609932494323355&amp;desc=1</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -1384,9 +1420,11 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<ul>
-<li>请求方式：GET /cms/pooul_bills/today</li>
-</ul>
+<p>使用此接口可以查询当日0点到查询当前时间的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总</p>
+
+<p>请求方式：get /cms/pooul_bills/today?</p>
+
+<p>URL参数说明</p>
 
 <table><thead>
 <tr>
@@ -1405,7 +1443,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </tbody></table>
 <h3 id='day-summary'>日汇总 Day summary</h3>
 <blockquote>
-<p>get /cms/pooul_bills/day_summary?merchant_id=#{merchant_id}&amp;month=#{month}&amp;desc={1/0}</p>
+<p>get /cms/pooul_bills/day_summary?merchant_id=9609932494323355&amp;month=201807&amp;desc=1</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -1520,9 +1558,9 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </span></code></pre>
 <p>使用此接口在请求中输入月份信息可以查询当月所有日期的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总</p>
 
-<ul>
-<li>请求方式：GET /cms/pooul_bills/day_summary</li>
-</ul>
+<p>请求方式：get /cms/pooul_bills/day_summary?</p>
+
+<p>URL参数说明</p>
 
 <table><thead>
 <tr>
@@ -1545,7 +1583,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </tbody></table>
 <h3 id='month-summary'>月汇总 Month summary</h3>
 <blockquote>
-<p>get /cms/pooul_bills/month_summary?merchant_id=#{merchant_id}&amp;year=#{year}&amp;desc={1/0}</p>
+<p>get /cms/pooul_bills/month_summary?merchant_id=9609932494323355&amp;year=2018&amp;desc=1</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -1616,7 +1654,9 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </span></code></pre>
 <p>使用此接口在请求中输入年份信息可以查询当月所有月份的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总</p>
 
-<p>请求方式：GET /cms/pooul_bills/month_summary</p>
+<p>请求方式：get /cms/pooul_bills/month_summary?</p>
+
+<p>URL参数说明</p>
 
 <table><thead>
 <tr>
@@ -1637,6 +1677,44 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <td>年份，如：2018， 则返回2018年所有月份的交易汇总数据</td>
 </tr>
 </tbody></table>
+<h2 id='downloads-bills'>下载对账单 Downloads bills</h2><h3 id='day-bills'>日对账单 Day bills</h3>
+<p>请求方式：get /cms/pooul_bills/download_by_date?</p>
+
+<p>URL参数说明</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchant_id</td>
+<td>要下载的商户编号</td>
+</tr>
+<tr>
+<td>bill_date</td>
+<td>要下载的对账单日期，如：20180706</td>
+</tr>
+</tbody></table>
+<h3 id='049e654a9b'>对账单格式</h3>
+<p>明细文件格式：</p>
+
+<p>成功时，数据以文本表格的方式返回，第一行为表头，后面各行为对应的字段内容，字段内容跟查询订单或退款结果一致，具体字段说明可查阅相应接口。</p>
+
+<p>第一行为表头：
+创建时间 付款完成时间 支付单号 商户单号 原始单号 支付类型 商户编号 支付状态 结算状态 付款总金额 代金券金额 结算手续费率 结算手续费 应结算金额 退款单号 退款金额 代金券退款金额 退款状态 退款完成时间 订单标题(兼容支付宝) 商品描述 商家数据包 设备编号 操作员编号 公众号APPID 付款人信息 付款银行 货币种类</p>
+
+<p>从第二行起，为数据记录
+各参数以逗号分隔，字段顺序与表头一致。</p>
+
+<p>汇总文件格式：</p>
+
+<p>第一行为表头：
+总订单笔数 总交易金额 结算手续费总金额 应结算总金额 总退款金额</p>
+
+<p>从第二行起，为数据记录
+各参数以逗号分隔，字段顺序与表头一致。</p>
 <h1 id='merchants'>商户管理 Merchants</h1><h1 id='f8519014aa'>附录</h1><h2 id='pay-type'>Pay Type 支付类型编码</h2>
 <table><thead>
 <tr>
