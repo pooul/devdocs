@@ -281,10 +281,10 @@
                     <a href="#login" class="toc-h2 toc-link" data-title="login">Login</a>
                       <ul class="toc-list-h3">
                           <li>
-                            <a href="#dee6bda0ef" class="toc-h3 toc-link" data-title="">获得登录用户</a>
+                            <a href="#1-get-user" class="toc-h3 toc-link" data-title="1-get-user">1. 获得登录用户 Get user</a>
                           </li>
                           <li>
-                            <a href="#authorization" class="toc-h3 toc-link" data-title="authorization">使用登录接口获取 Authorization</a>
+                            <a href="#2-authorization" class="toc-h3 toc-link" data-title="2-authorization">2. 获取 Authorization</a>
                           </li>
                       </ul>
                   </li>
@@ -396,6 +396,9 @@
               </ul>
           </li>
           <li>
+            <a href="#merchants" class="toc-h1 toc-link" data-title="merchants">商户管理 Merchants</a>
+          </li>
+          <li>
             <a href="#f8519014aa" class="toc-h1 toc-link" data-title="">附录</a>
               <ul class="toc-list-h2">
                   <li>
@@ -411,7 +414,7 @@
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='https://www.pooul.com/'>返回网站首页</a></li>
+            <li><a href='http://www.pooul.com/'>返回网站首页</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -546,9 +549,9 @@ openid是微信用户在公众号appid下的唯一用户标识（appid不同，�
 <td>支付失败</td>
 </tr>
 </tbody></table>
-<h1 id='authenticate'>认证 Authenticate</h1><h2 id='login'>Login</h2><h3 id='dee6bda0ef'>获得登录用户</h3>
+<h1 id='authenticate'>认证 Authenticate</h1><h2 id='login'>Login</h2><h3 id='1-get-user'>1. 获得登录用户 Get user</h3>
 <p>请联系对接的商务经理</p>
-<h3 id='authorization'>使用登录接口获取 Authorization</h3>
+<h3 id='2-authorization'>2. 获取 Authorization</h3>
 <blockquote>
 <p>请求：Post /web/user/session/login_name</p>
 </blockquote>
@@ -1452,7 +1455,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </span></code></pre>
 <p>使用此接口在请求中输入年份信息可以查询当月所有月份的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总</p>
 
-<p><code>请求方式：GET /cms/pooul_bills/month_summary</code></p>
+<p>请求方式：GET /cms/pooul_bills/month_summary</p>
 
 <table><thead>
 <tr>
@@ -1473,7 +1476,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <td>年份，如：2018， 则返回2018年所有月份的交易汇总数据</td>
 </tr>
 </tbody></table>
-<h1 id='f8519014aa'>附录</h1><h2 id='pay-type'>Pay Type 支付类型编码</h2>
+<h1 id='merchants'>商户管理 Merchants</h1><h1 id='f8519014aa'>附录</h1><h2 id='pay-type'>Pay Type 支付类型编码</h2>
 <table><thead>
 <tr>
 <th>pay_type</th>
