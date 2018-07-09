@@ -32,6 +32,90 @@
 
 ## 获取交易明细 Pay order query
 
+> Post /cms/pooul_bills/search_order?merchant_id=9609932494323355&desc=1&time_start=1531115400&time_end=1531115700
+
+```json
+{
+    "code": 0,
+    "msg": "success",
+    "data": [
+        {
+            "_id": "5b43125401c9114d83865b88",
+            "_type": "Ns::PayOrder::Wechat",
+            "auth_code": "134725320299883049",
+            "body": "Alex Test Micro",
+            "created_at": 1531122260,
+            "mch_trade_id": "alextest.micro.91",
+            "merchant_id": "5399355381712172",
+            "pay_type": "wechat.micro",
+            "refund_fee": 0,
+            "settle_fee": 221,
+            "settle_rate": 50,
+            "spbill_create_ip": "127.0.0.1",
+            "total_fee": 222,
+            "trade_fee": 1,
+            "trade_state": 0,
+            "updated_at": 1531122302,
+            "merchant_info": {
+                "merchant_id": "5399355381712172",
+                "business_short_name": "平克文化",
+                "corporate_full_name": null
+            }
+        },
+        {
+            "_id": "5b42f81801c911417df535ca",
+            "_type": "Ns::PayOrder::Wechat",
+            "attach": "Alex attach Test",
+            "body": "Alex Test Wechat Scan",
+            "created_at": 1531115544,
+            "device_info": "alex wechat device",
+            "mch_trade_id": "alextest.scan.146",
+            "merchant_id": "5399355381712172",
+            "notify_url": "http://112.74.184.236:3006/fake-recv",
+            "op_user_id": "11",
+            "openid": "oRXdVs59x_E6nVTBHXHkuSjsNVKw",
+            "out_trade_id": "4200000123201807097783379411",
+            "pay_type": "wechat.scan",
+            "refund_fee": 0,
+            "settle_fee": 0,
+            "settle_rate": 50,
+            "spbill_create_ip": "127.0.0.1",
+            "total_fee": 22,
+            "trade_fee": 0,
+            "trade_state": 0,
+            "updated_at": 1531115571,
+            "merchant_info": {
+                "merchant_id": "5399355381712172",
+                "business_short_name": "平克文化",
+                "corporate_full_name": null
+            }
+        }
+    ]
+}
+```
+
+请求方式：/cms/pooul_bills/search_order?
+
+URL参数说明
+
+参数 | 描述
+-- | -- 
+merchant_id | 要查询的商户编号
+desc | 留空则返回本商户汇总，desc=1则返回下属商户汇总
+time_start | 开始时间，支付创建时间，不传默认为查询当天0点，格式为unix时间戳，10位，如：1531115400
+time_end | 结束时间，支付创建时间，不传默认为截止到当前时间，格式为unix时间戳，10位，如：1531115700
+
+Body参数说明
+
+参数 | 描述
+-- | -- 
+merchant_id | 要查询的下属商户编号
+pay_type | 支付类型，[查看支付类型编码](#pay-type)
+trade_state | 支付状态
+mch_trade_id | 商户支付订单号
+_id | trade_id，普尔平台支付订单号
+
+
 ## 获取交易汇总 Summary
 
 主要分为三种维度的汇总方式，
@@ -42,7 +126,7 @@
 
 ### 实时汇总 Today summary
 
-> get /cms/pooul_bills/today?merchant_id=#{merchant_id}&desc={true/false}
+> get /cms/pooul_bills/today?merchant_id=#{merchant_id}&desc={1/0}
 
 ```json
 {
@@ -95,7 +179,7 @@ desc | 留空则返回本商户汇总，desc=1则返回下属商户汇总
 
 ### 日汇总 Day summary
 
-> get /cms/pooul_bills/day_summary?merchant_id=#{merchant_id}&month=#{month}&desc={true/false}
+> get /cms/pooul_bills/day_summary?merchant_id=#{merchant_id}&month=#{month}&desc={1/0}
 
 ```json
 {
@@ -222,7 +306,7 @@ month | 月份，如：201807， 则返回2018年7月所有日期的交易汇总
 
 ### 月汇总 Month summary
 
-> get /cms/pooul_bills/month_summary?merchant_id=#{merchant_id}&year=#{year}&desc={true/false}
+> get /cms/pooul_bills/month_summary?merchant_id=#{merchant_id}&year=#{year}&desc={1/0}
 
 ```json
 {
