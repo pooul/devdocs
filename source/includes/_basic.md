@@ -28,6 +28,40 @@ Pooul API 采用 REST 风格设计。所有接口请求地址都是可预期的�
 
 ## 商户参数
 
+> 测试商户号：5399355381712172
+
+> 测试证书私钥：
+
+```
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAw3Djq8ynUbfDfBMVWxMPVtogSUXwtPssniinXuoAmiTMRhkE
+cWq84xsrFzBl+s13DPvb5Lr172e8bB75lFk2DD7QVNFfm6eBVbuUy0Y9Q5bW6CLz
+5Yu/ZG6//ai94f6WzN3cnkS4x71Ihge3uaRWRf1UzqAfaq2vbaABNi5SYWsQCzYv
+nxoG4PYQtrc/rzuHERKsx7QWlxFmWXaxJHGvF8cr/+GXUxwjeoRB0n1mMzxhjlFO
+m200iJ65mFs+HqS0JpZh4HTdxru5WZe80vv+1AuXO9/AVtZLc1BWrTGWLfTe1ySf
+KzxEQqLq8ls0hS9V1MNYlD9ha1B/480zrGZAnwIDAQABAoIBAE2w3pA4tnqhljAI
+VgDyPrLD2vnFt7356u6kMoRkeQDNh/aFk2KSj6un7SU2tBNTAfRDWlI+j+0vS5Of
+bI8wN2/+uEo/QMZbe+pcuvVjYo8vsxZsbo/dUaPW8rMfFPx1e/TMbRrtLpcYA3Bk
+OQCu9yyzW7cXp+V8TbRCWrjzCQR4HMqnUExyDOyJflatQ2641Q4Q2YaAF1NCxJyq
+uTyxAPdpvvQ9SAj7eXsF1l0OIfW/4aACrOuvg9aOwPhbrKaT6s0dk8fKhfAm5rAu
+Q2tsubzwA5D+mJQqjVwnRHGiN+4GuIcAynevj4IdkznOP81wG/ksP34MkQpFnJ4j
+pBZxvQECgYEA6qFWBk9XQpYMVecS4RWvvRyolbKF6HgVEp0ji8euocLIfgJWEFXK
+Eb+Ood3NNSff4SpjpGOuzXBbyZiimWAQdzuo4LXwHLfd0cHOW07Lqx7UXsm5+wVp
+rzNuZzkQMtRqNqXAfSAdBziSfiMPSIZanqW3zv59oSHLengAAAI4zmECgYEA1T3Q
+BFO1J0duKacA6hjQ+DqOkfWuLo9NOFhMK4oFOiMCoFTrgoaU+7HEwPvWSe0d7rku
+HhuivGhhha9Viw41Gpfo5Z5oymL5McW52+YPLjugAV5G2dkT68c/C6CPMZYB7PYk
+4AtCYsvA5VP6qRmFQ6acm/822kela5RxAeIDbv8CgYEA0dzq8AvpdfJ2KCPePBvE
+q/dFR1h989fsqVCKac16gs+RuzvltQi3DDb1ogydLu1yj5j1tSVARhs4zlHLJjrJ
+n4xqWkwB7/3511Ntezg4bd/OftYals9Zn072cjeVKJHcSvLpAEJIFJxiU5aSZgFe
+bsa1aN0yi3yJ3woUne1e2CECgYEA0qobXHr6B5EI4ztqqtrTb7gh607Ewpit2BFb
+RtQ278VwrcbXV/7vJmzsDR9/B0+q95GYXwQ8VFfmqHScVSE3E0uqOVay/eajeyl0
+wSraKnmbTF7ALi3IAXG49hqr/HfO9TQDIBffgMz8h1Lc2rwsrLXoGDEdFq4bXVmr
+/wkzDS8CgYArNrvZ04EfGTdlgQLcxgGKhQcTibz9/QUkJ/RZPOnCxZFWwgfDIoAQ
+99IthRkneZglfhm/R5Znn1t65B8IEXejTZcYN11EugqI1/cOkJ/PySmtUMaeD+/o
+Am6x0mszgYThpY+2mM2w2hWTirUbvXS07LbCN0R29fT/a88Kwd2gGQ==
+-----END RSA PRIVATE KEY-----
+```
+
 ## 协议规则
 
 
@@ -56,14 +90,6 @@ You must replace `meowmeowmeow` with your personal API key.
 
 ### 涉及费率
 - 费率的格式为int，万分之，比如：30代表万分之30，千分之3，百分之0.3
-
-
-## 获取openid
-
-微信公众平台：
-openid是微信用户在公众号appid下的唯一用户标识（appid不同，则获取到的openid就不同），可用于永久标记一个用户，同时也是微信公众号支付的必传参数。
-
-[网页授权获取用户openid接口文档](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842)
 
 
 ## 状态码

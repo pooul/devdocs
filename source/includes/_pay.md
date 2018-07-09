@@ -204,6 +204,14 @@ auth_code <br> **必填** <br> `string` | 微信支付或支付宝支付授权�
 公众号支付是指用户在微信中打开商户的H5页面，商户在H5页面通过调用微信支付提供的JSAPI接口调起微信支付模块来完成支付。适用于在公众号、朋友圈、聊天窗口等微信内完成支付的场景。
 </aside>
 
+获取openid
+
+微信公众平台：
+openid是微信用户在公众号appid下的唯一用户标识（appid不同，则获取到的openid就不同），可用于永久标记一个用户，同时也是微信公众号支付的必传参数。
+
+[网页授权获取用户openid接口文档](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842)
+
+
 ### 微信小程序支付 wechat.jsminipg 
 
 > 请求
