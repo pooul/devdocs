@@ -170,9 +170,31 @@ login_name <br> **必填** <br> `string` | 登录名，可以为手机号码、�
 password  <br> **必填** <br> `string` | 登录密码
 
 
-使用用户名与密码调用登录接口获取 Authorization, 在登录成功以后，下发 Authorization 在http头，请求Login鉴权的接口时需要在请求头中带上 Authorization 
-Authorization 默认有效期为 30 分钟，如果用户在使用的情况下，15 分钟时后端会下发新的 Authorization，此时需要使用新的 Authorization 来调用，如果持续 30 分钟以上没有任何操作，重新操作 Authorization 会失效需要重新登录获取新的 Authorization
+使用用户名与密码调用登录接口获取 Authorization, 在登录成功以后，下发 Authorization 在http头
 
+- Authorization 默认有效期为 30 分钟，如果用户在使用的情况下，
+- 15 分钟时后端会下发新的 Authorization，此时需要使用新的 Authorization 来调用，
+- 如果持续 30 分钟以上没有任何操作，重新操作 Authorization 会失效需要重新登录获取新的 Authorization
+
+### 3. 提交请求头带上 Authorization
+
+> Request(post、put、get、delete等) url
+
+> header
+
+```
+Authorization: d991da83657a01ae4640a61828b546934d05de37
+```
+
+> body
+
+```json
+{
+    #请求内容主体
+}
+```
+
+请求使用Login鉴权的接口时需要在请求头中带上 Authorization 
 
 
 ## RSA
@@ -329,13 +351,14 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlfdHlwZSI6IndlY2hhdC5zY2FuIiwibWNoX3R
 1. 按照接口文档参数要求，将请求数据写成 json 格式
 
 
-2. 使用程序语言的JWT包（JWT支持各种语言，在 http://jwt.io 上均有下载和DEMO），将 json 数据编码，签名算法使用RSA算法RS256
-
-`token = JWT.encode(data, rsa_private_key, 'RS256')`
+2. 使用程序语言的JWT包（JWT支持各种语言，在 https://jwt.io 上均有下载和DEMO），将 json 数据编码，签名算法使用RSA算法RS256
+    - [Ruby demo](https://github.com/jwt/ruby-jwt)
+    - [Java demo](https://github.com/auth0/java-jwt)
+    - [Php demo](https://github.com/firebase/php-jwt)
+    - [C# demo](https://github.com/dvsekhvalnov/jose-jwt)
+    - [更多 Demo](https://jwt.io/)
 
 3. 将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。
-
-`http.post(url, body: token, headers: {'Content-Type': 'text/plain'})`
 
 
 ### 5. 使用普尔公钥验签 JWT
@@ -354,5 +377,13 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJjb2RlIjowLCJtc2ciOiJzdWNjZXNzIiwiZGF0YSI
     "msg": "", #错误信息
 }
 ```
+
+提交请求后如果响应成功，系统会返回jwt字符串，商户需要使用 jwt工具 并用普尔公钥进行验签，确保接收到的是普尔系统返回的正确数据。
+
+
+
+
+
+
 
 
