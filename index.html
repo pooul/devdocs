@@ -293,6 +293,9 @@
                           <li>
                             <a href="#2-authorization" class="toc-h3 toc-link" data-title="2-authorization">2. 获取 Authorization</a>
                           </li>
+                          <li>
+                            <a href="#3-authorization" class="toc-h3 toc-link" data-title="3-authorization">3. 提交请求头带上 Authorization</a>
+                          </li>
                       </ul>
                   </li>
                   <li>
@@ -635,8 +638,29 @@ You must replace `meowmeowmeow` with your personal API key.
 </tr>
 </tbody></table>
 
-<p>使用用户名与密码调用登录接口获取 Authorization, 在登录成功以后，下发 Authorization 在http头，请求Login鉴权的接口时需要在请求头中带上 Authorization 
-Authorization 默认有效期为 30 分钟，如果用户在使用的情况下，15 分钟时后端会下发新的 Authorization，此时需要使用新的 Authorization 来调用，如果持续 30 分钟以上没有任何操作，重新操作 Authorization 会失效需要重新登录获取新的 Authorization</p>
+<p>使用用户名与密码调用登录接口获取 Authorization, 在登录成功以后，下发 Authorization 在http头</p>
+
+<ul>
+<li>Authorization 默认有效期为 30 分钟，如果用户在使用的情况下，</li>
+<li>15 分钟时后端会下发新的 Authorization，此时需要使用新的 Authorization 来调用，</li>
+<li>如果持续 30 分钟以上没有任何操作，重新操作 Authorization 会失效需要重新登录获取新的 Authorization</li>
+</ul>
+<h3 id='3-authorization'>3. 提交请求头带上 Authorization</h3>
+<blockquote>
+<p>Request(post、put、get、delete等) url</p>
+
+<p>header</p>
+</blockquote>
+<pre class="highlight plaintext"><code>Authorization: d991da83657a01ae4640a61828b546934d05de37
+</code></pre>
+<blockquote>
+<p>body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">#请求内容主体</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>请求使用Login鉴权的接口时需要在请求头中带上 Authorization </p>
 <h2 id='rsa'>RSA</h2><h3 id='1-rsa'>1. 生成RSA密钥</h3>
 <blockquote>
 <p>生成 PKCS#1 2048 位私钥</p>
@@ -771,16 +795,17 @@ nwIDAQAB
 </code></pre>
 <ol>
 <li><p>按照接口文档参数要求，将请求数据写成 json 格式</p></li>
-<li><p>使用程序语言的JWT包（JWT支持各种语言，在 http://jwt.io 上均有下载和DEMO），将 json 数据编码，签名算法使用RSA算法RS256</p></li>
+<li><p>使用程序语言的JWT包（JWT支持各种语言，在 https://jwt.io 上均有下载和DEMO），将 json 数据编码，签名算法使用RSA算法RS256</p>
+
+<ul>
+<li><a href="https://github.com/jwt/ruby-jwt">Ruby demo</a></li>
+<li><a href="https://github.com/auth0/java-jwt">Java demo</a></li>
+<li><a href="https://github.com/firebase/php-jwt">Php demo</a></li>
+<li><a href="https://github.com/dvsekhvalnov/jose-jwt">C# demo</a></li>
+<li><a href="https://jwt.io/">更多 Demo</a></li>
+</ul></li>
+<li><p>将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。</p></li>
 </ol>
-
-<p><code>token = JWT.encode(data, rsa_private_key, &#39;RS256&#39;)</code></p>
-
-<ol>
-<li>将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。</li>
-</ol>
-
-<p><code>http.post(url, body: token, headers: {&#39;Content-Type&#39;: &#39;text/plain&#39;})</code></p>
 <h3 id='5-jwt'>5. 使用普尔公钥验签 JWT</h3>
 <blockquote>
 <p>成功响应示例</p>
@@ -794,7 +819,9 @@ nwIDAQAB
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="err">#错误代码</span><span class="w">
     </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="err">#错误信息</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='pay'>收款 Pay</h1><h2 id='pay-order'>统一支付 Pay order</h2>
+</span></code></pre>
+<p>提交请求后如果响应成功，系统会返回jwt字符串，商户需要使用 jwt工具 并用普尔公钥进行验签，确保接收到的是普尔系统返回的正确数据。</p>
+<h1 id='pay'>收款 Pay</h1><h2 id='pay-order'>统一支付 Pay order</h2>
 <blockquote>
 <p>Post /v2/pay?merchant_id=5399355381712172</p>
 </blockquote>
