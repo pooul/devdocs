@@ -11,6 +11,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='http://www.pooul.com/'>返回网站首页</a>
+  - © Pooul 2018
 
 includes:
   - basic

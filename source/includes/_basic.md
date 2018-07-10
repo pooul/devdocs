@@ -177,20 +177,85 @@ Authorization 默认有效期为 30 分钟，如果用户在使用的情况下�
 
 ## RSA
 
-### 生成RSA密钥
+### 1. 生成RSA密钥
 
 > 生成 PKCS#1 2048 位私钥
 
 ```
-OpenSSL>genrsa -out rsa_private_key.pem 2048  #默认生成PKCS#1的私钥，2048表示私钥的长度，我们建议是2048位，这样安全，如果由于某些限制，可以改为1024，表示1024位长度，我们仍然支持
-OpenSSL>rsa -in rsa_private_key.pem -pubout -out app_public_key.pem  #从私钥导出对应的公钥，默认此公钥是PKCS#8的
-OpenSSL>pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt -out rsa_private_key_pkcs8.pem  #Java开发者需要将私钥转换成PKCS8格式
-OpenSSL>exit  #退出OpenSSL程序
+OpenSSL>genrsa -out rsa_private.pem 2048  #默认生成PKCS#1的私钥，2048表示私钥的长度
 ```
 
-我们建议可以使用OpenSSL工具命令，或取得信任的密钥生成工具来生成密钥。
+> 从私钥导出对应的公钥，默认此公钥是PKCS#8的
 
-### 上传应用公钥
+```
+OpenSSL>rsa -in rsa_private.pem -pubout -out rsa_public.pem  
+```
+> Java开发者需要将私钥转换成PKCS8格式
+
+```
+OpenSSL>pkcs8 -topk8 -inform PEM -in rsa_private.pem -outform PEM -nocrypt -out rsa_private_pkcs8.pem  
+```
+
+我们建议可以使用OpenSSL(https://www.openssl.org/) 工具命令，或取得信任的密钥生成工具来生成密钥。
+
+经过示例中的步骤，开发者可以在当前文件夹中（OpenSSL运行文件夹），看到 rsa_private.pem（开发者RSA私钥，非Java语言适用）、rsa_private_pkcs8.pem（pkcs8格式开发者RSA私钥，Java语言适用）和 rsa_public.pem（开发者RSA公钥）3个文件。开发者将私钥保留，上传商户公钥给普尔，用于验证签名。
+
+<aside class="notice">
+对于使用Java的开发者，需将生成的pkcs8格式的私钥去除头尾、换行和空格，作为私钥填入代码中，对于.NET和PHP的开发者来说，无需进行pkcs8命令行操作。
+</aside>
+
+标准的私钥文件示例（PHP、.NET使用）
+
+`
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAw3Djq8ynUbfDfBMVWxMPVtogSUXwtPssniinXuoAmiTMRhkE
+cWq84xsrFzBl+s13DPvb5Lr172e8bB75lFk2DD7QVNFfm6eBVbuUy0Y9Q5bW6CLz
+5Yu/ZG6//ai94f6WzN3cnkS4x71Ihge3uaRWRf1UzqAfaq2vbaABNi5SYWsQCzYv
+nxoG4PYQtrc/rzuHERKsx7QWlxFmWXaxJHGvF8cr/+GXUxwjeoRB0n1mMzxhjlFO
+m200iJ65mFs+HqS0JpZh4HTdxru5WZe80vv+1AuXO9/AVtZLc1BWrTGWLfTe1ySf
+KzxEQqLq8ls0hS9V1MNYlD9ha1B/480zrGZAnwIDAQABAoIBAE2w3pA4tnqhljAI
+VgDyPrLD2vnFt7356u6kMoRkeQDNh/aFk2KSj6un7SU2tBNTAfRDWlI+j+0vS5Of
+bI8wN2/+uEo/QMZbe+pcuvVjYo8vsxZsbo/dUaPW8rMfFPx1e/TMbRrtLpcYA3Bk
+OQCu9yyzW7cXp+V8TbRCWrjzCQR4HMqnUExyDOyJflatQ2641Q4Q2YaAF1NCxJyq
+uTyxAPdpvvQ9SAj7eXsF1l0OIfW/4aACrOuvg9aOwPhbrKaT6s0dk8fKhfAm5rAu
+Q2tsubzwA5D+mJQqjVwnRHGiN+4GuIcAynevj4IdkznOP81wG/ksP34MkQpFnJ4j
+pBZxvQECgYEA6qFWBk9XQpYMVecS4RWvvRyolbKF6HgVEp0ji8euocLIfgJWEFXK
+Eb+Ood3NNSff4SpjpGOuzXBbyZiimWAQdzuo4LXwHLfd0cHOW07Lqx7UXsm5+wVp
+rzNuZzkQMtRqNqXAfSAdBziSfiMPSIZanqW3zv59oSHLengAAAI4zmECgYEA1T3Q
+BFO1J0duKacA6hjQ+DqOkfWuLo9NOFhMK4oFOiMCoFTrgoaU+7HEwPvWSe0d7rku
+HhuivGhhha9Viw41Gpfo5Z5oymL5McW52+YPLjugAV5G2dkT68c/C6CPMZYB7PYk
+4AtCYsvA5VP6qRmFQ6acm/822kela5RxAeIDbv8CgYEA0dzq8AvpdfJ2KCPePBvE
+q/dFR1h989fsqVCKac16gs+RuzvltQi3DDb1ogydLu1yj5j1tSVARhs4zlHLJjrJ
+n4xqWkwB7/3511Ntezg4bd/OftYals9Zn072cjeVKJHcSvLpAEJIFJxiU5aSZgFe
+bsa1aN0yi3yJ3woUne1e2CECgYEA0qobXHr6B5EI4ztqqtrTb7gh607Ewpit2BFb
+RtQ278VwrcbXV/7vJmzsDR9/B0+q95GYXwQ8VFfmqHScVSE3E0uqOVay/eajeyl0
+wSraKnmbTF7ALi3IAXG49hqr/HfO9TQDIBffgMz8h1Lc2rwsrLXoGDEdFq4bXVmr
+/wkzDS8CgYArNrvZ04EfGTdlgQLcxgGKhQcTibz9/QUkJ/RZPOnCxZFWwgfDIoAQ
+99IthRkneZglfhm/R5Znn1t65B8IEXejTZcYN11EugqI1/cOkJ/PySmtUMaeD+/o
+Am6x0mszgYThpY+2mM2w2hWTirUbvXS07LbCN0R29fT/a88Kwd2gGQ==
+-----END RSA PRIVATE KEY-----
+`
+
+PKCS8处理后的私钥文件示例（Java使用）
+
+`MIIEpAIBAAKCAQEAw3Djq8ynUbfDfBMVWxMPVtogSUXwtPssniinXuoAmiTMRhkEcWq84xsrFzBl+s13DPvb5Lr172e8bB75lFk2DD7QVNFfm6eBVbuUy0Y9Q5bW6CLz5Yu/ZG6//ai94f6WzN3cnkS4x71Ihge3uaRWRf1UzqAfaq2vbaABNi5SYWsQCzYvnxoG4PYQtrc/rzuHERKsx7QWlxFmWXaxJHGvF8cr/+GXUxwjeoRB0n1mMzxhjlFOm200iJ65mFs+HqS0JpZh4HTdxru5WZe80vv+1AuXO9/AVtZLc1BWrTGWLfTe1ySfKzxEQqLq8ls0hS9V1MNYlD9ha1B/480zrGZAnwIDAQABAoIBAE2w3pA4tnqhljAIVgDyPrLD2vnFt7356u6kMoRkeQDNh/aFk2KSj6un7SU2tBNTAfRDWlI+j+0vS5OfbI8wN2/+uEo/QMZbe+pcuvVjYo8vsxZsbo/dUaPW8rMfFPx1e/TMbRrtLpcYA3BkOQCu9yyzW7cXp+V8TbRCWrjzCQR4HMqnUExyDOyJflatQ2641Q4Q2YaAF1NCxJyquTyxAPdpvvQ9SAj7eXsF1l0OIfW/4aACrOuvg9aOwPhbrKaT6s0dk8fKhfAm5rAuQ2tsubzwA5D+mJQqjVwnRHGiN+4GuIcAynevj4IdkznOP81wG/ksP34MkQpFnJ4jpBZxvQECgYEA6qFWBk9XQpYMVecS4RWvvRyolbKF6HgVEp0ji8euocLIfgJWEFXKEb+Ood3NNSff4SpjpGOuzXBbyZiimWAQdzuo4LXwHLfd0cHOW07Lqx7UXsm5+wVprzNuZzkQMtRqNqXAfSAdBziSfiMPSIZanqW3zv59oSHLengAAAI4zmECgYEA1T3QBFO1J0duKacA6hjQ+DqOkfWuLo9NOFhMK4oFOiMCoFTrgoaU+7HEwPvWSe0d7rkuHhuivGhhha9Viw41Gpfo5Z5oymL5McW52+YPLjugAV5G2dkT68c/C6CPMZYB7PYk4AtCYsvA5VP6qRmFQ6acm/822kela5RxAeIDbv8CgYEA0dzq8AvpdfJ2KCPePBvEq/dFR1h989fsqVCKac16gs+RuzvltQi3DDb1ogydLu1yj5j1tSVARhs4zlHLJjrJn4xqWkwB7/3511Ntezg4bd/OftYals9Zn072cjeVKJHcSvLpAEJIFJxiU5aSZgFebsa1aN0yi3yJ3woUne1e2CECgYEA0qobXHr6B5EI4ztqqtrTb7gh607Ewpit2BFbRtQ278VwrcbXV/7vJmzsDR9/B0+q95GYXwQ8VFfmqHScVSE3E0uqOVay/eajeyl0wSraKnmbTF7ALi3IAXG49hqr/HfO9TQDIBffgMz8h1Lc2rwsrLXoGDEdFq4bXVmr/wkzDS8CgYArNrvZ04EfGTdlgQLcxgGKhQcTibz9/QUkJ/RZPOnCxZFWwgfDIoAQ99IthRkneZglfhm/R5Znn1t65B8IEXejTZcYN11EugqI1/cOkJ/PySmtUMaeD+/oAm6x0mszgYThpY+2mM2w2hWTirUbvXS07LbCN0R29fT/a88Kwd2gGQ==`
+
+公钥文件示例
+
+`
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw3Djq8ynUbfDfBMVWxMP
+VtogSUXwtPssniinXuoAmiTMRhkEcWq84xsrFzBl+s13DPvb5Lr172e8bB75lFk2
+DD7QVNFfm6eBVbuUy0Y9Q5bW6CLz5Yu/ZG6//ai94f6WzN3cnkS4x71Ihge3uaRW
+Rf1UzqAfaq2vbaABNi5SYWsQCzYvnxoG4PYQtrc/rzuHERKsx7QWlxFmWXaxJHGv
+F8cr/+GXUxwjeoRB0n1mMzxhjlFOm200iJ65mFs+HqS0JpZh4HTdxru5WZe80vv+
+1AuXO9/AVtZLc1BWrTGWLfTe1ySfKzxEQqLq8ls0hS9V1MNYlD9ha1B/480zrGZA
+nwIDAQAB
+-----END PUBLIC KEY-----
+`
+
+
+### 2. 上传商户公钥
 
 > put /cms/merchants/#{merchant_id}/public_key
 
@@ -200,7 +265,14 @@ OpenSSL>exit  #退出OpenSSL程序
 }
 ```
 
-### 获取普尔公钥
+将生成的商户公钥文件去除头尾、换行和空格，转成一行字符串。使用上传公钥接口上传，上传公钥需要Login认证且有修改该商户公钥权限。
+
+转换后的公钥字符串示例
+
+`MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw3Djq8ynUbfDfBMVWxMPVtogSUXwtPssniinXuoAmiTMRhkEcWq84xsrFzBl+s13DPvb5Lr172e8bB75lFk2DD7QVNFfm6eBVbuUy0Y9Q5bW6CLz5Yu/ZG6//ai94f6WzN3cnkS4x71Ihge3uaRWRf1UzqAfaq2vbaABNi5SYWsQCzYvnxoG4PYQtrc/rzuHERKsx7QWlxFmWXaxJHGvF8cr/+GXUxwjeoRB0n1mMzxhjlFOm200iJ65mFs+HqS0JpZh4HTdxru5WZe80vv+1AuXO9/AVtZLc1BWrTGWLfTe1ySfKzxEQqLq8ls0hS9V1MNYlD9ha1B/480zrGZAnwIDAQAB`
+
+
+### 3. 获取普尔公钥
 
 下载普尔公钥：
 
@@ -214,7 +286,18 @@ OpenSSL>exit  #退出OpenSSL程序
 }
 ```
 
-### 使用JWT生成请求数据
+### 4. 使用JWT生成请求数据
+
+> HEADER: ALGORITHM & TOKEN TYPE
+
+```json
+{
+  "alg": "RS256",
+  "typ": "JWT"
+}
+```
+
+> PAYLOAD: DATA
 
 ```json
 {
@@ -231,10 +314,22 @@ OpenSSL>exit  #退出OpenSSL程序
 }
 ```
 
+> VERIFY SIGNATURE
+
+```
+RSASHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload),'rsa_private.pem')
+```
+
+> 生成请求数据
+
+```
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlfdHlwZSI6IndlY2hhdC5zY2FuIiwibWNoX3RyYWRlX2lkIjoiYWxleHRlc3Quc2Nhbi4xNTMiLCJ0b3RhbF9mZWUiOjIyNywic3BiaWxsX2NyZWF0ZV9pcCI6IjEyNy4wLjAuMSIsIm5vdGlmeV91cmwiOiJodHRwOi8vMTEyLjc0LjE4NC4yMzY6MzAwNi9mYWtlLXJlY3YiLCJib2R5IjoiQWxleCBUZXN0IFdlY2hhdCBTY2FuIiwiZGV2aWNlX2luZm8iOiJhbGV4IHdlY2hhdCBkZXZpY2UiLCJvcF91c2VyX2lkIjoiMTEiLCJvcGVuaWQiOiJvUlhkVnM1OXhfRTZuVlRCSFhIa3VTanNOVkt3IiwiYXR0YWNoIjoiQWxleCBhdHRhY2ggVGVzdCJ9.IGSTNK7rzkaXnvKRjxrGMiRS_Z0x5bYN0Sw-QS8UxizkoCaytkVLMT0KLkfWKsyyCHt5hy7BrVdLu9nESSKxwJwwBAZUSThn_tbrkSYXOt08yNKBG2jYn6f_ty2jk3Yr9DhRUsYnKSrZS7sbK5lS1SG_I0tAGd4HLa94KzwilG0LhUZpJbXKyMpIzYPBod7O91f6pqvT1A48F_uDIttUp_Vm7SlchMLPT2i2tzP7O7ghcThcGakaPXNKkOV9zYWOXYFE84eoekwO6t5jtl0R2BpSH_xNAzEhCfQQ5FY7LFDBDypCJEuYaBTyy2JK7j8wNQiTiL01NKntyya9qABgCA
+```
+
 1. 按照接口文档参数要求，将请求数据写成 json 格式
 
 
-2. 使用程序语言的JWT包（JWT支持各种语言，在 http://jwt.io 上均有下载和DEMO），将 json 数据编码，签名算法使用RSA算法，可选包括：RS256, RS384, RS512 (分别是RSA使用不同位数的SHA摘要算法)
+2. 使用程序语言的JWT包（JWT支持各种语言，在 http://jwt.io 上均有下载和DEMO），将 json 数据编码，签名算法使用RSA算法RS256
 
 `token = JWT.encode(data, rsa_private_key, 'RS256')`
 
@@ -242,21 +337,22 @@ OpenSSL>exit  #退出OpenSSL程序
 
 `http.post(url, body: token, headers: {'Content-Type': 'text/plain'})`
 
-4. 接口响应是 json 格式，code == 0 表示成功，其他为错误代码，同时msg包含对应的错误信息。
 
-> 同步响应
+### 5. 使用普尔公钥验签 JWT
+
+> 成功响应示例
+
+```
+eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJjb2RlIjowLCJtc2ciOiJzdWNjZXNzIiwiZGF0YSI6eyJjb2RlX3VybCI6IndlaXhpbjovL3d4cGF5L2JpenBheXVybD9wcj10TmtlenkwIiwicHJlcGF5X2lkIjoid3gxMDExMDIyNDYxMjYxNWFhN2I0MzE3YzAyMTc1NDk5OTczIiwidHJhZGVfaWQiOiI1YjQ0MjFjMDAxYzkxMTdkNDlkMzU3NzEiLCJtY2hfdHJhZGVfaWQiOiJhbGV4dGVzdC5zY2FuLjE1MyIsIm1lcmNoYW50X2lkIjoiNTM5OTM1NTM4MTcxMjE3MiJ9LCJkZWJ1ZyI6eyJjdXJyX3VzZXIiOiJHdWVzdChub3QgbG9nZ2VkLWluKSIsImN1cnJfZW52IjoiZGV2ZWxvcG1lbnQiLCJkYXRhYmFzZV9uYW1lIjoic3pwbDJfZGV2IiwiYXN5bmMiOnRydWV9LCJ0aW1lX2VsYXBzZWQiOjAuMzgwMSwibm9uY2Vfc3RyIjoiNWI0NDIxYzAwMWM5MTE3ZDQ5ZDM1NzczIn0.HqUG0qgOnVZcygfTxEJjkLuqiY_vWK_68wqLJTA-ZQkXuXrAoddTkSqUtztW-KGcZf9vaDCqNYDZDlkcAnkOQzc3xl4D2z8AGECcTfaybgO7SSSqltP7vsIOJCFXOr5-1Jv1lEVgB7V0Y-t9A6o-YSUd0p5DFeybqpoKX683LG4
+```
+
+> 失败响应示例
 
 ```json
 {
-	"code": 0,
-	"msg": "成功信息或错误信息"
+    "code": , #错误代码
+    "msg": "", #错误信息
 }
 ```
-
-- 普尔翰达会用JSON格式响应同步请求;
-- 响应都会使用MD5进行签名, 响应中会带有签名;
-- 签名只针对data中的数据
-
-### 使用普尔公钥验签 JWT
 
 
