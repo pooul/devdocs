@@ -2056,7 +2056,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 各参数以逗号分隔，字段顺序与表头一致。</p>
 <h1 id='merchants'>商户 Merchants</h1><h2 id='tenant-merchant'>入驻商户 Tenant Merchant</h2><h3 id='create-tenant-merchant'>创建入驻商户 Create Tenant Merchant</h3><h4 id='926f6b6b6a'>请求</h4>
 <blockquote>
-<p>Request</p>
+<p>请求示例</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -X POST /cms/merchants <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -2080,13 +2080,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
     "corporate":{
         "full_name":"深圳市平克茶业文化发展有限公司",
         "license_num":"91440300398456074L",
-        "area_code":"440309",
-        "province": "广东省",
-        "urbn": "深圳市",
-        "area": "龙华新区",
-        "address":"大浪办事处大浪社区新围村71栋101",
-        "scope":"茶文化活动策划;茶叶制品的批发与零售;工艺美术品的销售;互联网的技术开发;经营电子商务;茶文化信息咨询;国内贸易;技术进出口和货物进出口。(法律、行政法规、国务院决定规定在登记前须经批准的项目除外);茶器具的研发、制造及销售;茶叶的批发与零售;预包装食品、广告业务。;"
-    },
+   },
     "owner":{
         "idcard_type": 1,
         "name": "雷晶晶",
@@ -2127,20 +2121,18 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </tr>
 <tr>
 <td>business <br> <strong>可选</strong> <br> <code>string</code></td>
-<td>商户经营信息参数集合</td>
+<td>商户经营信息参数集合，请参考<a href="#merchnat-business">merchnat business 参数</a></td>
 </tr>
 <tr>
 <td>corporate <br> <strong>可选</strong> <br> <code>string</code></td>
-<td>营业执照信息参数集合，license_type为3时不需传</td>
+<td>营业执照信息参数集合，license_type为3时不需传，请参考<a href="#merchnat-corporate">merchnat corporate 参数</a></td>
 </tr>
 <tr>
 <td>owner <br> <strong>必填</strong> <br> <code>string</code></td>
-<td>所有人/法人信息参数集合，license_type为3时为所有人信息，license_type为1、2时为营业执照法人信息</td>
+<td>所有人/法人信息参数集合，license_type为3时为所有人信息，license_type为1、2时为营业执照法人信息，请参考<a href="#merchnat-owner">merchnat owner 参数</a></td>
 </tr>
 </tbody></table>
-
-<p>business 参数</p>
-
+<h5 id='merchnat-business'>merchnat business 参数</h5>
 <table><thead>
 <tr>
 <th>请求参数</th>
@@ -2176,9 +2168,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <td>经营详细地址，不含省市区，如：龙华新区大浪办事处大浪社区新围村71栋101</td>
 </tr>
 </tbody></table>
-
-<p>corporate 参数</p>
-
+<h5 id='merchnat-corporate'>merchnat corporate 参数</h5>
 <table><thead>
 <tr>
 <th>请求参数</th>
@@ -2193,30 +2183,8 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <td>license_num <br> <strong>必填</strong> <br> <code>string</code></td>
 <td># 非三证合一为营业执照编码，三证合一为统一社会信用代码，如：91440300398456074L&quot;,</td>
 </tr>
-<tr>
-<td>area_code <br> <strong>可选</strong> <br> <code>string</code></td>
-<td>行政区划代码，<a href="http://www.mca.gov.cn/article/sj/xzqh/2018/">参考民政部最新的区划代码</a>，如：440309</td>
-</tr>
-<tr>
-<td>province <br> <strong>可选</strong> <br> <code>string</code></td>
-<td>营业执照地址所在省，如：广东省</td>
-</tr>
-<tr>
-<td>urbn <br> <strong>可选</strong> <br> <code>string</code></td>
-<td>营业执照地址所在市，如：深圳市&quot;,</td>
-</tr>
-<tr>
-<td>area <br> <strong>可选</strong> <br> <code>string</code></td>
-<td>营业执照地址所在区，如：龙华新区&quot;,</td>
-</tr>
-<tr>
-<td>address <br> <strong>可选</strong> <br> <code>string</code></td>
-<td>营业执照详细地址，不含省市区，如：大浪办事处大浪社区新围村71栋101&quot;,</td>
-</tr>
 </tbody></table>
-
-<p>owner 参数</p>
-
+<h5 id='merchnat-owner'>merchnat owner 参数</h5>
 <table><thead>
 <tr>
 <th>请求参数</th>
@@ -2242,7 +2210,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </tbody></table>
 <h4 id='f4eca6a6b0'>响应</h4>
 <blockquote>
-<p>响应</p>
+<p>响应示例</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -2253,8 +2221,6 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>响应参数</p>
-
 <table><thead>
 <tr>
 <th>响应参数</th>
