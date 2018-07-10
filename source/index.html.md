@@ -2,8 +2,7 @@
 title: Pooul开发者中心
 
 language_tabs: # must be one of https://git.io/vQNgJ
-#  - json示例
-#  - shell
+  - shell: cURL
 #  - ruby
 #  - python
 #  - javascript

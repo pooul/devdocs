@@ -178,20 +178,17 @@ password  <br> **必填** <br> `string` | 登录密码
 
 ### 3. 提交请求头带上 Authorization
 
-> Request(post、put、get、delete等) url
+> Request（post、put、get、delete等）URL
 
-> header
-
-```
-Authorization: d991da83657a01ae4640a61828b546934d05de37
-```
-
-> body
-
-```json
-{
-    #请求内容主体
-}
+```shell
+curl -X POST https://json.pooulcloud.cn/cms/merchants \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}" \
+-d' {
+    "merchant_type":3,
+    "platform_merchant_id": "9609932494323355" #平台商户编号
+    "parent_id": "9609932494323355" #父级商户编号
+}'
 ```
 
 请求使用Login鉴权的接口时需要在请求头中带上 Authorization 
