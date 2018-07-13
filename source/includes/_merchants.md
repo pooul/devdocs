@@ -1,13 +1,13 @@
-# 商户 Merchants
+# 入驻商户 Tenant Merchants
 
 ## 商户层级 Merchant Level
 
 ![image](http://img.pooul.com/MerchantsLevels.png)
 
 
-## 入驻商户 Tenant Merchant
+## 商户管理 Merchant manage
 
-### 创建 Create Tenant Merchant
+### 创建
 
 #### 请求
 
@@ -112,7 +112,7 @@ mobile <br> **可选** <br> `string`  | 手机号码
 _id <br> **必填** <br> `string` | 商户编号 merchant_id，可用于后续业务
 
 
-### 查询 Query Tenant Merchant
+### 查询
 
 ```
 GET /cms/merchants/:_id
@@ -140,7 +140,7 @@ curl -X GET /cms/merchants/:_id \
 ```
 
 
-### 修改 Update Tenant Merchant
+### 修改
 
 ```
 PUT /cms/merchants/:_id
@@ -207,7 +207,7 @@ mobile <br> **可选** <br> `string`  | 手机号码
 
 
 
-### 删除 Delete Tenant Merchant
+### 删除
 
 ```
 DELETE /cms/merchants/:_id
@@ -230,7 +230,7 @@ curl -X DELETE /cms/merchants/:_id \
 }
 ```
 
-### 搜索 Search Tenant Merchants
+### 搜索
 
 ```
 POST /cms/merchants/search?
@@ -479,9 +479,62 @@ merchant_id <br> **选填** | 如Login的 Authorization 为当前商户则不需
 enable_disable | true为启用，false为禁用
 
 
+## 费率管理
 
+### 创建
 
+```
+POST /cms/merchant_fee_rates
+```
 
+> 请求示例
+
+```shell
+curl -X POST /cms/merchant_fee_rates?merchnat_id=4430405652527179 \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}" \
+-d '{
+    "pay_type": [wechat.scan，wechat.micro],
+    "settle_rate": 50
+}'
+```
+
+URL请求参数
+
+参数| 描述
+--|--
+merchant_id <br> **必填** | 待修改的入驻商户编号
+
+Body请求参数
+
+参数| 描述
+--|--
+pay_type <br> **必填** <br> `string` | 指定要创建费率的支付类型
+settle_rate <br> **必填** <br> `int` | 结算费率，万分之，如：50，代表万分之50，千分之5，
+
+### 查询
+
+```
+GET /cms/merchant_fee_rates/:_id
+```
+
+### 修改
+
+```
+PUT /cms/merchant_fee_rates/:_id
+```
+
+### 删除
+
+```
+DELETE /cms/merchant_fee_rates/:_id
+```
+
+### 查询所有
+
+```
+GET /cms/merchant_fee_rates
+```
 
 
 
