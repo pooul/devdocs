@@ -252,7 +252,12 @@
                       </ul>
                   </li>
                   <li>
-                    <a href="#498e295d61" class="toc-h2 toc-link" data-title="">商户参数</a>
+                    <a href="#2e981dc65c" class="toc-h2 toc-link" data-title="">测试商户</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#e0ae39093e" class="toc-h3 toc-link" data-title="">普通商户</a>
+                          </li>
+                      </ul>
                   </li>
                   <li>
                     <a href="#c97d67a28a" class="toc-h2 toc-link" data-title="">协议规则</a>
@@ -317,7 +322,10 @@
                             <a href="#4-jwt" class="toc-h3 toc-link" data-title="4-jwt">4. 使用JWT生成请求数据</a>
                           </li>
                           <li>
-                            <a href="#5-jwt" class="toc-h3 toc-link" data-title="5-jwt">5. 使用普尔公钥验签 JWT</a>
+                            <a href="#5-token-http-post-content-type-text-plain-url" class="toc-h3 toc-link" data-title="5-token-http-post-content-type-text-plain-url">5.将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。</a>
+                          </li>
+                          <li>
+                            <a href="#6-jwt" class="toc-h3 toc-link" data-title="6-jwt">6. 使用普尔公钥验签 JWT</a>
                           </li>
                       </ul>
                   </li>
@@ -409,6 +417,9 @@
             <a href="#merchants" class="toc-h1 toc-link" data-title="merchants">商户 Merchants</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#3c4c5f69fe" class="toc-h2 toc-link" data-title="">商户层级</a>
+                  </li>
+                  <li>
                     <a href="#tenant-merchant" class="toc-h2 toc-link" data-title="tenant-merchant">入驻商户 Tenant Merchant</a>
                       <ul class="toc-list-h3">
                           <li>
@@ -482,13 +493,17 @@
 <li>支付方式：如：微信支付、支付宝、银联分期</li>
 <li>支付类型：如：正扫、反扫、公众号、APP、H5等场景</li>
 </ul>
-<h2 id='498e295d61'>商户参数</h2>
-<blockquote>
-<p>测试商户号：5399355381712172</p>
+<h2 id='2e981dc65c'>测试商户</h2><h3 id='e0ae39093e'>普通商户</h3>
+<ul>
+<li>商户平台账号：alex，</li>
+<li>密码：123</li>
+<li>测试商户号：5399355381712172</li>
+</ul>
 
 <p>测试证书私钥：</p>
-</blockquote>
-<pre class="highlight plaintext"><code>-----BEGIN RSA PRIVATE KEY-----
+
+<p><code>
+-----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAw3Djq8ynUbfDfBMVWxMPVtogSUXwtPssniinXuoAmiTMRhkE
 cWq84xsrFzBl+s13DPvb5Lr172e8bB75lFk2DD7QVNFfm6eBVbuUy0Y9Q5bW6CLz
 5Yu/ZG6//ai94f6WzN3cnkS4x71Ihge3uaRWRf1UzqAfaq2vbaABNi5SYWsQCzYv
@@ -515,7 +530,8 @@ wSraKnmbTF7ALi3IAXG49hqr/HfO9TQDIBffgMz8h1Lc2rwsrLXoGDEdFq4bXVmr
 99IthRkneZglfhm/R5Znn1t65B8IEXejTZcYN11EugqI1/cOkJ/PySmtUMaeD+/o
 Am6x0mszgYThpY+2mM2w2hWTirUbvXS07LbCN0R29fT/a88Kwd2gGQ==
 -----END RSA PRIVATE KEY-----
-</code></pre><h2 id='c97d67a28a'>协议规则</h2>
+</code></p>
+<h2 id='c97d67a28a'>协议规则</h2>
 <ul>
 <li>传输方式：为保证交易安全性，采用HTTPS传输</li>
 <li>提交方式：采用 Post、Get、put、delete 方法提交</li>
@@ -622,12 +638,14 @@ You must replace `meowmeowmeow` with your personal API key.
 <p>请联系对接的商务经理</p>
 <h3 id='2-authorization'>2. 获取 Authorization</h3>
 <blockquote>
-<p>请求：Post /web/user/session/login_name</p>
+<p>请求示例 </p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"login_name"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"password"</span><span class="p">:</span><span class="s2">""</span><span class="w"> 
-</span><span class="p">}</span><span class="w">
+<pre class="highlight shell tab-shell"><code>curl -X POST /web/user/session/login_name <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-d<span class="s1">' {
+    "login_name":"alex",
+    "password":"123" 
+}
 </span></code></pre>
 <blockquote>
 <p>响应：Header</p>
@@ -765,13 +783,26 @@ F8cr/+GXUxwjeoRB0n1mMzxhjlFOm200iJ65mFs+HqS0JpZh4HTdxru5WZe80vv+
 nwIDAQAB
 -----END PUBLIC KEY-----
 </code></p>
-<h3 id='2'>2. 上传商户公钥</h3>
+<h3 id='2'>2. 上传商户公钥</h3><pre class="highlight plaintext"><code>PUT /cms/merchants/#{merchant_id}/public_key
+</code></pre>
 <blockquote>
-<p>put /cms/merchants/#{merchant_id}/public_key</p>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X PUT /cms/merchants/5399355381712172/public_key <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: #{Authorization}"</span> <span class="se">\</span>
+-d<span class="s1">' {
+    "public_key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg/AchA3vsfR4a/hXK2d7Y97B/2XCK/p2wbvQRwMfqqrrB5o/NiIeqmOn8o5Bc/LwRgpY2foxD7kDL26q73Wwo19qBbsK5agkRZMWoZsea5mSHiFL9ClrE3+xytErZAsivDwPbkaxFCYTIDpPmXNpJQnTXkymOy6Pz/RAMiLgkrTjD1r6MCLZ9pqg0Pt8yKj2SfPqMyfeA7ld2yOa3VNcJXypgvvEARxmxrEI0EOTun9VUKWrA7FvvDICvc/ZAMrXg/UOVfch6oQrAlPc+3A1SDIlfKaFLl2zbb11CZy5J3mwz4N6SVQNS+QApGUdf+DZnMxlgn6eMN2iYziVw9YR9QIDAQAB"
+}
+</span></code></pre>
+<blockquote>
+<p>响应示例</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"public_key"</span><span class="p">:</span><span class="s2">"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg/AchA3vsfR4a/hXK2d7Y97B/2XCK/p2wbvQRwMfqqrrB5o/NiIeqmOn8o5Bc/LwRgpY2foxD7kDL26q73Wwo19qBbsK5agkRZMWoZsea5mSHiFL9ClrE3+xytErZAsivDwPbkaxFCYTIDpPmXNpJQnTXkymOy6Pz/RAMiLgkrTjD1r6MCLZ9pqg0Pt8yKj2SfPqMyfeA7ld2yOa3VNcJXypgvvEARxmxrEI0EOTun9VUKWrA7FvvDICvc/ZAMrXg/UOVfch6oQrAlPc+3A1SDIlfKaFLl2zbb11CZy5J3mwz4N6SVQNS+QApGUdf+DZnMxlgn6eMN2iYziVw9YR9QIDAQAB"</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"success"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre>
 <p>将生成的商户公钥文件去除头尾、换行和空格，转成一行字符串。使用上传公钥接口上传，上传公钥需要Login认证且有修改该商户公钥权限。</p>
 
@@ -780,9 +811,17 @@ nwIDAQAB
 <p><code>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw3Djq8ynUbfDfBMVWxMPVtogSUXwtPssniinXuoAmiTMRhkEcWq84xsrFzBl+s13DPvb5Lr172e8bB75lFk2DD7QVNFfm6eBVbuUy0Y9Q5bW6CLz5Yu/ZG6//ai94f6WzN3cnkS4x71Ihge3uaRWRf1UzqAfaq2vbaABNi5SYWsQCzYvnxoG4PYQtrc/rzuHERKsx7QWlxFmWXaxJHGvF8cr/+GXUxwjeoRB0n1mMzxhjlFOm200iJ65mFs+HqS0JpZh4HTdxru5WZe80vv+1AuXO9/AVtZLc1BWrTGWLfTe1ySfKzxEQqLq8ls0hS9V1MNYlD9ha1B/480zrGZAnwIDAQAB</code></p>
 <h3 id='3'>3. 获取普尔公钥</h3>
 <p>下载普尔公钥：</p>
-
+<pre class="highlight plaintext"><code>GET /cms/pooul_public_key
+</code></pre>
 <blockquote>
-<p>Get /cms/pooul_public_key</p>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET /cms/pooul_public_key <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: #{Authorization}"</span>
+</code></pre>
+<blockquote>
+<p>响应</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -835,9 +874,14 @@ nwIDAQAB
 <li><a href="https://github.com/dvsekhvalnov/jose-jwt">C# demo</a></li>
 <li><a href="https://jwt.io/">更多 Demo</a></li>
 </ul></li>
-<li><p>将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。</p></li>
 </ol>
-<h3 id='5-jwt'>5. 使用普尔公钥验签 JWT</h3>
+<h3 id='5-token-http-post-content-type-text-plain-url'>5.将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。</h3><pre class="highlight shell tab-shell"><code>curl -X POST /cms/merchants/5399355381712172/public_key <span class="se">\</span>
+-H <span class="s2">"Content-Type: text/plain"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: #{Authorization}"</span> <span class="se">\</span>
+-d<span class="s1">' {
+    "public_key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg/AchA3vsfR4a/hXK2d7Y97B/2XCK/p2wbvQRwMfqqrrB5o/NiIeqmOn8o5Bc/LwRgpY2foxD7kDL26q73Wwo19qBbsK5agkRZMWoZsea5mSHiFL9ClrE3+xytErZAsivDwPbkaxFCYTIDpPmXNpJQnTXkymOy6Pz/RAMiLgkrTjD1r6MCLZ9pqg0Pt8yKj2SfPqMyfeA7ld2yOa3VNcJXypgvvEARxmxrEI0EOTun9VUKWrA7FvvDICvc/ZAMrXg/UOVfch6oQrAlPc+3A1SDIlfKaFLl2zbb11CZy5J3mwz4N6SVQNS+QApGUdf+DZnMxlgn6eMN2iYziVw9YR9QIDAQAB"
+}
+</span></code></pre><h3 id='6-jwt'>6. 使用普尔公钥验签 JWT</h3>
 <blockquote>
 <p>成功响应示例</p>
 </blockquote>
@@ -2062,7 +2106,9 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 
 <p>从第二行起，为数据记录
 各参数以逗号分隔，字段顺序与表头一致。</p>
-<h1 id='merchants'>商户 Merchants</h1><h2 id='tenant-merchant'>入驻商户 Tenant Merchant</h2><h3 id='create-tenant-merchant'>创建入驻商户 Create Tenant Merchant</h3><h4 id='926f6b6b6a'>请求</h4>
+<h1 id='merchants'>商户 Merchants</h1><h2 id='3c4c5f69fe'>商户层级</h2>
+<p><img src="http://p7u0b94h2.bkt.clouddn.com/MerchantsLevels.png" alt="image" /></p>
+<h2 id='tenant-merchant'>入驻商户 Tenant Merchant</h2><h3 id='create-tenant-merchant'>创建入驻商户 Create Tenant Merchant</h3><h4 id='926f6b6b6a'>请求</h4>
 <blockquote>
 <p>请求示例</p>
 </blockquote>
@@ -2291,7 +2337,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 <h1 id='faq'>常见问题 FAQ</h1><h2 id='5537115284'>普通商户接入流程</h2>
 <ol>
 <li>签订合作协议，提交资料给商务对接人到支付渠道申请开通支付</li>
-<li>使用测试商户信息进行接入<a href="#498e295d61">查看测试商户信息</a></li>
+<li>使用测试商户信息进行接入<a href="#2e981dc65c">查看测试商户信息</a></li>
 <li>替换为生产商户信息及生产环境网址等参数</li>
 <li>上线生产验证</li>
 </ol>
