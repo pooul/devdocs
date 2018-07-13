@@ -26,13 +26,17 @@ Pooul API 采用 REST 风格设计。所有接口请求地址都是可预期的�
 - 支付方式：如：微信支付、支付宝、银联分期
 - 支付类型：如：正扫、反扫、公众号、APP、H5等场景
 
-## 商户参数
+## 测试商户
 
-> 测试商户号：5399355381712172
+### 普通商户
 
-> 测试证书私钥：
+- 商户平台账号：alex，
+- 密码：123
+- 测试商户号：5399355381712172
 
-```
+测试证书私钥：
+
+`
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAw3Djq8ynUbfDfBMVWxMPVtogSUXwtPssniinXuoAmiTMRhkE
 cWq84xsrFzBl+s13DPvb5Lr172e8bB75lFk2DD7QVNFfm6eBVbuUy0Y9Q5bW6CLz
@@ -60,7 +64,7 @@ wSraKnmbTF7ALi3IAXG49hqr/HfO9TQDIBffgMz8h1Lc2rwsrLXoGDEdFq4bXVmr
 99IthRkneZglfhm/R5Znn1t65B8IEXejTZcYN11EugqI1/cOkJ/PySmtUMaeD+/o
 Am6x0mszgYThpY+2mM2w2hWTirUbvXS07LbCN0R29fT/a88Kwd2gGQ==
 -----END RSA PRIVATE KEY-----
-```
+`
 
 ## 协议规则
 
@@ -127,12 +131,14 @@ trade_state | 说明
 
 ### 2. 获取 Authorization
 
-> 请求：Post /web/user/session/login_name
+> 请求示例 
 
-```json
-{
-    "login_name":"",
-    "password":"" 
+```shell
+curl -X POST /web/user/session/login_name \
+-H "Content-Type: application/json" \
+-d' {
+    "login_name":"alex",
+    "password":"123" 
 }
 ```
 
@@ -276,12 +282,30 @@ nwIDAQAB
 
 ### 2. 上传商户公钥
 
-> put /cms/merchants/#{merchant_id}/public_key
+
+```
+PUT /cms/merchants/#{merchant_id}/public_key
+```
+
+> 请求示例
+
+```shell
+curl -X PUT /cms/merchants/5399355381712172/public_key \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}" \
+-d' {
+	"public_key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg/AchA3vsfR4a/hXK2d7Y97B/2XCK/p2wbvQRwMfqqrrB5o/NiIeqmOn8o5Bc/LwRgpY2foxD7kDL26q73Wwo19qBbsK5agkRZMWoZsea5mSHiFL9ClrE3+xytErZAsivDwPbkaxFCYTIDpPmXNpJQnTXkymOy6Pz/RAMiLgkrTjD1r6MCLZ9pqg0Pt8yKj2SfPqMyfeA7ld2yOa3VNcJXypgvvEARxmxrEI0EOTun9VUKWrA7FvvDICvc/ZAMrXg/UOVfch6oQrAlPc+3A1SDIlfKaFLl2zbb11CZy5J3mwz4N6SVQNS+QApGUdf+DZnMxlgn6eMN2iYziVw9YR9QIDAQAB"
+}
+```
+
+> 响应示例
 
 ```json
 {
-	"public_key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg/AchA3vsfR4a/hXK2d7Y97B/2XCK/p2wbvQRwMfqqrrB5o/NiIeqmOn8o5Bc/LwRgpY2foxD7kDL26q73Wwo19qBbsK5agkRZMWoZsea5mSHiFL9ClrE3+xytErZAsivDwPbkaxFCYTIDpPmXNpJQnTXkymOy6Pz/RAMiLgkrTjD1r6MCLZ9pqg0Pt8yKj2SfPqMyfeA7ld2yOa3VNcJXypgvvEARxmxrEI0EOTun9VUKWrA7FvvDICvc/ZAMrXg/UOVfch6oQrAlPc+3A1SDIlfKaFLl2zbb11CZy5J3mwz4N6SVQNS+QApGUdf+DZnMxlgn6eMN2iYziVw9YR9QIDAQAB"
+    "code":0,
+    "msg":"success"
 }
+
 ```
 
 将生成的商户公钥文件去除头尾、换行和空格，转成一行字符串。使用上传公钥接口上传，上传公钥需要Login认证且有修改该商户公钥权限。
@@ -295,7 +319,19 @@ nwIDAQAB
 
 下载普尔公钥：
 
-> Get /cms/pooul_public_key
+```
+GET /cms/pooul_public_key
+```
+
+> 请求示例
+
+```shell
+curl -X GET /cms/pooul_public_key \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}"
+```
+
+> 响应
 
 ```json
 {
@@ -355,10 +391,20 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlfdHlwZSI6IndlY2hhdC5zY2FuIiwibWNoX3R
     - [C# demo](https://github.com/dvsekhvalnov/jose-jwt)
     - [更多 Demo](https://jwt.io/)
 
-3. 将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。
+
+### 5.将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。
+
+```shell
+curl -X POST /cms/merchants/5399355381712172/public_key \
+-H "Content-Type: text/plain" \
+-H "Authorization: #{Authorization}" \
+-d' {
+    "public_key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg/AchA3vsfR4a/hXK2d7Y97B/2XCK/p2wbvQRwMfqqrrB5o/NiIeqmOn8o5Bc/LwRgpY2foxD7kDL26q73Wwo19qBbsK5agkRZMWoZsea5mSHiFL9ClrE3+xytErZAsivDwPbkaxFCYTIDpPmXNpJQnTXkymOy6Pz/RAMiLgkrTjD1r6MCLZ9pqg0Pt8yKj2SfPqMyfeA7ld2yOa3VNcJXypgvvEARxmxrEI0EOTun9VUKWrA7FvvDICvc/ZAMrXg/UOVfch6oQrAlPc+3A1SDIlfKaFLl2zbb11CZy5J3mwz4N6SVQNS+QApGUdf+DZnMxlgn6eMN2iYziVw9YR9QIDAQAB"
+}
+```
 
 
-### 5. 使用普尔公钥验签 JWT
+### 6. 使用普尔公钥验签 JWT
 
 > 成功响应示例
 

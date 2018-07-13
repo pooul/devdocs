@@ -1,5 +1,10 @@
 # 商户 Merchants
 
+## 商户层级
+
+![image](http://p7u0b94h2.bkt.clouddn.com/MerchantsLevels.png)
+
+
 ## 入驻商户 Tenant Merchant
 
 ### 创建入驻商户 Create Tenant Merchant
