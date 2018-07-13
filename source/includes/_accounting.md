@@ -3,9 +3,27 @@
 - 认证方式：基于Login权限，[查看Login认证说明](#login)
 - 所需权限：账务查询
 
-## 获取交易明细 Pay order query
+## 查询交易记录 Pay orders
 
-> Post /cms/pooul_bills/search_order?merchant_id=9609932494323355&desc=1&time_start=1531115400&time_end=1531115700
+### 搜索交易明细 Pay order search
+
+```
+Post /cms/pooul_bills/search_order?
+```
+
+> 请求示例
+
+```shell
+curl -X POST /cms/pooul_bills/search_order?merchant_id=9609932494323355&desc=1&time_start=1531115400&time_end=1531115700 \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}" \
+-d '{
+    "pay_type": "wechat.micro",
+    "trade_state": 0
+}'
+```
+
+> 响应示例
 
 ```json
 {
@@ -39,16 +57,16 @@
             "_id": "5b42f81801c911417df535ca",
             "_type": "Ns::PayOrder::Wechat",
             "attach": "Alex attach Test",
-            "body": "Alex Test Wechat Scan",
+            "body": "Alex Test Wechat micro",
             "created_at": 1531115544,
             "device_info": "alex wechat device",
-            "mch_trade_id": "alextest.scan.146",
+            "mch_trade_id": "alextest.micro.146",
             "merchant_id": "5399355381712172",
             "notify_url": "http://112.74.184.236:3006/fake-recv",
             "op_user_id": "11",
             "openid": "oRXdVs59x_E6nVTBHXHkuSjsNVKw",
             "out_trade_id": "4200000123201807097783379411",
-            "pay_type": "wechat.scan",
+            "pay_type": "wechat.micro",
             "refund_fee": 0,
             "settle_fee": 0,
             "settle_rate": 50,
@@ -66,8 +84,6 @@
     ]
 }
 ```
-
-请求方式：post /cms/pooul_bills/search_order?
 
 URL参数说明
 
@@ -87,6 +103,72 @@ pay_type | 支付类型，[查看支付类型编码](#pay-type)
 trade_state | 支付状态
 mch_trade_id | 商户支付订单号
 _id | trade_id，普尔平台支付订单号
+
+
+### 获取单笔订单详情
+
+```
+GET /cms/pooul_bills/trade_detail?
+```
+
+> 请求示例
+
+```shell
+curl -X GET /cms/pooul_bills/trade_detail?trade_id=5b44cb1101c9117d49d357bb \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}" 
+```
+
+> 响应示例
+
+```json
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "_id": "5b44cb1101c9117d49d357bb",
+        "_type": "Ns::PayOrder::Wechat",
+        "auth_code": "134628759621503841",
+        "body": "Alex Test Micro",
+        "created_at": 1531235089,
+        "mch_trade_id": "alextest.micro.97",
+        "merchant_id": "1333259781809471",
+        "pay_type": "wechat.micro",
+        "refund_fee": 299,
+        "settle_fee": 298,
+        "settle_rate": 50,
+        "spbill_create_ip": "127.0.0.1",
+        "total_fee": 299,
+        "trade_fee": 1,
+        "trade_state": 1,
+        "updated_at": 1531307455,
+        "merchant_info": {
+            "merchant_id": "1333259781809471",
+            "business_short_name": "平克福田梅林",
+            "corporate_full_name": null
+        },
+        "pay_route": {
+            "_id": 51,
+            "_type": "Ns::PayRoute::Wechat",
+            "channel_mch_id": "1353760602"
+        },
+        "refunds": [
+            {
+                "_id": "5b45e5be01c9113bfa520c4a",
+                "created_at": 1531307454,
+                "refund_fee": 299,
+                "refund_status": "SUCCESS"
+            }
+        ]
+}
+```
+
+
+URL参数说明
+
+参数 | 描述
+-- | -- 
+trade_id | 普尔平台订单编号
 
 
 ## 获取交易汇总 Summary
