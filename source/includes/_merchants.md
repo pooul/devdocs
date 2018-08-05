@@ -322,17 +322,17 @@ Body请求参数
 
 参数| 描述
 --|--
-owner_name | 户名
-contact_mobile | 个人帐户需留银行开户预留手机号，企业账户则为联系人手机号
-bank_sub_code | 大小额联行号
-cyber_bank_code | 网银互联转账时的行号，[参考](#edde394695)
-account_num | 银行账号， 如：6217680300228911
-account_type | 账户类型，0 个人、1 企业，默认为0
-province | 开户省， 如：广东
-urbn | 开户市，如：深圳
-area | 开户区， 如：福田
-bank_full_name | 银行全称，如：中信银行股份有限公司深圳香林支行
-cmbc_bank | 是否民生银行，true或false，默认：false
+account_type <br> **必填** <br> `int` | 账户类型，0 个人、1 企业，默认为0
+owner_name <br> **必填** <br> `string` | 户名，个人账户为真实姓名，企业账户为公司全称
+account_num <br> **必填** <br> `string` | 银行账号， 如：6217680300228911
+bank_full_name <br> **必填** <br> `string` | 银行全称，如：中信银行股份有限公司深圳香林支行
+bank_sub_code <br> **必填** <br> `string` | 大小额联行号
+contact_mobile  <br> **可选** <br> `string` | 个人帐户需留银行开户预留手机号，企业账户则为联系人手机号
+province <br> **可选** <br> `string` | 开户省， 如：广东
+urbn <br> **可选** <br> `string` | 开户市，如：深圳
+area <br> **可选** <br> `string` | 开户区， 如：福田
+cyber_bank_code <br> **可选** <br> `string` | 网银互联转账时的行号，[参考](#edde394695)
+cmbc_bank <br> **可选** <br> `boolean` | 是否民生银行，true或false，默认：false
 
 
 

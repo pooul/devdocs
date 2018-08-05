@@ -181,7 +181,7 @@ trade_id | 普尔平台订单编号
 
 ### 实时汇总 Today summary
 
-> get /cms/pooul_bills/today?merchant_id=9609932494323355&desc=1
+> GET /cms/pooul_bills/today?merchant_id=9609932494323355&desc=1
 
 ```json
 {
@@ -226,7 +226,7 @@ trade_id | 普尔平台订单编号
 
 使用此接口可以查询当日0点到查询当前时间的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总
 
-请求方式：get /cms/pooul_bills/today?
+请求方式：GET /cms/pooul_bills/today?
 
 URL参数说明
 
@@ -238,7 +238,7 @@ desc | 留空则返回本商户汇总，desc=1则返回下属商户汇总
 
 ### 日汇总 Day summary
 
-> get /cms/pooul_bills/day_summary?merchant_id=9609932494323355&month=201807&desc=1
+> GET /cms/pooul_bills/day_summary?merchant_id=9609932494323355&month=201807&desc=1
 
 ```json
 {
@@ -354,7 +354,7 @@ desc | 留空则返回本商户汇总，desc=1则返回下属商户汇总
 ```
 使用此接口在请求中输入月份信息可以查询当月所有日期的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总
 
-请求方式：get /cms/pooul_bills/day_summary?
+请求方式：GET /cms/pooul_bills/day_summary?
 
 URL参数说明
 
@@ -366,7 +366,7 @@ month | 月份，如：201807， 则返回2018年7月所有日期的交易汇总
 
 ### 月汇总 Month summary
 
-> get /cms/pooul_bills/month_summary?merchant_id=9609932494323355&year=2018&desc=1
+> GET /cms/pooul_bills/month_summary?merchant_id=9609932494323355&year=2018&desc=1
 
 ```json
 {
@@ -439,7 +439,7 @@ month | 月份，如：201807， 则返回2018年7月所有日期的交易汇总
 
 使用此接口在请求中输入年份信息可以查询当月所有月份的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总
 
-请求方式：get /cms/pooul_bills/month_summary?
+请求方式：GET /cms/pooul_bills/month_summary?
 
 URL参数说明
 
@@ -454,7 +454,7 @@ year | 年份，如：2018， 则返回2018年所有月份的交易汇总数据
 
 ### 日对账单 Day bills
 
-请求方式：get /cms/pooul_bills/download_by_date?
+请求方式：GET /cms/pooul_bills/download_by_date?
 
 URL参数说明
 

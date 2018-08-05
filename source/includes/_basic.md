@@ -191,9 +191,7 @@ curl -X POST https://json.pooulcloud.cn/cms/merchants \
 -H "Content-Type: application/json" \
 -H "Authorization: #{Authorization}" \
 -d' {
-    "merchant_type":3,
-    "platform_merchant_id": "9609932494323355" #平台商户编号
-    "parent_id": "9609932494323355" #父级商户编号
+    #请求参数
 }'
 ```
 
@@ -395,12 +393,10 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlfdHlwZSI6IndlY2hhdC5zY2FuIiwibWNoX3R
 ### 5.将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。
 
 ```shell
-curl -X POST /cms/merchants/5399355381712172/public_key \
+curl -X POST /v2/pay?merchant_id=7609332123096874 \
 -H "Content-Type: text/plain" \
 -H "Authorization: #{Authorization}" \
--d' {
-    "public_key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg/AchA3vsfR4a/hXK2d7Y97B/2XCK/p2wbvQRwMfqqrrB5o/NiIeqmOn8o5Bc/LwRgpY2foxD7kDL26q73Wwo19qBbsK5agkRZMWoZsea5mSHiFL9ClrE3+xytErZAsivDwPbkaxFCYTIDpPmXNpJQnTXkymOy6Pz/RAMiLgkrTjD1r6MCLZ9pqg0Pt8yKj2SfPqMyfeA7ld2yOa3VNcJXypgvvEARxmxrEI0EOTun9VUKWrA7FvvDICvc/ZAMrXg/UOVfch6oQrAlPc+3A1SDIlfKaFLl2zbb11CZy5J3mwz4N6SVQNS+QApGUdf+DZnMxlgn6eMN2iYziVw9YR9QIDAQAB"
-}
+-d' eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlfdHlwZSI6IndlY2hhdC5zY2FuIiwibWNoX3RyYWRlX2lkIjoiYWxleHRlc3Quc2Nhbi4xODEiLCJ0b3RhbF9mZWUiOjUsInNwYmlsbF9jcmVhdGVfaXAiOiIxMjcuMC4wLjEiLCJub3RpZnlfdXJsIjoiaHR0cDovLzExMi43NC4xODQuMjM2OjMwMDYvZmFrZS1yZWN2IiwiYm9keSI6IkFsZXggVGVzdCBXZWNoYXQgU2NhbiIsImRldmljZV9pbmZvIjoiYWxleCB3ZWNoYXQgZGV2aWNlIiwib3BfdXNlcl9pZCI6IjExIiwib3BlbmlkIjoib1JYZFZzNTl4X0U2blZUQkhYSGt1U2pzTlZLdyIsImF0dGFjaCI6IkFsZXggYXR0YWNoIFRlc3QifQ.a77r3uZH9P_gyJESbm1pTJ4rjsU5Pmn4zO90dRJrG6ozzRW7v95l61ezg8r_HTY7IELrHXs8hlquJPVK-6mdzlFjPWyo9_H40gOdDFlYE-QzSwUOewQNaqVuR7Z3KDhPMxr1scy50nXqoaEtq_IODdrJPxq2wxw9YDLas_lVFrhxSWwqQXZvDwZRkG9QAnmOsWvHKP-VFo-r4ne0sapSx6SHpJE-bqUwAOkxhLUmUpFiUxK3hJaGVmfhzymX5yBNNwEEBscuZig2i7PDoN4jXh0W9wgay9wq1-M31qNHnWcUhxXckmvtlR9kmdX5SVCOL0RK1u9ko664wr8Soi2PvA‘
 ```
 
 
