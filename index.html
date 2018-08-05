@@ -761,9 +761,7 @@ You must replace `meowmeowmeow` with your personal API key.
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: #{Authorization}"</span> <span class="se">\</span>
 -d<span class="s1">' {
-    "merchant_type":3,
-    "platform_merchant_id": "9609932494323355" #平台商户编号
-    "parent_id": "9609932494323355" #父级商户编号
+    #请求参数
 }'</span>
 </code></pre>
 <p>请求使用Login鉴权的接口时需要在请求头中带上 Authorization </p>
@@ -932,12 +930,10 @@ nwIDAQAB
 <li><a href="https://jwt.io/">更多 Demo</a></li>
 </ul></li>
 </ol>
-<h3 id='5-token-http-post-content-type-text-plain-url'>5.将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。</h3><pre class="highlight shell tab-shell"><code>curl -X POST /cms/merchants/5399355381712172/public_key <span class="se">\</span>
+<h3 id='5-token-http-post-content-type-text-plain-url'>5.将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。</h3><pre class="highlight shell tab-shell"><code>curl -X POST /v2/pay?merchant_id<span class="o">=</span>7609332123096874 <span class="se">\</span>
 -H <span class="s2">"Content-Type: text/plain"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: #{Authorization}"</span> <span class="se">\</span>
--d<span class="s1">' {
-    "public_key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg/AchA3vsfR4a/hXK2d7Y97B/2XCK/p2wbvQRwMfqqrrB5o/NiIeqmOn8o5Bc/LwRgpY2foxD7kDL26q73Wwo19qBbsK5agkRZMWoZsea5mSHiFL9ClrE3+xytErZAsivDwPbkaxFCYTIDpPmXNpJQnTXkymOy6Pz/RAMiLgkrTjD1r6MCLZ9pqg0Pt8yKj2SfPqMyfeA7ld2yOa3VNcJXypgvvEARxmxrEI0EOTun9VUKWrA7FvvDICvc/ZAMrXg/UOVfch6oQrAlPc+3A1SDIlfKaFLl2zbb11CZy5J3mwz4N6SVQNS+QApGUdf+DZnMxlgn6eMN2iYziVw9YR9QIDAQAB"
-}
+-d<span class="s1">' eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlfdHlwZSI6IndlY2hhdC5zY2FuIiwibWNoX3RyYWRlX2lkIjoiYWxleHRlc3Quc2Nhbi4xODEiLCJ0b3RhbF9mZWUiOjUsInNwYmlsbF9jcmVhdGVfaXAiOiIxMjcuMC4wLjEiLCJub3RpZnlfdXJsIjoiaHR0cDovLzExMi43NC4xODQuMjM2OjMwMDYvZmFrZS1yZWN2IiwiYm9keSI6IkFsZXggVGVzdCBXZWNoYXQgU2NhbiIsImRldmljZV9pbmZvIjoiYWxleCB3ZWNoYXQgZGV2aWNlIiwib3BfdXNlcl9pZCI6IjExIiwib3BlbmlkIjoib1JYZFZzNTl4X0U2blZUQkhYSGt1U2pzTlZLdyIsImF0dGFjaCI6IkFsZXggYXR0YWNoIFRlc3QifQ.a77r3uZH9P_gyJESbm1pTJ4rjsU5Pmn4zO90dRJrG6ozzRW7v95l61ezg8r_HTY7IELrHXs8hlquJPVK-6mdzlFjPWyo9_H40gOdDFlYE-QzSwUOewQNaqVuR7Z3KDhPMxr1scy50nXqoaEtq_IODdrJPxq2wxw9YDLas_lVFrhxSWwqQXZvDwZRkG9QAnmOsWvHKP-VFo-r4ne0sapSx6SHpJE-bqUwAOkxhLUmUpFiUxK3hJaGVmfhzymX5yBNNwEEBscuZig2i7PDoN4jXh0W9wgay9wq1-M31qNHnWcUhxXckmvtlR9kmdX5SVCOL0RK1u9ko664wr8Soi2PvA‘
 </span></code></pre><h3 id='6-jwt'>6. 使用普尔公钥验签 JWT</h3>
 <blockquote>
 <p>成功响应示例</p>
@@ -1902,7 +1898,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </ul>
 <h3 id='today-summary'>实时汇总 Today summary</h3>
 <blockquote>
-<p>get /cms/pooul_bills/today?merchant_id=9609932494323355&amp;desc=1</p>
+<p>GET /cms/pooul_bills/today?merchant_id=9609932494323355&amp;desc=1</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -1945,7 +1941,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </span></code></pre>
 <p>使用此接口可以查询当日0点到查询当前时间的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总</p>
 
-<p>请求方式：get /cms/pooul_bills/today?</p>
+<p>请求方式：GET /cms/pooul_bills/today?</p>
 
 <p>URL参数说明</p>
 
@@ -1966,7 +1962,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </tbody></table>
 <h3 id='day-summary'>日汇总 Day summary</h3>
 <blockquote>
-<p>get /cms/pooul_bills/day_summary?merchant_id=9609932494323355&amp;month=201807&amp;desc=1</p>
+<p>GET /cms/pooul_bills/day_summary?merchant_id=9609932494323355&amp;month=201807&amp;desc=1</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -2081,7 +2077,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </span></code></pre>
 <p>使用此接口在请求中输入月份信息可以查询当月所有日期的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总</p>
 
-<p>请求方式：get /cms/pooul_bills/day_summary?</p>
+<p>请求方式：GET /cms/pooul_bills/day_summary?</p>
 
 <p>URL参数说明</p>
 
@@ -2106,7 +2102,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </tbody></table>
 <h3 id='month-summary'>月汇总 Month summary</h3>
 <blockquote>
-<p>get /cms/pooul_bills/month_summary?merchant_id=9609932494323355&amp;year=2018&amp;desc=1</p>
+<p>GET /cms/pooul_bills/month_summary?merchant_id=9609932494323355&amp;year=2018&amp;desc=1</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -2177,7 +2173,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </span></code></pre>
 <p>使用此接口在请求中输入年份信息可以查询当月所有月份的交易汇总，分为pay_type各类型汇总与所有汇总，请求参数可以选择当前商户或是当前商户的下级所有商户交易记录汇总</p>
 
-<p>请求方式：get /cms/pooul_bills/month_summary?</p>
+<p>请求方式：GET /cms/pooul_bills/month_summary?</p>
 
 <p>URL参数说明</p>
 
@@ -2201,7 +2197,7 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </tr>
 </tbody></table>
 <h2 id='downloads-bills'>下载对账单 Downloads bills</h2><h3 id='day-bills'>日对账单 Day bills</h3>
-<p>请求方式：get /cms/pooul_bills/download_by_date?</p>
+<p>请求方式：GET /cms/pooul_bills/download_by_date?</p>
 
 <p>URL参数说明</p>
 
@@ -2691,47 +2687,47 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </tr>
 </thead><tbody>
 <tr>
-<td>owner_name</td>
-<td>户名</td>
-</tr>
-<tr>
-<td>contact_mobile</td>
-<td>个人帐户需留银行开户预留手机号，企业账户则为联系人手机号</td>
-</tr>
-<tr>
-<td>bank_sub_code</td>
-<td>大小额联行号</td>
-</tr>
-<tr>
-<td>cyber_bank_code</td>
-<td>网银互联转账时的行号，<a href="#edde394695">参考</a></td>
-</tr>
-<tr>
-<td>account_num</td>
-<td>银行账号， 如：6217680300228911</td>
-</tr>
-<tr>
-<td>account_type</td>
+<td>account_type <br> <strong>必填</strong> <br> <code>int</code></td>
 <td>账户类型，0 个人、1 企业，默认为0</td>
 </tr>
 <tr>
-<td>province</td>
-<td>开户省， 如：广东</td>
+<td>owner_name <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>户名，个人账户为真实姓名，企业账户为公司全称</td>
 </tr>
 <tr>
-<td>urbn</td>
-<td>开户市，如：深圳</td>
+<td>account_num <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>银行账号， 如：6217680300228911</td>
 </tr>
 <tr>
-<td>area</td>
-<td>开户区， 如：福田</td>
-</tr>
-<tr>
-<td>bank_full_name</td>
+<td>bank_full_name <br> <strong>必填</strong> <br> <code>string</code></td>
 <td>银行全称，如：中信银行股份有限公司深圳香林支行</td>
 </tr>
 <tr>
-<td>cmbc_bank</td>
+<td>bank_sub_code <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>大小额联行号</td>
+</tr>
+<tr>
+<td>contact_mobile  <br> <strong>可选</strong> <br> <code>string</code></td>
+<td>个人帐户需留银行开户预留手机号，企业账户则为联系人手机号</td>
+</tr>
+<tr>
+<td>province <br> <strong>可选</strong> <br> <code>string</code></td>
+<td>开户省， 如：广东</td>
+</tr>
+<tr>
+<td>urbn <br> <strong>可选</strong> <br> <code>string</code></td>
+<td>开户市，如：深圳</td>
+</tr>
+<tr>
+<td>area <br> <strong>可选</strong> <br> <code>string</code></td>
+<td>开户区， 如：福田</td>
+</tr>
+<tr>
+<td>cyber_bank_code <br> <strong>可选</strong> <br> <code>string</code></td>
+<td>网银互联转账时的行号，<a href="#edde394695">参考</a></td>
+</tr>
+<tr>
+<td>cmbc_bank <br> <strong>可选</strong> <br> <code>boolean</code></td>
 <td>是否民生银行，true或false，默认：false</td>
 </tr>
 </tbody></table>
