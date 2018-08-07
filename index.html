@@ -1107,6 +1107,15 @@ nwIDAQAB
 <td>微信支付或支付宝支付授权码，设备读取用户微信中的条码或者二维码信息转换成字符</td>
 </tr>
 </tbody></table>
+
+<p>开发说明：</p>
+
+<ol>
+<li>商户通过扫码设备获取消费者付款码（微信支付付款码、支付宝付款码）</li>
+<li>调用统一支付接口发起支付</li>
+<li>系统同步返回支付状态</li>
+<li>如支付状态为6（代表支付中），商户系统需调用<a href="#query">查询订单API</a>确认支付状态</li>
+</ol>
 <h3 id='wechat-scan'>微信扫码支付 wechat.scan</h3><pre class="highlight plaintext"><code>Post /v2/pay?merchant_id=5399355381712172
 </code></pre>
 <blockquote>
@@ -1142,22 +1151,14 @@ nwIDAQAB
 </span></code></pre>
 <p>扫码支付是指商户系统按微信支付协议生成支付二维码，用户再用微信“扫一扫”来完成支付。适用于PC网站支付、实体店单品等场景。</p>
 
-<p>业务流程说明：</p>
+<p>开发说明：</p>
 
-<ul>
-<li>商户后台系统根据用户选购的商品生成订单。</li>
-<li>用户确认支付后商户后台系统调用微信支付【请求支付API】生成预支付交易；</li>
-<li>微信支付系统收到请求后生成预支付交易单，并返回交易会话的二维码链接code_url。</li>
-<li>商户后台系统根据返回的code_url生成二维码。</li>
-<li>用户打开微信“扫一扫”扫描二维码，微信客户端将扫码内容发送到微信支付系统。</li>
-<li>微信支付系统收到客户端请求，验证链接有效性后发起用户支付，要求用户授权。</li>
-<li>用户在微信客户端输入密码，确认支付后，微信客户端提交授权。</li>
-<li>微信支付系统根据用户授权完成支付交易。</li>
-<li>微信支付系统完成支付交易后给微信客户端返回交易结果，并将交易结果通过短信、微信消息提示用户。微信客户端展示支付交易结果页面。</li>
-<li>微信支付系统通过发送异步消息通知商户后台系统支付结果。商户后台系统需回复接收情况，通知微信后台系统不再发送该单的支付通知。</li>
-<li>未收到支付通知的情况，商户后台系统调用【查询订单API】。</li>
-<li>商户确认订单已支付后给用户发货。</li>
-</ul>
+<ol>
+<li>调用统一支付接口，获取 code_url 信息</li>
+<li>商户后台系统根据返回的code_url生成二维码，并展示给顾客</li>
+<li>用户打开微信“扫一扫”扫描二维码，输入支付密码确认支付</li>
+<li>平台通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用<a href="#query">查询订单API</a></li>
+</ol>
 <h3 id='wechat-jsapi'>微信公众号支付 wechat.jsapi</h3><pre class="highlight plaintext"><code>Post /v2/pay?merchant_id=5399355381712172
 </code></pre>
 <blockquote>
@@ -1208,6 +1209,16 @@ nwIDAQAB
 <td>用户在商户appid下的唯一标识，下单前需要调用<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842">网页授权获取用户openid接口文档</a>接口获取到用户的Openid</td>
 </tr>
 </tbody></table>
+
+<p>开发说明：</p>
+
+<ol>
+<li>用户在微信环境中点击使用微信支付</li>
+<li>商户系统后台调用统一支付接口，获取pay_info信息</li>
+<li>商户系统前端调用：微信内H5调起支付，输入上一步获得的pay_info中的参数，<a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi_sl.php?chapter=7_7&amp;index=6">参考文档</a></li>
+<li>用户输入支付密码确认支付</li>
+<li>系统通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用<a href="#query">查询订单API</a></li>
+</ol>
 <h3 id='wechat-jsminipg'>微信小程序支付 wechat.jsminipg</h3><pre class="highlight plaintext"><code>Post /v2/pay?merchant_id=5399355381712172
 </code></pre>
 <blockquote>
@@ -1257,6 +1268,16 @@ nwIDAQAB
 <td>用户在商户appid下的唯一标识，下单前需要调用<a href="https://developers.weixin.qq.com/miniprogram/dev/api/api-login.html">网页授权获取用户openid接口文档</a>接口获取到用户的Openid</td>
 </tr>
 </tbody></table>
+
+<p>开发说明：</p>
+
+<ol>
+<li>用户在商户小程序中点击使用微信支付</li>
+<li>商户系统后台调用统一支付接口，获取pay_info信息</li>
+<li>商户系统前端调用：小程序调起支付API，输入上一步获得的pay_info中的参数，<a href="https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_sl_api.php?chapter=7_7&amp;index=5">参考文档</a></li>
+<li>用户输入支付密码确认支付</li>
+<li>系统通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用<a href="#query">查询订单API</a></li>
+</ol>
 <h3 id='app-wechat-app'>微信APP支付 wechat.app</h3><pre class="highlight plaintext"><code>Post /v2/pay?merchant_id=5399355381712172
 </code></pre>
 <blockquote>
@@ -1302,6 +1323,16 @@ nwIDAQAB
 <td>商户在微信开放平台上申请的APPID，开发平台认证主体需与商户主体一致</td>
 </tr>
 </tbody></table>
+
+<p>开发说明：</p>
+
+<ol>
+<li>用户在商户APP中点击使用微信支付</li>
+<li>商户系统后台调用统一支付接口，获取pay_info信息</li>
+<li>商户系统前端调用：APP调起支付，输入上一步获得的pay_info中的参数，<a href="https://pay.weixin.qq.com/wiki/doc/api/app/app_sl.php?chapter=9_12&amp;index=2">参考文档</a></li>
+<li>用户输入支付密码确认支付</li>
+<li>系统通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用<a href="#query">查询订单API</a></li>
+</ol>
 <h3 id='h5-wechat-wap'>微信H5支付 wechat.wap</h3><pre class="highlight plaintext"><code>Post /v2/pay?merchant_id=5399355381712172
 </code></pre>
 <blockquote>
@@ -1341,6 +1372,16 @@ nwIDAQAB
 <td>IOS APP为：bundle_id，如：com.tencent.wzryIOS，<br>Android APP为package_name，如：com.tencent.tmgp.sgame，<br>WAP为网站首页地址，如：https://store.pooul.com/</td>
 </tr>
 </tbody></table>
+
+<p>开发说明：</p>
+
+<ol>
+<li>用户在商户手机网站中点击使用微信支付</li>
+<li>商户系统后台调用统一支付接口，获取支付跳转链接 mweb_url</li>
+<li>商户前端跳转至 mweb_url</li>
+<li>用户输入支付密码确认支付</li>
+<li>系统通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用<a href="#query">查询订单API</a></li>
+</ol>
 <h3 id='alipay-scan'>支付宝扫码支付 alipay.scan</h3><pre class="highlight plaintext"><code>Post /v2/pay?merchant_id=5399355381712172
 </code></pre>
 <blockquote>
@@ -1374,6 +1415,15 @@ nwIDAQAB
 
 </span></code></pre>
 <p>收银员通过收银台或商户后台调用支付宝接口，生成二维码后，展示给用户，由用户使用支付宝扫描二维码完成订单支付。</p>
+
+<p>开发说明：</p>
+
+<ol>
+<li>调用统一支付接口，获取 code_url 信息</li>
+<li>商户后台系统根据返回的 code_url 生成二维码，并展示给顾客</li>
+<li>用户打开支付宝“扫一扫”扫描二维码，输入支付密码确认支付</li>
+<li>平台通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用<a href="#query">查询订单API</a></li>
+</ol>
 <h2 id='query'>查询订单 Query</h2>
 <blockquote>
 <p>Post /v2/pay/query?merchant_id=5399355381712172</p>
