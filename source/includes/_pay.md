@@ -2,7 +2,7 @@
 
 ## 统一支付 Pay order
 
-> Post /v2/pay?merchant_id=5399355381712172
+> Post /v2/pay?merchant_id=#{merchant_id}
 
 ```json
 {
@@ -36,10 +36,12 @@ pay_type <br> **必填** <br> `string` | 支付类型，不同的支付类型，
 nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
 mch_trade_id <br> **必填** <br> `string` | 商户订单号，在同一个merchant_id 下每次请求必须为唯一，如：alextest.scan.113
 total_fee  <br> **必填** <br> `int` | 支付总金额，单位为分，只能为整数，如：888 代表8.88元
+body  <br> **必填** <br> `string` | 商品或支付单简要描述
 spbill_create_ip <br> **选填** <br> `string` | 发起支付的终端IP，APP、jsapi、jsminipg、wap支付提交用户端ip，scan、micro支付填调用支付API的服务端IP。<br>微信支付必填、支付宝选填
 notify_url  <br> **选填** <br> `string` | 支付结果通知地址，接收支付结果异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。如：http://pay.pooul.com/notify
 time_start  <br> **选填** <br> `int` | 订单开始时间，为10位 UNIX 时间戳，如：1530759545
 time_expire  <br> **选填** <br> `int` | 订单失效时间，为10位 UNIX 时间戳，如：1530759574
+store_id  <br> **选填** <br> `string` | 商户门店编号，支付宝支付不传门店号会导致优惠不生效，可能引起优惠活动无法参加
 device_info  <br> **选填** <br> `string` | 终端设备号(门店号或收银设备ID)，注意：PC网页或APP支付请传"WEB"
 op_user_id  <br> **选填** <br> `string` | 操作员或收银员编号
 
@@ -48,8 +50,11 @@ op_user_id  <br> **选填** <br> `string` | 操作员或收银员编号
 
 ### 统一反扫支付 common.micro 
 
+```
+Post /v2/pay?merchant_id=5399355381712172
+```
 
-> Post /v2/pay?merchant_id=5399355381712172
+> 请求示例
 
 ```json
 {
@@ -93,9 +98,8 @@ op_user_id  <br> **选填** <br> `string` | 操作员或收银员编号
 	}
 }
 ```
-<aside class="notice">
-包含微信刷卡支付、支付宝付款码支付，此模式下商家扫码消费者付款码
-</aside>
+
+包含微信刷卡支付、支付宝条码支付，此模式下商家扫码消费者付款码
 
 收银员使用扫码设备读取微信/支付宝用户刷卡授权码以后，二维码或条码信息传送至商户收银台，由商户收银台或者商户后台调用该接口发起支付。
 
@@ -112,7 +116,11 @@ auth_code <br> **必填** <br> `string` | 微信支付或支付宝支付授权�
 
 ### 微信扫码支付 wechat.scan 
 
-> Post /v2/pay?merchant_id=5399355381712172
+```
+Post /v2/pay?merchant_id=5399355381712172
+```
+
+> 请求示例
 
 ```json
 {
@@ -144,40 +152,32 @@ auth_code <br> **必填** <br> `string` | 微信支付或支付宝支付授权�
 }
 
 ``` 
-<aside class="notice">
+
 扫码支付是指商户系统按微信支付协议生成支付二维码，用户再用微信“扫一扫”来完成支付。适用于PC网站支付、实体店单品等场景。
-</aside>
 
 业务流程说明：
 
-（1）商户后台系统根据用户选购的商品生成订单。
-
-（2）用户确认支付后商户后台系统调用微信支付【请求支付API】生成预支付交易；
-
-（3）微信支付系统收到请求后生成预支付交易单，并返回交易会话的二维码链接code_url。
-
-（4）商户后台系统根据返回的code_url生成二维码。
-
-（5）用户打开微信“扫一扫”扫描二维码，微信客户端将扫码内容发送到微信支付系统。
-
-（6）微信支付系统收到客户端请求，验证链接有效性后发起用户支付，要求用户授权。
-
-（7）用户在微信客户端输入密码，确认支付后，微信客户端提交授权。
-
-（8）微信支付系统根据用户授权完成支付交易。
-
-（9）微信支付系统完成支付交易后给微信客户端返回交易结果，并将交易结果通过短信、微信消息提示用户。微信客户端展示支付交易结果页面。
-
-（10）微信支付系统通过发送异步消息通知商户后台系统支付结果。商户后台系统需回复接收情况，通知微信后台系统不再发送该单的支付通知。
-
-（11）未收到支付通知的情况，商户后台系统调用【查询订单API】。
-
-（12）商户确认订单已支付后给用户发货。
+- 商户后台系统根据用户选购的商品生成订单。
+- 用户确认支付后商户后台系统调用微信支付【请求支付API】生成预支付交易；
+- 微信支付系统收到请求后生成预支付交易单，并返回交易会话的二维码链接code_url。
+- 商户后台系统根据返回的code_url生成二维码。
+- 用户打开微信“扫一扫”扫描二维码，微信客户端将扫码内容发送到微信支付系统。
+- 微信支付系统收到客户端请求，验证链接有效性后发起用户支付，要求用户授权。
+- 用户在微信客户端输入密码，确认支付后，微信客户端提交授权。
+- 微信支付系统根据用户授权完成支付交易。
+- 微信支付系统完成支付交易后给微信客户端返回交易结果，并将交易结果通过短信、微信消息提示用户。微信客户端展示支付交易结果页面。
+- 微信支付系统通过发送异步消息通知商户后台系统支付结果。商户后台系统需回复接收情况，通知微信后台系统不再发送该单的支付通知。
+- 未收到支付通知的情况，商户后台系统调用【查询订单API】。
+- 商户确认订单已支付后给用户发货。
 
 
 ### 微信公众号支付 wechat.jsapi 
 
-> Post /v2/pay?merchant_id=5399355381712172
+```
+Post /v2/pay?merchant_id=5399355381712172
+```
+
+> 请求示例
 
 ```json
 {
@@ -207,10 +207,8 @@ auth_code <br> **必填** <br> `string` | 微信支付或支付宝支付授权�
 	}
 }
 ```
-<aside class="notice">
-公众号支付是指用户在微信中打开商户的H5页面，商户在H5页面通过调用微信支付提供的JSAPI接口调起微信支付模块来完成支付。适用于在公众号、朋友圈、聊天窗口等微信内完成支付的场景。
-</aside>
 
+公众号支付是指用户在微信中打开商户的H5页面，商户在H5页面通过调用微信支付提供的JSAPI接口调起微信支付模块来完成支付。适用于在公众号、朋友圈、聊天窗口等微信内完成支付的场景。
 
 Body需增加请求参数
 
@@ -221,7 +219,11 @@ sub_openid <br> **必填** <br> `string` | 用户在商户appid下的唯一标�
 
 ### 微信小程序支付 wechat.jsminipg 
 
-> Post /v2/pay?merchant_id=5399355381712172
+```
+Post /v2/pay?merchant_id=5399355381712172
+```
+
+> 请求示例
 
 ```json
 {
@@ -250,9 +252,8 @@ sub_openid <br> **必填** <br> `string` | 用户在商户appid下的唯一标�
 	}
 }
 ```
-<aside class="notice">
+
 用户在微信小程序中使用微信支付的场景
-</aside>
 
 Body需增加请求参数
 
@@ -263,7 +264,11 @@ sub_openid <br> **必填** <br> `string` | 用户在商户appid下的唯一标�
 
 ### 微信APP支付 wechat.app 
 
-> Post /v2/pay?merchant_id=5399355381712172
+```
+Post /v2/pay?merchant_id=5399355381712172
+```
+
+> 请求示例
 
 ```json
 {
@@ -293,9 +298,7 @@ sub_openid <br> **必填** <br> `string` | 用户在商户appid下的唯一标�
 }
 ```
 
-<aside class="notice">
 APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信支付模块来完成支付。适用于在移动端APP中集成微信支付功能的场景。
-</aside>
 
 Body需增加请求参数
 
@@ -305,17 +308,77 @@ sub_appid <br> **必填** <br> `string` | 商户在微信开放平台上申请�
 
 ### 微信H5支付 wechat.wap 
 
-<aside class="notice">
-用户在微信以外的手机浏览器请求微信支付的场景唤起微信支付
-</aside>
+```
+Post /v2/pay?merchant_id=5399355381712172
+```
+
+> 请求示例
+
+```json
+{
+	"pay_type":"wechat.wap",
+	"mch_trade_id":"alextest.app.22",
+	"total_fee": 3,
+	"spbill_create_ip":"127.0.0.1",
+	"body":"Alex Test app",
+	"mch_app_type": "WAP",
+	"mch_app_name":"普尔商城",
+	"mch_app_id":"https://store.pooul.com/"
+}
+```
+
+微信H5支付是指商户在微信客户端外的移动端网页展示商品或服务，用户在前述页面确认使用微信支付时，商户发起本服务呼起微信客户端进行支付。 主要用于触屏版的手机浏览器请求微信支付的场景。可以方便的从外部浏览器唤起微信支付。
+
 
 Body需增加请求参数
 
 参数|	描述
 --|--
-mch_app_type <br> **必填** <br> `string` | 发起支付的应用类型，IOS：IOS APP，AND：Android APP, WAP：手机网站 
-mch_app_name <br> **必填** <br> `string` | 应用名称
-mch_app_id <br> **必填** <br> `string` | IOS APP为应用ID，Android APP 为应用包名，WAP为网站首页地址
+mch_app_type <br> **必填** <br> `string` | 发起支付的应用类型，<br>IOS：IOS APP，<br>AND：Android APP, <br>WAP：手机网站 
+mch_app_name <br> **必填** <br> `string` | APP为：应用名称，手机网站为：网站名称
+mch_app_id <br> **必填** <br> `string` | IOS APP为：bundle_id，如：com.tencent.wzryIOS，<br>Android APP为package_name，如：com.tencent.tmgp.sgame，<br>WAP为网站首页地址，如：https://store.pooul.com/
+
+
+### 支付宝扫码支付 alipay.scan 
+
+```
+Post /v2/pay?merchant_id=5399355381712172
+```
+
+> 请求示例
+
+```json
+{
+	"pay_type":"alipay.scan",
+	"mch_trade_id":"alextest.alipay.scan.211",
+	"total_fee": 7622,
+	"notify_url":"http://112.74.184.236:3006/fake-recv",
+	"body":"This's Subjects Alex test",
+	"store_id":"9527"
+}
+``` 
+
+> 响应
+
+```json
+{
+	"code": 0,
+	"msg": "10000,Success",
+	"data": {
+		"code_url": "https://qr.alipay.com/bax05219xy73fxcgfi7w206f",
+		"trade_id": "5b66a66801c9113e972bb7f3",
+		"mch_trade_id": "alextest.alipay.scan.210",
+		"merchant_id": "1333259781809471",
+		"pay_type": "alipay.scan",
+		"trade_state": 6,
+		"trade_info": "支付中, 10000,Success"
+	}
+}
+
+``` 
+
+收银员通过收银台或商户后台调用支付宝接口，生成二维码后，展示给用户，由用户使用支付宝扫描二维码完成订单支付。
+
 
 ## 查询订单 Query
 
