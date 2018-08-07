@@ -1319,12 +1319,16 @@ APP支付是指商户通过在移动端应用APP中集成开放SDK调起微信�
 </tr>
 </thead><tbody>
 <tr>
-<td>sub_appid <br> <strong>必填</strong> <br> <code>string</code></td>
-<td>与发起支付商户主体一致的小程序APPID</td>
+<td>mch_app_type <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>发起支付的应用类型，IOS：IOS APP，AND：Android APP, WAP：手机网站</td>
 </tr>
 <tr>
-<td>sub_openid <br> <strong>必填</strong> <br> <code>string</code></td>
-<td>用户在商户appid下的唯一标识，下单前需要调用<a href="https://developers.weixin.qq.com/miniprogram/dev/api/api-login.html">网页授权获取用户openid接口文档</a>接口获取到用户的Openid</td>
+<td>mch_app_name <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>应用名称</td>
+</tr>
+<tr>
+<td>mch_app_id <br> <strong>必填</strong> <br> <code>string</code></td>
+<td>IOS APP为应用ID，Android APP 为应用包名，WAP为网站首页地址</td>
 </tr>
 </tbody></table>
 <h2 id='query'>查询订单 Query</h2>
