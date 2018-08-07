@@ -313,8 +313,9 @@ Body需增加请求参数
 
 参数|	描述
 --|--
-sub_appid <br> **必填** <br> `string` | 与发起支付商户主体一致的小程序APPID
-sub_openid <br> **必填** <br> `string` | 用户在商户appid下的唯一标识，下单前需要调用[网页授权获取用户openid接口文档](https://developers.weixin.qq.com/miniprogram/dev/api/api-login.html)接口获取到用户的Openid
+mch_app_type <br> **必填** <br> `string` | 发起支付的应用类型，IOS：IOS APP，AND：Android APP, WAP：手机网站 
+mch_app_name <br> **必填** <br> `string` | 应用名称
+mch_app_id <br> **必填** <br> `string` | IOS APP为应用ID，Android APP 为应用包名，WAP为网站首页地址
 
 ## 查询订单 Query
 
