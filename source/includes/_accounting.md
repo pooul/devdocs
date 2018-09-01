@@ -90,9 +90,10 @@ URL参数说明
 参数 | 描述
 -- | -- 
 merchant_id | 要查询的商户编号
-desc | 留空则返回本商户汇总，desc=1则返回下属商户汇总
+desc | 留空则返回本商户交易列表，desc=1则返回下属商户交易列表
 time_start | 开始时间，支付创建时间，不传默认为查询当天0点，格式为unix时间戳，10位，如：1531115400
 time_end | 结束时间，支付创建时间，不传默认为截止到当前时间，格式为unix时间戳，10位，如：1531115700
+pagination | 请参考[分页说明](#pagination)
 
 Body参数说明
 
@@ -102,7 +103,7 @@ merchant_id | 要查询的下属商户编号
 pay_type | 支付类型，[查看支付类型编码](#pay-type)
 trade_state | 支付状态
 mch_trade_id | 商户支付订单号
-_id | trade_id，普尔平台支付订单号
+id | trade_id，普尔平台支付订单号
 
 
 ### 获取单笔订单详情
@@ -169,6 +170,177 @@ URL参数说明
 参数 | 描述
 -- | -- 
 trade_id | 普尔平台订单编号
+
+
+## 查询网银转账记录 Cmbc fund order
+
+### 搜索网银转账明细 Cmbc fund order search
+
+```
+Post /cms/pooul_bills/search_cmbc_fund?
+```
+
+> 请求示例
+
+```shell
+curl -X POST /cms/pooul_bills/search_cmbc_fund?merchant_id=9609932494323355&desc=1&time_start=1531115400&time_end=1531115700 \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}" \
+-d '{
+    "draweeAccName": "李四"
+}'
+```
+
+> 响应示例
+
+```json
+{
+    "code": 0,
+    "msg": "success",
+    "data": [
+        {
+            "_id": "5b7e960b01c911472ce3b207",
+            "created_at": 1535022603,
+            "currencyCategory": "",
+            "dcFlag": "2",
+            "draweeAccName": "白云006",
+            "draweeAccNo": "6226223301229640",
+            "draweeAccType": "",
+            "draweePartyId": "305100000013",
+            "draweePartyName": "中国民生银行",
+            "fundAcc": "9902000003145455",
+            "merchantNum": "3300000900001182",
+            "merchant_id": "3500395694632388",
+            "payeeAccName": "倪川林龙帅",
+            "payeeAccNo": "9902000003145455",
+            "payeeAccType": "P",
+            "payeePartyId": "",
+            "payeePartyName": "",
+            "platform_merchant_id": "2339779661268962",
+            "postscript": "手机转账",
+            "reqSeq": "310002018082300294068225440E5E70",
+            "summary": "手机转账",
+            "tranDate": "20180823",
+            "tranTime": "181917201",
+            "tran_amount_fee": 2318,
+            "tran_at": 1535019557,
+            "merchant_info": {
+                "merchant_id": "3500395694632388",
+                "business_short_name": "版本环境测试-囧囧",
+                "corporate_full_name": null
+            }
+        },
+        {
+            "_id": "5b7e960b01c911472ce3b206",
+            "created_at": 1535022603,
+            "currencyCategory": "",
+            "dcFlag": "2",
+            "draweeAccName": "白云006",
+            "draweeAccNo": "6226223301229640",
+            "draweeAccType": "",
+            "draweePartyId": "305100000013",
+            "draweePartyName": "中国民生银行",
+            "fundAcc": "9902000003145455",
+            "merchantNum": "3300000900001182",
+            "merchant_id": "3500395694632388",
+            "payeeAccName": "倪川林龙帅",
+            "payeeAccNo": "9902000003145455",
+            "payeeAccType": "P",
+            "payeePartyId": "",
+            "payeePartyName": "",
+            "platform_merchant_id": "2339779661268962",
+            "postscript": "手机转账",
+            "reqSeq": "310002018082300294068365440E5F75",
+            "summary": "手机转账",
+            "tranDate": "20180823",
+            "tranTime": "182048533",
+            "tran_amount_fee": 1155,
+            "tran_at": 1535019648,
+            "merchant_info": {
+                "merchant_id": "3500395694632388",
+                "business_short_name": "版本环境测试-囧囧",
+                "corporate_full_name": null
+            }
+        }
+    ]
+}
+```
+
+URL参数说明
+
+参数 | 描述
+-- | -- 
+merchant_id | 要查询的商户编号
+desc | 留空则返回本商户转账列表，desc=1则返回下属商户转账列表
+time_start | 开始时间，不传默认为查询当天0点，格式为unix时间戳，10位，如：1531115400
+time_end | 结束时间，不传默认为截止到当前时间，格式为unix时间戳，10位，如：1531115700
+pagination | 请参考[分页说明](#pagination)
+
+Body参数说明
+
+参数 | 描述
+-- | -- 
+merchant_id | 要查询的下属商户编号
+draweeAccName | 付款人姓名
+draweeAccNo | 付款人账号
+
+### 获取单笔转账详情 Cmbc fund order detail
+
+```
+GET /cms/pooul_bills/cmbc_fund_detail?
+```
+
+> 请求示例
+
+```shell
+curl -X GET /cms/pooul_bills/cmbc_fund_detail?trade_id=5b7e960b01c911472ce3b206 \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}" 
+```
+
+> 响应示例
+
+```json
+{
+    "_id": "5b7e960b01c911472ce3b206",
+    "created_at": 1535022603,
+    "currencyCategory": "",
+    "dcFlag": "2",
+    "draweeAccName": "白云006",
+    "draweeAccNo": "6226223301229640",
+    "draweeAccType": "",
+    "draweePartyId": "305100000013",
+    "draweePartyName": "中国民生银行",
+    "fundAcc": "9902000003145455",
+    "merchantNum": "3300000900001182",
+    "merchant_id": "3500395694632388",
+    "payeeAccName": "倪川林龙帅",
+    "payeeAccNo": "9902000003145455",
+    "payeeAccType": "P",
+    "payeePartyId": "",
+    "payeePartyName": "",
+    "platform_merchant_id": "2339779661268962",
+    "postscript": "手机转账",
+    "reqSeq": "310002018082300294068365440E5F75",
+    "summary": "手机转账",
+    "tranDate": "20180823",
+    "tranTime": "182048533",
+    "tran_amount_fee": 1155,
+    "tran_at": 1535019648,
+    "merchant_info": {
+        "merchant_id": "3500395694632388",
+        "business_short_name": "版本环境测试-囧囧",
+        "corporate_full_name": null
+    }
+}
+```
+
+
+URL参数说明
+
+参数 | 描述
+-- | -- 
+_id | 普尔平台编号
 
 
 ## 获取交易汇总 Summary

@@ -2,7 +2,7 @@
 
 ## 统一支付 Pay order
 
-> Post /v2/pay?merchant_id=#{merchant_id}
+> POST /v2/pay?merchant_id=5399355381712172
 
 ```json
 {
@@ -19,7 +19,8 @@
 
 ```
 
-请求方式：Post /v2/pay?
+- 请求方式：POST /v2/pay?merchant_id=#{merchant_id}
+- 认证方式：[RSA](#rsa)
 
 URL请求参数
 
@@ -51,7 +52,7 @@ op_user_id  <br> **选填** <br> `string` | 操作员或收银员编号
 ### 统一反扫支付 common.micro 
 
 ```
-Post /v2/pay?merchant_id=5399355381712172
+POST /v2/pay?merchant_id=5399355381712172
 ```
 
 > 请求示例
@@ -123,7 +124,7 @@ auth_code <br> **必填** <br> `string` | 微信支付或支付宝支付授权�
 ### 微信扫码支付 wechat.scan 
 
 ```
-Post /v2/pay?merchant_id=5399355381712172
+POST /v2/pay?merchant_id=5399355381712172
 ```
 
 > 请求示例
@@ -173,7 +174,7 @@ Post /v2/pay?merchant_id=5399355381712172
 ### 微信公众号支付 wechat.jsapi 
 
 ```
-Post /v2/pay?merchant_id=5399355381712172
+POST /v2/pay?merchant_id=5399355381712172
 ```
 
 > 请求示例
@@ -228,7 +229,7 @@ sub_openid <br> **必填** <br> `string` | 用户在商户appid下的唯一标�
 ### 微信小程序支付 wechat.jsminipg 
 
 ```
-Post /v2/pay?merchant_id=5399355381712172
+POST /v2/pay?merchant_id=5399355381712172
 ```
 
 > 请求示例
@@ -281,7 +282,7 @@ sub_openid <br> **必填** <br> `string` | 用户在商户appid下的唯一标�
 ### 微信APP支付 wechat.app 
 
 ```
-Post /v2/pay?merchant_id=5399355381712172
+POST /v2/pay?merchant_id=5399355381712172
 ```
 
 > 请求示例
@@ -333,7 +334,7 @@ sub_appid <br> **必填** <br> `string` | 商户在微信开放平台上申请�
 ### 微信H5支付 wechat.wap 
 
 ```
-Post /v2/pay?merchant_id=5399355381712172
+POST /v2/pay?merchant_id=5399355381712172
 ```
 
 > 请求示例
@@ -373,7 +374,7 @@ mch_app_id <br> **必填** <br> `string` | IOS APP为：bundle_id，如：com.te
 ### 支付宝扫码支付 alipay.scan 
 
 ```
-Post /v2/pay?merchant_id=5399355381712172
+POST /v2/pay?merchant_id=5399355381712172
 ```
 
 > 请求示例
@@ -419,7 +420,7 @@ Post /v2/pay?merchant_id=5399355381712172
 
 ## 查询订单 Query
 
-> Post /v2/pay/query?merchant_id=5399355381712172
+> POST /v2/pay/query?merchant_id=5399355381712172
 
 ```json
 {
@@ -451,7 +452,7 @@ Post /v2/pay?merchant_id=5399355381712172
 
 以trade_state确认支付状态，[状态码](#trade_state)
 
-请求方式：Post /v2/pay/query?
+请求方式：POST /v2/pay/query?
 
 URL请求参数
 
@@ -469,7 +470,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 
 ## 关闭订单 Close
 
->  Post /v2/pay/close?merchant_id=5399355381712172
+>  POST /v2/pay/close?merchant_id=5399355381712172
 
 ```json
 {
@@ -494,7 +495,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 
 注意：订单生成后不能马上调用关单接口，最短调用时间建议间隔为5分钟。
 
-请求方式：Post /v2/pay/close?
+请求方式：POST /v2/pay/close?
 
 URL请求参数
 
@@ -512,7 +513,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 
 ## 撤销订单 Reverse
 
-> Post /v2/pay/reverse?merchant_id=5399355381712172
+> POST /v2/pay/reverse?merchant_id=5399355381712172
 
 
 ```json
@@ -538,7 +539,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 
 可用支付渠道：微信支付、支付宝
 
-请求方式：Post /v2/pay/reverse?
+请求方式：POST /v2/pay/reverse?
 
 URL请求参数
 
@@ -556,7 +557,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 
 ## 申请退款 Refund
 
-> Post /v2/pay/refund?merchant_id=5399355381712172
+> POST /v2/pay/refund?merchant_id=5399355381712172
 
 ```json
 {
@@ -589,7 +590,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 1. 微信支付交易时间超过一年的订单无法提交退款，支付宝为签约时设置的可退款时间 
 2. 微信支付每个支付订单的部分退款次数不能超过50次
 
-请求方式：Post /v2/pay/refund?
+请求方式：POST /v2/pay/refund?
 
 URL请求参数
 
@@ -610,7 +611,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 
 ## 退款查询 Refund query
 
-> Post /v2/pay/refund_query?merchant_id=5399355381712172
+> POST /v2/pay/refund_query?merchant_id=5399355381712172
 
 ```json
 {
@@ -662,7 +663,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 
 注意：如果单个支付订单部分退款次数多次时使用商户订单号查询会返回多条退款记录
 
-请求方式：Post /v2/pay/refund_query?
+请求方式：POST /v2/pay/refund_query?
 
 URL请求参数
 
@@ -683,7 +684,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 
 支付完成后，系统会把相关支付结果和用户信息发送给商户，商户需要接收处理，并需要响应字符串"success"（大小写皆可）。
 
-对后台通知交互时，如果微信收到商户的应答不是成功或超时，系统认为通知失败，系统会通过一定的策略定期重新发起通知，尽可能提高通知的成功率，但系统不保证通知最终能成功。 （通知频率为15/15/30/180/1800/1800/1800/1800/3600，单位：秒）
+对后台通知交互时，如果Pooul收到商户的应答不是成功或超时，系统认为通知失败，系统会通过一定的策略定期重新发起通知，尽可能提高通知的成功率，但系统不保证通知最终能成功。 （通知频率为15/15/30/180/1800/1800/1800/1800/3600，单位：秒）
 
 注意：同样的通知可能会多次发送给商户系统。商户系统必须能够正确处理重复的通知。
 推荐的做法是，当收到通知进行处理时，首先检查对应业务数据的状态，判断该通知是否已经处理过，如果没有处理过再进行处理，如果处理过直接返回结果成功。在对业务数据进行状态检查和处理之前，要采用数据锁进行并发控制，以避免函数重入造成的数据混乱。

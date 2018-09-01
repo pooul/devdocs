@@ -1,8 +1,8 @@
-# 结余- balances
+# 结余 balances
 
 入驻商户通过微信支付、支付宝支付后，或使用网银转账至民生子账户后系统会对入账成功的交易进行记账处理，记账完成后会增加入驻商户结余，手续费差额部分会记到对应的平台商户结余中，可以查询到记账明细，结余金额，平台商户可以调用接口进行结余的转账。
 
-## 查询记账账簿结余
+## 查询记账账簿结余 Query balances
 
 ```
 GET /cms/balances?merchant_id=#{merchant_id}
@@ -32,14 +32,14 @@ GET /cms/balances?merchant_id=#{merchant_id}
 
 鉴权方式：Login
 
-## 查询记账账簿明细
+## 查询记账账簿明细 Balances list
 
 通过此接口查询平台商户、入驻商户记账明细，默认显示当天的明细，加上time_start、time_end【10位时间戳】可以查询制定时间范围的明细，
 
 鉴权方式：Login
 
 ```
-GET /cms/balances/history?merchant_id=#{merchant_id}&time_start=#{开始时间，时间戳}&time_end=#{截止时间，时间戳}&page_size=#{默认15条}
+GET /cms/balances/history?merchant_id=5399355381712172
 ```
 
 > 响应示例
@@ -76,8 +76,16 @@ GET /cms/balances/history?merchant_id=#{merchant_id}&time_start=#{开始时间�
     ]
 }
 ```
+URL参数说明
 
-## 内部转账
+参数 | 描述
+-- | -- 
+merchant_id | 要查询的商户编号
+time_start | 开始时间，业务创建时间，不传默认为查询当天0点，格式为unix时间戳，10位，如：1531115400
+time_end | 结束时间，业务创建时间，不传默认为截止到当前时间，格式为unix时间戳，10位，如：1531115700
+pagination | 请参考[分页说明](#pagination)
+
+## 内部转账 Internal transfers
 
 内部转账的功能用于平台商户下的入驻商户及本平台商户记账结余进行调账
 只允许同一平台商户下入驻商户及本平台商户进行转账

@@ -7,6 +7,8 @@
 
 ## 商户管理 Merchant manage
 
+平台商户可选择开通民生银行分销易产品，开通分销易产品并配置后，创建入驻商户接口会自动返回民生子账簿账号信息
+
 ### 创建
 
 #### 请求
@@ -102,8 +104,28 @@ mobile <br> **可选** <br> `string`  | 手机号码
     "code": 0,
     "msg": "success",
     "data": {
-        "_id": "5758247574437774",
+        "_id": "6952017140355067",
         "_type": "Ns::TenantMerchant",
+        "arrears": false,
+        "business": {
+            "short_name": "试下开通cmbc fund 2"
+        },
+        "cmbc_info": {
+            "fundAccName": "倪川林龙帅",
+            "fundAcc": "9902000003178787"
+        },
+        "created_at": 1535804410,
+        "level_code": "00a01j00l",
+        "license_type": 3,
+        "owner": {
+            "idcard_type": 1,
+            "name": "李小四",
+            "idcard_num": "53992183285145344"
+        },
+        "parent_id": "2339779661268962",
+        "platform_merchant_id": "2339779661268962",
+        "status": 5,
+        "updated_at": 1535804410
     }
 }
 ```
@@ -111,6 +133,14 @@ mobile <br> **可选** <br> `string`  | 手机号码
 响应参数 | 描述
 -- | -- 
 _id <br> **必填** <br> `string` | 商户编号 merchant_id，可用于后续业务
+
+若有开通民生银行分销易产品，还会返回
+
+响应参数 | 描述
+-- | -- 
+fundAccName <br> **必填** <br> `string` | 该入驻商户民生子账簿户名
+fundAcc <br> **必填** <br> `string` | 该入驻商户民生子账簿账号
+
 
 
 ### 查询
