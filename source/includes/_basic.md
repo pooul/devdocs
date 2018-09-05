@@ -65,7 +65,7 @@ Pooul API 采用 REST 风格设计。所有接口请求地址都是可预期的�
 > 请求示例
 
 ```shell
-curl "/cms/balances/history?page_size=2&last_id=770&merchant_id=1333259781809471" \
+curl "/cms/balances/history?page_size=2&last_id=770&merchant_id=5399355381712172" \
 -H "Authorization: #{Authorization}"
 ```
 

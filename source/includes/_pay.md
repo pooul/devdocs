@@ -43,6 +43,7 @@ notify_url  <br> **选填** <br> `string` | 支付结果通知地址，接收支
 time_start  <br> **选填** <br> `int` | 订单开始时间，为10位 UNIX 时间戳，如：1530759545
 time_expire  <br> **选填** <br> `int` | 订单失效时间，为10位 UNIX 时间戳，如：1530759574
 store_id  <br> **选填** <br> `string` | 商户门店编号，支付宝支付不传门店号会导致优惠不生效，可能引起优惠活动无法参加
+attach  <br> **选填** <br> `string` | 附加数据，在查询API和支付通知中原样返回，可作为自定义参数使用。
 device_info  <br> **选填** <br> `string` | 终端设备号(门店号或收银设备ID)，注意：PC网页或APP支付请传"WEB"
 op_user_id  <br> **选填** <br> `string` | 操作员或收银员编号
 
