@@ -185,7 +185,6 @@ POST /v2/pay?merchant_id=5399355381712172
 	"pay_type":"wechat.jsurl",
 	"mch_trade_id":"alextest.jsurl.113",
 	"total_fee": 221, 
-	"spbill_create_ip":"127.0.0.1",
 	"notify_url":"http://112.74.184.236:3006/fake-recv",
 	"body":"Alex Test jsurl",
 	"device_info":"alex device",
