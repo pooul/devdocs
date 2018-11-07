@@ -172,7 +172,60 @@ POST /v2/pay?merchant_id=5399355381712172
 4. 平台通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用[查询订单API](#query)
 
 
-### 微信公众号支付 wechat.jsapi 
+### 微信公众号支付（跳转） wechat.jsurl 
+
+```
+POST /v2/pay?merchant_id=5399355381712172
+```
+
+> 请求示例
+
+```json
+{
+	"pay_type":"wechat.jsurl",
+	"mch_trade_id":"alextest.jsurl.113",
+	"total_fee": 221, 
+	"spbill_create_ip":"127.0.0.1",
+	"notify_url":"http://112.74.184.236:3006/fake-recv",
+	"body":"Alex Test jsurl",
+	"device_info":"alex device",
+	"op_user_id":"301",
+	"attach":"Alex attach"
+}
+``` 
+
+> 响应
+
+```json
+{
+	"code": 0,
+	"msg": "success",
+	"data": {
+    "pay_url": "https://url.com/QR?QRCODE=CCB9980011025952864655208",
+    "trade_id": "5be2cae201c91132eaa6f774",
+    "device_info": "alex wechat device",
+    "mch_trade_id": "alextest.jsurl.26",
+    "merchant_id": "3335633346388243",
+    "op_user_id": "11",
+    "pay_type": "wechat.jsurl",
+    "trade_state": 6,
+	}
+}
+
+``` 
+
+商户调用此接口，返回支付链接，商户在微信环境中跳转至该支付链接，用户可以直接发起支付
+
+
+开发说明：
+
+1. 调用统一支付接口，获取 pay_url 信息
+2. 商户后台系统获得 pay_url，商户前端系统直接跳转至此 支付页面
+3. 用户输入支付密码确认支付
+4. 平台通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用[查询订单API](#query)
+
+
+### 微信公众号支付（原生） wechat.jsapi 
 
 ```
 POST /v2/pay?merchant_id=5399355381712172
