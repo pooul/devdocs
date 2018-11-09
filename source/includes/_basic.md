@@ -214,9 +214,8 @@ password  <br> **必填** <br> `string` | 登录密码
 
 使用用户名与密码调用登录接口获取 Authorization, 在登录成功以后，下发 Authorization 在http头
 
-- Authorization 默认有效期为 30 分钟，如果用户在使用的情况下，
-- 15 分钟时后端会下发新的 Authorization，此时需要使用新的 Authorization 来调用，
-- 如果持续 30 分钟以上没有任何操作，重新操作 Authorization 会失效需要重新登录获取新的 Authorization
+- Authorization 默认有效期为 30 分钟，如果用户在使用的情况下，自动会延长 Authorization 的有效时间，
+- 如果持续 30 分钟以上没有任何操作，重新操作 Authorization 会失效，这时需要重新登录获取新的 Authorization
 
 ### 3. 提交请求头带上 Authorization
 

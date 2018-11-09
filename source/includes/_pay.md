@@ -615,6 +615,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 ```json
 {
 	"mch_trade_id":"alextest.scan.112",
+	"mch_refund_id":"alextest.scan.281.1",
 	"refund_fee":8872,
 	"refund_desc":"Alex Test",
 	"notify_url":"http://112.74.184.236:3006/fake-recv"
@@ -657,6 +658,7 @@ Body请求参数
 参数|	描述
 --|--
 mch_trade_id <br> **必填** <br> `string` | 商户订单号
+mch_refund_id <br> **必填** <br> `int` | 退款单号，需保证同一个商户下唯一
 refund_fee <br> **必填** <br> `int` | 退款金额，单位为分
 refund_desc <br> **必填** <br> `string` | 退款原因
 notify_url <br> **选填** <br> `string` | 异步接收退款结果通知的回调地址，通知URL必须为外网可访问的url，不允许带参数
@@ -668,7 +670,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 
 ```json
 {
-	"mch_trade_id":"alextest.scan.112"
+	"mch_refund_id":"alextest.scan.112.1"
 }
 ``` 
 > 响应
@@ -690,16 +692,13 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 		"refunds": [
 			{
 				"refund_id": "5b34ba3d01c9112ae61fb8c1",
+				"mch_refund_id": "alextest.scan.112.1",
 				"refund_fee": 5,
 				"refund_state": 0
 			},
 			{
-				"refund_id": "5b34ba4501c9112ae61fb8c3",
-				"refund_fee": 100,
-				"refund_state": 0
-			},
-			{
 				"refund_id": "5b34ba4f01c9112ae61fb8c5",
+				"mch_refund_id": "alextest.scan.112.1",
 				"refund_fee": 1283,
 				"refund_state": 0
 			},
@@ -729,7 +728,7 @@ Body请求参数
 
 参数|	描述
 --|--
-mch_trade_id <br> **必填** <br> `string` | 商户订单号
+mch_refund_id <br> **必填** <br> `string` | 商户订单号
 nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
 
 
