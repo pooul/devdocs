@@ -237,30 +237,6 @@ idcard_num <br> **可选** <br> `string`  | 身份证号码
 mobile <br> **可选** <br> `string`  | 手机号码
 
 
-
-### 删除
-
-```
-DELETE /cms/merchants/:_id
-```
-
-> 请求示例
-
-```shell
-curl -X DELETE /cms/merchants/:_id \
--H "Content-Type: application/json" \
--H "Authorization: #{Authorization}"
-```
-
-> 响应示例
-
-```json
-{
-    "code": 0,
-    "msg": "success"
-}
-```
-
 ### 搜索
 
 ```
