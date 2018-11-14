@@ -12,36 +12,32 @@
 
 ```json
 {
-    "_id": "5b7e960b01c911472ce3b206",
-    "created_at": 1535022603,
-    "currencyCategory": "",
-    "dcFlag": "2",
-    "draweeAccName": "白云006",
-    "draweeAccNo": "6226223301229640",
-    "draweeAccType": "",
-    "draweePartyId": "305100000013",
-    "draweePartyName": "中国民生银行",
-    "fundAcc": "9902000003145455",
-    "merchantNum": "3300000900001182",
-    "merchant_id": "3500395694632388",
-    "payeeAccName": "倪川林龙帅",
-    "payeeAccNo": "9902000003145455",
-    "payeeAccType": "P",
-    "payeePartyId": "",
-    "payeePartyName": "",
-    "platform_merchant_id": "2339779661268962",
-    "postscript": "手机转账",
-    "reqSeq": "310002018082300294068365440E5F75",
-    "summary": "手机转账",
-    "tranDate": "20180823",
-    "tranTime": "182048533",
-    "tran_amount_fee": 1155,
-    "tran_at": 1535019648,
-    "merchant_info": {
-        "merchant_id": "3500395694632388",
-        "business_short_name": "版本环境测试-囧囧",
-        "corporate_full_name": null
-    }
+  "_id": "5bebca4301c911491e29643a",
+  "merchant_id": "9409823201581974",
+  "fundAcc": "9902000014272942",
+  "dcFlag": "2", 
+  "tranDate": "20181114",
+  "tranTime": "150923403",
+  "draweeAccType": "", 
+  "draweePartyId": "305100000013",
+  "draweePartyName": "中国民生银行",
+  "draweeAccNo": "6226221003245583",
+  "draweeAccName": "张云",
+  "currencyCategory": "",
+  "tran_amount_fee": 100,
+  "payeeAccType": "",
+  "payeePartyId": "",
+  "payeePartyName": "",
+  "payeeAccNo": "9902000014272942",
+  "payeeAccName": "深圳市普尔瀚达科技有限公司",
+  "postscript": "",
+  "summary": "", 
+  "merchantNum": "0300000700000015",
+  "reqSeq": "73401201211141503123456544C705F2",
+  "tran_at": 1542179363,
+  "created_at": 1542179395,
+  "platform_merchant_id": "6044885632395970",
+  "nonce_str": "5bebca4301c911491e29643b"
 }
 ```
 
@@ -50,6 +46,38 @@
 对后台通知交互时，如果Pooul收到商户的应答不是成功或超时，系统认为通知失败，系统会通过一定的策略定期重新发起通知，尽可能提高通知的成功率，但系统不保证通知最终能成功。 （通知频率为15/15/30/180/1800/1800/1800/1800/3600，单位：秒）
 
 注意：同样的通知可能会多次发送给商户系统。商户系统必须能够正确处理重复的通知。 推荐的做法是，当收到通知进行处理时，首先检查对应业务数据的状态，判断该通知是否已经处理过，如果没有处理过再进行处理，如果处理过直接返回结果成功。在对业务数据进行状态检查和处理之前，要采用数据锁进行并发控制，以避免函数重入造成的数据混乱。
+
+返回参数说明
+
+参数| 描述
+--|--
+_id <br> **必填** <br> `string`  | 平台流水号，如：5bebca4301c911491e29643a
+merchant_id <br> **必填** <br> `string`  | 平台商户下属性入驻商户编号，如：9409823201581974
+fundAcc<br> **必填** <br> `string`  | 子账簿账号，如：9902000014272942
+dcFlag <br> **必填** <br> `string`  | 借贷标识，1：借，2：贷
+tranDate <br> **必填** <br> `string`  | 转账日期，如：20181114，代表2018年11月14号
+tranTime <br> **必填** <br> `string`  | 转账时间，如：150923403，代表15点09分23秒403毫秒
+draweeAccType <br> **选填** <br> `string`  | 付款账号类型
+draweePartyId <br> **选填** <br> `string` | 付款账号开户行行号
+draweePartyName <br> **必填** <br> `string` | 付款账号开户行，如：中国民生银行广州分行营业部
+draweeAccNo <br> **必填** <br> `string` | 付款银行账号，如：6226221003245583
+draweeAccName <br> **必填** <br> `string` | 付款户名，如：张云
+currencyCategory <br> **选填** <br> `string` |  币种
+tran_amount_fee <br> **必填** <br> `int` | 交易金额，单位：分，如：100，代表1元
+payeeAccType <br> **选填** <br> `string` | 收款账号类型
+payeePartyId <br> **选填** <br> `string` | 收款账号开户行行号
+payeePartyName <br> **选填** <br> `string` | 收款账号开户行
+payeeAccNo <br> **必填** <br> `string` | 收款子账簿账号，如：9902000014272942
+payeeAccName <br> **必填** <br> `string` | 收款户名，如：深圳市普尔瀚达科技有限公司
+postscript <br> **选填** <br> `string` | 付款人备注
+summary <br> **选填** <br> `string` | 银行备注
+merchantNum <br> **必填** <br> `string` | 客户银行识别号，如：0300000700000015
+reqSeq <br> **必填** <br> `string` | 银行流水号，73401201211141503123456544C705F2
+tran_at <br> **必填** <br> `int` | 银行交易入账时间，时间戳，如：1542179363
+created_at <br> **必填** <br> `int` | 平台交易创建时间，时间戳，如：1542179395
+platform_merchant_id <br> **必填** <br> `string` | 平台商户编号，如：6044885632395970
+nonce_str <br> **必填** <br> `string` | 随机数，如有重复通知，随机数会不一样，如：5bebca4301c911491e29643b
+
 
 ### 查询实体账户资金明细
 
