@@ -299,19 +299,38 @@ parent_id <br> **选填** | 父级商户编号，输入此参数查询该父级�
 
 ### 上传图片 Upload image
 
-通过此功能上传商户资料照片
+通过此功能上传下属商户资料照片，包含经营场所照片、公司证件照片、法人证件照片、银行照片，具体取值参考 input 取值方式
 
-- 第一步：用户绑定商户，切换该商户为当前商户
-- 第二步：获取当前商户到七牛上传图片的Token
-- 第三步：调用七牛图片上传接口
+- 第一步：获取七牛上传图片的Token
+- 第二步：调用七牛图片上传接口
 
 #### 获得七牛Token
 
-> GET /cms/qiniu/upload_token
+> 请求示例
 
+```shell
+curl -X GET /cms/qiniu/upload_token?merchant_id=1002928391013363 \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}" 
+```
+
+> 响应示例
+
+```json
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "bucket": "merchant-info",
+        "token": "mwy4ThDku0ltbD7Fxu6rSSK7KVlsiC-ieUo3S0ng:quX_6S-8IWQYmkRyMkCTRjAgPLI=:eyJzY29wZSI6Im1lcmNoYW50LWluZm8iLCJkZWFkbGluZSI6MTU0MzU3ODUxMCwiY2FsbGJhY2tVcmwiOiJodHRwczovL2FwaS1kZXYucG9vdWwuY29tL3dlYi9ub3RpZmllcy9xaW5pdSIsImNhbGxiYWNrQm9keSI6IntcInVzZXJfaWRcIjozMDEsXCJtZXJjaGFudF9pZFwiOlwiMTAwMjkyODM5MTAxMzM2M1wiLFwiaW1nX3R5cGVcIjpcIiQoeDppbWdfdHlwZSlcIixcImJhbmtfY2FyZF9pZFwiOlwiJCh4OmJhbmtfY2FyZF9pZClcIixcImtleVwiOlwiJChrZXkpXCIsXCJtaW1lX3R5cGVcIjpcIiQobWltZVR5cGUpXCJ9IiwiY2FsbGJhY2tCb2R5VHlwZSI6ImFwcGxpY2F0aW9uL2pzb24ifQ==",
+        "expired_at": 1543578510
+    }
+}
+```
+- 请求方式：GET /cms/qiniu/upload_token?merchant_id=:merchant_id
 - 认证方式：基于Login权限，[查看Login认证说明](#login)
 
-使用次功能可以获取用户的当前商户到七牛上传图片的Token
+合作伙伴使用此功能可以获取下属商户到七牛上传图片的Token
 
 #### 上传图片至七牛
 
@@ -321,7 +340,6 @@ parent_id <br> **选填** | 父级商户编号，输入此参数查询该父级�
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -334,7 +352,6 @@ parent_id <br> **选填** | 父级商户编号，输入此参数查询该父级�
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>test qiniu</title>
   </head>
-
   <body>
     <form method="post" action="http://up-z2.qiniup.com/" enctype="multipart/form-data">
       <!-- <input name="key" type="hidden" value="12231321312"> -->
@@ -347,11 +364,10 @@ parent_id <br> **选填** | 父级商户编号，输入此参数查询该父级�
       <button type='submit'>上传</button>
     </form>
   </body>
-
 </html>
 ```
 
-使用表单上传的方式，参考[七牛开发文档](#https://developer.qiniu.com/kodo/manual/1234/upload-types)
+使用表单上传的方式，参考[七牛开发文档](https://developer.qiniu.com/kodo/manual/1234/upload-types)
 
 input 取值方式
 
