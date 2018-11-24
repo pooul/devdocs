@@ -412,7 +412,7 @@ Body需增加请求参数
 
 参数|	描述
 --|--
-mch_app_type <br> **必填** <br> `string` | 发起支付的应用类型，<br>IOS：IOS APP，<br>AND：Android APP, <br>WAP：手机网站 
+mch_app_type <br> **必填** <br> `string` | 发起支付的应用类型，<br>IOS APP：IOS，<br>Android APP：AND, <br>手机网站：WAP 
 mch_app_name <br> **必填** <br> `string` | APP为：应用名称，手机网站为：网站名称
 mch_app_id <br> **必填** <br> `string` | IOS APP为：bundle_id，如：com.tencent.wzryIOS，<br>Android APP为package_name，如：com.tencent.tmgp.sgame，<br>WAP为网站首页地址，如：https://store.pooul.com/
 

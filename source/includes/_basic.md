@@ -254,7 +254,7 @@ OpenSSL>rsa -in rsa_private.pem -pubout -out rsa_public.pem
 OpenSSL>pkcs8 -topk8 -inform PEM -in rsa_private.pem -outform PEM -nocrypt -out rsa_private_pkcs8.pem  
 ```
 
-我们建议可以使用OpenSSL(https://www.openssl.org/) 工具命令，或取得信任的密钥生成工具来生成密钥。
+我们建议可以使用OpenSSL(https://www.openssl.org/) 工具命令生成RSA证书（2048位），请参考右侧示例，或取得信任的密钥生成工具来生成密钥。
 
 经过示例中的步骤，开发者可以在当前文件夹中（OpenSSL运行文件夹），看到 rsa_private.pem（开发者RSA私钥，非Java语言适用）、rsa_private_pkcs8.pem（pkcs8格式开发者RSA私钥，Java语言适用）和 rsa_public.pem（开发者RSA公钥）3个文件。开发者将私钥保留，上传商户公钥给普尔，用于验证签名。
 
