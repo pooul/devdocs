@@ -711,7 +711,7 @@ POST /cms/merchant_fee_rates
 > 请求示例
 
 ```shell
-curl -X POST /cms/merchant_fee_rates?merchnat_id=4430405652527179 \
+curl -X POST /cms/merchant_fee_rates?merchant_id=4430405652527179 \
 -H "Content-Type: application/json" \
 -H "Authorization: #{Authorization}" \
 -d '{
@@ -864,7 +864,7 @@ POST /cms/bank_cards
 > 请求示例
 
 ```shell
-curl -X POST /cms/bank_cards?merchnat_id=4430405652527179 \
+curl -X POST /cms/bank_cards?merchant_id=4430405652527179 \
 -H "Content-Type: application/json" \
 -H "Authorization: #{Authorization}" \
 -d '{
