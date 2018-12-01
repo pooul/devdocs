@@ -1,6 +1,29 @@
 # 收款 Pay
 
+## 支付演示 Pay demo
+
+- [Java版](http://java.demo.pooul.com/)
+- [Php版](http://php.demo.pooul.com/)
+- [C#版](http://net.demo.pooul.com/)
+- [请求支付DEMO下载](http://res.pooul.com/pooul-demo.tar.gz)
+
+## 支付状态码 Trade status code
+
+支付状态以参数 trade_state 来判定，请参考下方支付状态码说明：
+
+trade_state | 说明
+--|--
+0|交易成功
+1|转入退款：支付成功后调用退款接口转入退款，只代表退款业务提交成功，具体退款状态请调用退款查询接口
+2|未支付：交易订单生成后未支付
+3|已关闭：交易生成后未支付，订单已关闭
+4|已完结：交易支付成功，已完结，不可发起退款
+5|已撤销：交易支付确认失败
+6|支付中：用于反扫，当用户需要输入密码时的状态
+
 ## 统一支付 Pay order
+
+
 
 > POST /v2/pay?merchant_id=5399355381712172
 
@@ -503,7 +526,7 @@ POST /v2/pay?merchant_id=5399355381712172
 - 调用反扫支付API，返回支付中的状态；
 - 调用关单或撤销接口API之前，需确认支付状态；
 
-以trade_state确认支付状态，[状态码](#trade_state)
+以 trade_state 确认支付状态，[状态码](#trade-status-code)
 
 请求方式：POST /v2/pay/query?
 

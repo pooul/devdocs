@@ -1,5 +1,22 @@
 # 商户管理 Merchant manage
 
+## 商户类型 Merchant type
+
+- 普通商户 CommMerchant：单个门店商户，merchant_type：1
+- 平台商户 PlatformMerchant：指平台商户或集团商户，拥有多个直营门店或是分销商，merchant_type：2
+- 入驻商户 TenantMerchant：平台商户下属商户，merchant_type：3
+- 合作伙伴 PartnerMerchant：合作伙伴商户，merchant_type：4
+
+## 商户状态码 Merchant Status code
+
+| status | status_desc| 说明|
+--|--|--
+| 0 | 审核通过 | 上游渠道审核成功，并配置好路由等相关交易信息，商户可以正常交易 |
+| 1 | 入驻申请 | 合作伙伴通过接口或后台提交成功商户资料至普尔商户系统，等待普尔提交至上游渠道 |
+| 2 | 审核中   | 普尔提交商户资料至上游渠道，等待上游渠道审核|
+| 3 | 审核失败 |商户审核失败（a.上游渠道返回审核失败，b.普尔审核失败） |
+| 4 | 商户停用 | 商户状态停用（a.上游渠道停用商户，b. 普尔停用商户）|
+
 ## 普通商户 Common merchants
 
 登录用户的当前商户为合作伙伴商户可以创建普通商户，创建好的普通商户归属为当前合作伙伴商户
