@@ -30,6 +30,13 @@ Pooul API 采用 REST 风格设计。所有接口请求地址都是可预期的�
 - 测试环境：https://api-dev.pooul.com/
 - 生产环境：https://api.pooul.com/
 
+## 支付DEMO
+
+- [Java版](http://java.demo.pooul.com/)
+- [Php版](http://php.demo.pooul.com/)
+- [C#版](http://net.demo.pooul.com/)
+- [DEMO下载](http://res.pooul.com/pooul-demo.tar.gz)
+
 ## 测试商户
 
 - 请联系对接的商务经理
@@ -418,11 +425,11 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlfdHlwZSI6IndlY2hhdC5zY2FuIiwibWNoX3R
 
 
 2. 使用程序语言的JWT包（JWT支持各种语言，在 https://jwt.io 上均有下载和DEMO），将 json 数据编码，签名算法使用RSA算法RS256
-    - [Ruby demo](https://github.com/jwt/ruby-jwt)
-    - [Java demo](https://github.com/auth0/java-jwt)
-    - [Php demo](https://github.com/firebase/php-jwt)
-    - [C# demo](https://github.com/dvsekhvalnov/jose-jwt)
-    - [更多 Demo](https://jwt.io/)
+    - [Ruby SDK](https://github.com/jwt/ruby-jwt)
+    - [Java SDK](https://github.com/auth0/java-jwt)
+    - [Php SDK](https://github.com/firebase/php-jwt)
+    - [C# SDK](https://github.com/dvsekhvalnov/jose-jwt)
+    - [更多 SDK](https://jwt.io/)
 
 
 ### 5.将编码后的token通过HTTP POST方式（Content-Type: text/plain）发送到相应接口url。
