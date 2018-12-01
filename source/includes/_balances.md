@@ -4,9 +4,18 @@
 
 ## 查询记账账簿结余 Query balances
 
+### 请求 Request balances
 ```
 GET /cms/balances?merchant_id=#{merchant_id}
 ```
+
+通过此接口查询平台商户、入驻商户实时结余
+
+通过此接口可以查询到平台商户、入驻商户记账账簿结余，merchant_id 可以是平台商户merchant_id或是入驻商户merchant_id
+
+鉴权方式：Login
+
+### 响应 Response balances
 
 > 响应示例
 
@@ -26,21 +35,43 @@ GET /cms/balances?merchant_id=#{merchant_id}
     ]
 }
 ```
-通过此接口查询平台商户、入驻商户实时结余
 
-通过此接口可以查询到平台商户、入驻商户记账账簿结余，merchant_id 可以是平台商户merchant_id或是入驻商户merchant_id
+响应参数 | 描述
+-- | -- 
+_id <br> **必填** <br> `string` | 账簿ID
+account_type <br> **必填** <br> `int` | 账簿类型，固定为1
+balance <br> **必填** <br> `int` | 结余金额，单位为分
+merchant_id <br> **必填** <br> `string` | 账簿所属商户编号
+created_at <br> **必填** <br> `int` | Unix时间戳，账簿创建时间
+updated_at <br> **必填** <br> `int` | Unix时间戳，账簿结余最近一次更新时间
 
-鉴权方式：Login
+
+
+
 
 ## 查询记账账簿明细 Balances list
+
+### 请求 Request balances list
+
+```
+GET /cms/balances/history?merchant_id=5399355381712172
+```
 
 通过此接口查询平台商户、入驻商户记账明细，默认显示当天的明细，加上time_start、time_end【10位时间戳】可以查询制定时间范围的明细，
 
 鉴权方式：Login
 
-```
-GET /cms/balances/history?merchant_id=5399355381712172
-```
+URL参数说明
+
+参数 | 描述
+-- | -- 
+merchant_id | 要查询的商户编号
+time_start | 开始时间，业务创建时间，不传默认为查询当天0点，格式为unix时间戳，10位，如：1531115400
+time_end | 结束时间，业务创建时间，不传默认为截止到当前时间，格式为unix时间戳，10位，如：1531115700
+pagination | 请参考[分页说明](#pagination)
+
+### 响应 Response balances list
+
 
 > 响应示例
 
@@ -76,14 +107,21 @@ GET /cms/balances/history?merchant_id=5399355381712172
     ]
 }
 ```
-URL参数说明
 
-参数 | 描述
+响应参数 | 描述
 -- | -- 
-merchant_id | 要查询的商户编号
-time_start | 开始时间，业务创建时间，不传默认为查询当天0点，格式为unix时间戳，10位，如：1531115400
-time_end | 结束时间，业务创建时间，不传默认为截止到当前时间，格式为unix时间戳，10位，如：1531115700
-pagination | 请参考[分页说明](#pagination)
+_id <br> **必填** <br> `string` | 记账流水号
+amount <br> **必填** <br> `int` | 发生金额，单位为分
+balance <br> **必填** <br> `int` | 本次结余金额，单位为分
+balance_prev <br> **必填** <br> `int` | 上次结余，单位为分
+balance_account_id <br> **必填** <br> `string` | 账簿ID
+biz_id <br> **必填** <br> `string` | 记账对应业务单ID
+biz_type <br> **必填** <br> `int` | 业务类型：1. 交易支付，2. 支付手续费，3. 交易退款，4. 退费，5.网银转账，6. 网银转账手续费，7. 内部转账，8. 内部转账手续费
+trade_at <br> **必填** <br> `int` | Unix时间戳，业务发生时间
+created_at <br> **必填** <br> `int` | Unix时间戳，记账时间
+updated_at <br> **必填** <br> `int` | Unix时间戳，更新时间
+
+
 
 ## 内部转账 Internal transfers
 
