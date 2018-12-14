@@ -143,7 +143,6 @@ updated_at <br> **必填** <br> `int` | Unix时间戳，更新时间
     "payer_merchant_id":"1333259781809471",
     "payee_merchant_id":"1111562791605746",
     "amount": 5000,
-    "trade_fee":50,
     "transfer_type": 1,
     "voucher":"测试",
     "remarks":"友情赠送",
@@ -170,7 +169,6 @@ updated_at <br> **必填** <br> `int` | Unix时间戳，更新时间
 payer_merchant_id <br> **必填** <br> `int` | 付款方商户编号,可以是平台商户或入驻商户
 payee_merchant_id <br> **必填** <br> `string` | 收款方商户编号,可以是平台商户或入驻商户
 amount <br> **必填** <br> `string` | 转账金额，单位为分
-trade_fee <br> **可选** <br> `string` | 转账手续费，单位为分
 transfer_type <br> **可选** <br> `string` | 划账业务类型，客户自定义
 voucher <br> **必填** <br> `int` | 转账凭证，可以是会计凭证编号，或订单号
 remarks <br> **可选** <br> `boolean`  | 备注，对这笔转账的说明
