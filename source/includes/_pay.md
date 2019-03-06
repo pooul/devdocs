@@ -33,7 +33,7 @@ trade_state | 说明
 	"mch_trade_id":"alextest.scan.113",
 	"total_fee": 221, 
 	"spbill_create_ip":"127.0.0.1",
-	"notify_url":"http://112.74.184.236:3006/fake-recv",
+	"notify_url":"https://md.pooul.com/v2_test/notify",
 	"body":"Alex Test Scan",
 	"device_info":"alex device",
 	"op_user_id":"301",
@@ -159,7 +159,7 @@ POST /v2/pay?merchant_id=5399355381712172
 	"mch_trade_id":"alextest.scan.113",
 	"total_fee": 221, 
 	"spbill_create_ip":"127.0.0.1",
-	"notify_url":"http://112.74.184.236:3006/fake-recv",
+	"notify_url":"https://md.pooul.com/v2_test/notify",
 	"body":"Alex Test Scan",
 	"device_info":"alex device",
 	"op_user_id":"301",
@@ -208,7 +208,7 @@ POST /v2/pay?merchant_id=5399355381712172
 	"pay_type":"wechat.jsurl",
 	"mch_trade_id":"alextest.jsurl.113",
 	"total_fee": 221, 
-	"notify_url":"http://112.74.184.236:3006/fake-recv",
+	"notify_url":"https://md.pooul.com/v2_test/notify",
 	"body":"Alex Test jsurl",
 	"device_info":"alex device",
 	"op_user_id":"301",
@@ -261,7 +261,7 @@ POST /v2/pay?merchant_id=5399355381712172
 	"mch_trade_id":"alextest.jsapi.34",
 	"total_fee": 9872, 
 	"spbill_create_ip":"127.0.0.1",
-	"notify_url":"http://112.74.184.236:3006/fake-recv",
+	"notify_url":"https://md.pooul.com/v2_test/notify",
 	"body":"Alex Test Jsapi",
 	"sub_appid":"wx069eb0cbbdd45873",
 	"sub_openid":"outOWs-bgUH2QiCE0vNZhyCj2FJI"
@@ -370,7 +370,7 @@ POST /v2/pay?merchant_id=5399355381712172
 	"total_fee": 3,
 	"spbill_create_ip":"127.0.0.1",
 	"body":"Alex Test app",
-	"notify_url":"http://112.74.184.236:3006/fake-recv",
+	"notify_url":"https://md.pooul.com/v2_test/notify",
 	"sub_appid":"wx2fbcb61b6e5b1384"
 }
 ```
@@ -460,7 +460,7 @@ POST /v2/pay?merchant_id=5399355381712172
 	"pay_type":"alipay.scan",
 	"mch_trade_id":"alextest.alipay.scan.211",
 	"total_fee": 7622,
-	"notify_url":"http://112.74.184.236:3006/fake-recv",
+	"notify_url":"https://md.pooul.com/v2_test/notify",
 	"body":"This's Subjects Alex test",
 	"store_id":"9527"
 }
@@ -495,6 +495,61 @@ POST /v2/pay?merchant_id=5399355381712172
 4. 平台通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用[查询订单API](#query)
 
 
+### 预下单支付 pooul.preorder
+
+```
+POST /v2/pay?merchant_id=5399355381712172
+```
+
+> 请求示例
+
+```json
+{
+    "pay_type":"pooul.preorder",
+    "mch_trade_id":"alextest.scan.113",
+    "total_fee": 221, 
+    "spbill_create_ip":"127.0.0.1",
+    "notify_url":"https://md.pooul.com/v2_test/notify",
+    "body":"Alex Test Scan",
+    "device_info":"alex device",
+    "op_user_id":"301",
+    "attach":"Alex attach"
+}
+``` 
+
+> 响应
+
+```json
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "pay_url": "https://m.pooul.com/preorder?pay_order_id=5c7a539901c9114317edac34",
+        "trade_id": "5c7a539901c9114317edac34",
+        "attach": "15817329272",
+        "mch_trade_id": "alextest.jsurl.50",
+        "merchant_id": "3335633346388243",
+        "pay_type": "pooul.preorder",
+        "total_fee": 85,
+        "trade_state": 2,
+        "trade_info": "未支付"
+    },
+    "time_elapsed": 0.5981
+}
+``` 
+
+为了便于部分客户需要用到普尔提供的页面进行支付，商户请求支付时返回预支付链接，商户向用户展示（可以生成二维码或是微信支付宝发送预支付链接）支付链接，用户在页面中确认支付可以使用微信支付或是支付宝支付进行付款。
+
+![image](http://img.pooul.com/pooul_preorder.png)
+
+
+操作步骤：
+
+- 商户请求支付：商户调用统一支付接口，pay_type：pooul.preorder（预下单支付）
+- 商户展示链接给付款人：商户可以通过把链接生成二维码或是发送微信等方式给付款人，付款人使用微信或是支付宝扫码
+- 付款人在页面中点击支付：付款人使用微信或支付宝扫码后，页面自动判断是扫码客户端，如果微信扫码用户在点击确认支付时调用微信支付的流程，如果支付宝扫码调用支付宝付款的流程
+
+
 ### 定向转账支付 cmbc.transfer
 
 ```
@@ -508,7 +563,7 @@ POST /v2/pay?merchant_id=5399355381712172
 	"pay_type":"cmbc.transfer",
 	"mch_trade_id":"alextest.alipay.scan.211",
 	"total_fee": 7622,
-	"notify_url":"http://112.74.184.236:3006/fake-recv",
+	"notify_url":"https://md.pooul.com/v2_test/notify",
 	"body":"This's Subjects Alex test",
 	"store_id":"9527"
 }
@@ -539,7 +594,7 @@ POST /v2/pay?merchant_id=5399355381712172
 
 使用此功能可以实现商户提交支付请求时，系统根据订单请求分配订单对应虚拟帐号，付款人转账至此帐号完成支付，用于解决大额付款的需求
 
-![image](http://img.pooul.com/cmbc_transfer.png)
+![image](http://img.pooul.com/cmbc_transfer_up.png)
 
 ## 查询订单 Query
 
@@ -729,7 +784,7 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 	"mch_refund_id":"alextest.scan.281.1",
 	"refund_fee":8872,
 	"refund_desc":"Alex Test",
-	"notify_url":"http://112.74.184.236:3006/fake-recv"
+	"notify_url":"https://md.pooul.com/v2_test/notify"
 }
 ``` 
 > 响应
