@@ -1,4 +1,4 @@
-# 收款 Pay
+# 支付 Pay
 
 ## 支付演示 Pay demo
 
@@ -495,61 +495,6 @@ POST /v2/pay?merchant_id=5399355381712172
 4. 平台通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用[查询订单API](#query)
 
 
-### 预下单支付 pooul.preorder
-
-```
-POST /v2/pay?merchant_id=5399355381712172
-```
-
-> 请求示例
-
-```json
-{
-    "pay_type":"pooul.preorder",
-    "mch_trade_id":"alextest.scan.113",
-    "total_fee": 221, 
-    "spbill_create_ip":"127.0.0.1",
-    "notify_url":"https://md.pooul.com/v2_test/notify",
-    "body":"Alex Test Scan",
-    "device_info":"alex device",
-    "op_user_id":"301",
-    "attach":"Alex attach"
-}
-``` 
-
-> 响应
-
-```json
-{
-    "code": 0,
-    "msg": "success",
-    "data": {
-        "pay_url": "https://m.pooul.com/preorder?pay_order_id=5c7a539901c9114317edac34",
-        "trade_id": "5c7a539901c9114317edac34",
-        "attach": "15817329272",
-        "mch_trade_id": "alextest.jsurl.50",
-        "merchant_id": "3335633346388243",
-        "pay_type": "pooul.preorder",
-        "total_fee": 85,
-        "trade_state": 2,
-        "trade_info": "未支付"
-    },
-    "time_elapsed": 0.5981
-}
-``` 
-
-为了便于部分客户需要用到普尔提供的页面进行支付，商户请求支付时返回预支付链接，商户向用户展示（可以生成二维码或是微信支付宝发送预支付链接）支付链接，用户在页面中确认支付可以使用微信支付或是支付宝支付进行付款。
-
-![image](http://img.pooul.com/pooul_preorder.png)
-
-
-操作步骤：
-
-- 商户请求支付：商户调用统一支付接口，pay_type：pooul.preorder（预下单支付）
-- 商户展示链接给付款人：商户可以通过把链接生成二维码或是发送微信等方式给付款人，付款人使用微信或是支付宝扫码
-- 付款人在页面中点击支付：付款人使用微信或支付宝扫码后，页面自动判断是扫码客户端，如果微信扫码用户在点击确认支付时调用微信支付的流程，如果支付宝扫码调用支付宝付款的流程
-
-
 ### 定向转账支付 cmbc.transfer
 
 ```
@@ -944,7 +889,135 @@ total_fee  <br> **必填** <br> `int` | 交易金额，单位为分
 
 退款成功后系统会将退款成功状态发给商户，商户需要接收处理，方式与支付结果通知一样
 
+## 预下单支付 Preorder pay
 
+为了便于部分客户需要用到pooul提供的页面进行支付，商户请求支付时返回预支付链接，商户向用户展示（可以生成二维码或是微信支付宝发送预支付链接）支付链接，用户在页面中确认支付可以使用微信支付或是支付宝支付进行付款。
+
+![image](http://img.pooul.com/preorder_pay.png)
+
+操作步骤：
+
+- 商户请求支付：商户调用统一支付接口，pay_type：pooul.preorder（预下单支付）
+- 商户展示链接给付款人：商户可以通过把链接生成二维码或是发送微信等方式给付款人，付款人使用微信或是支付宝扫码
+- 付款人在页面中点击支付：付款人使用微信或支付宝扫码后，页面自动判断是扫码客户端，如果微信扫码用户在点击确认支付时调用微信支付的流程，如果支付宝扫码调用支付宝付款的流程
+- 如需退款，请调用[预下单订单查询接口](#query-preorder)获得mch_trade_id，再调用[支付订单退款接口](#refund)进行退款
+
+### 创建预下单支付 Create preorder
+
+```
+POST /v2/pay/pre_order?merchant_id=5399355381712172
+```
+
+> 请求示例
+
+```json
+{
+    "mch_pre_id":"alextest.scan.113",
+    "total_fee": 221, 
+    "spbill_create_ip":"127.0.0.1",
+    "notify_url":"https://md.pooul.com/v2_test/notify",
+    "body":"Alex Test Scan",
+    "device_info":"alex device",
+    "op_user_id":"301",
+    "attach":"Alex attach"
+}
+``` 
+
+> 响应
+
+```json
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "pay_url": "https://m.pooul.com/preorder?pay_order_id=5c7a539901c9114317edac34"
+}
+``` 
+
+- 请求方式：POST /v2/pre_order?merchant_id=#{merchant_id}
+- 认证方式：[RSA](#rsa)
+
+URL请求参数
+
+参数|	描述
+--|--
+merchant_id <br> **必填** | 发起预下单支付的商户编号，16位数字，由Pooul分配
+
+
+Body公共请求参数
+
+参数|	描述
+--|--
+nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
+mch_pre_id <br> **必填** <br> `string` | 商户订单号，在同一个merchant_id 下每次请求必须为唯一，如：alextest.scan.113
+total_fee  <br> **必填** <br> `int` | 支付总金额，单位为分，只能为整数，如：888 代表8.88元
+body  <br> **必填** <br> `string` | 商品或支付单简要描述
+spbill_create_ip <br> **选填** <br> `string` | 发起支付的终端IP，APP、jsapi、jsminipg、wap支付提交用户端ip，scan、micro支付填调用支付API的服务端IP。<br>微信支付必填、支付宝选填
+notify_url  <br> **选填** <br> `string` | 支付结果通知地址，接收支付结果异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。如：http://pay.pooul.com/notify
+time_expire  <br> **选填** <br> `int` | 订单失效时间，为10位 UNIX 时间戳，如：1530759574
+store_id  <br> **选填** <br> `string` | 商户门店编号，支付宝支付不传门店号会导致优惠不生效，可能引起优惠活动无法参加
+attach  <br> **选填** <br> `string` | 附加数据，在查询API和支付通知中原样返回，可作为自定义参数使用。
+device_info  <br> **选填** <br> `string` | 终端设备号(门店号或收银设备ID)，注意：PC网页或APP支付请传"WEB"
+op_user_id  <br> **选填** <br> `string` | 操作员或收银员编号
+
+
+### 预下单支付成功通知 Preorder notify
+
+预下单支付成功后，会发送通知至提交的网址，规则参考：[支付结果通知](#pay-notify)
+
+### 预下单订单查询 Query preorder
+
+```
+POST /v2/pay/pre_order_detail?merchant_id=5399355381712172
+```
+
+> 请求示例
+
+```json
+{
+	"mch_pre_id":"alextest.pre_order.17"
+}
+``` 
+
+> 响应
+
+```json
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "_id": "5c9044dd01c9113ec6de0d17",
+        "attach": "Alex attach",
+        "body": "Alex Test Scan",
+        "created_at": 1552958685,
+        "device_info": "alex device",
+        "level_code": "00a011002001",
+        "mch_pre_id": "alextest.pre_order.17",
+        "merchant_id": "1333259781809471",
+        "notify_url": "https://md.pooul.com/v2_test/notify",
+        "op_user_id": "301",
+        "platform_merchant_id": "7609332123096874",
+        "pre_state": 3,
+        "spbill_create_ip": "127.0.0.1",
+        "time_expire": 1552958700,
+        "total_fee": 3,
+        "updated_at": 1552960861,
+        "pay_orders": [
+            {
+                "mch_trade_id": "alextest.pre_order.17.1"
+            },
+            {
+                "mch_trade_id": "alextest.pre_order.17.2"
+            }
+        ]
+    }
+}
+``` 
+
+- 请求方式：POST /v2/pre_order_detail?merchant_id=#{merchant_id}
+- 认证方式：[RSA](#rsa)
+
+创建预下单订单后可以调用查询接口查询该笔预下单订单状态，一笔预下单订单可能对应多笔支付订单（最多只有一笔成功支付订单），调用查询后可获得支付订单mch_trade_id，如需对预下单进行退款，请调用[支付订单退款接口](#refund)
 
 
 
