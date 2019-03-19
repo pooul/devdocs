@@ -471,7 +471,7 @@ curl -X POST /cms/merchants \
 
 请求参数 | 描述
 -- | -- 
-merchant_type <br> **必填** <br> `int` | 商户类型，创建入驻商户时不需要这个参数，创建普通商户时固定填1
+merchant_type <br> **必填** <br> `int` | 商户类型，创建入驻商户时不需要这个参数
 parent_id <br> **必填** <br> `string` | 父级商户编号，如为平台商户下属一级商户则为平台商户编号，如为一级以下商户则为该父级商户编号，如：7590462217569167
 partner_mch_id <br> **可选** <br> `string` | 平台商户自定义商户编号，如：988765
 note <br> **可选** <br> `string` | 商户备注信息
