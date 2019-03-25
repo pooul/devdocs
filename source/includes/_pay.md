@@ -934,7 +934,7 @@ POST /v2/pay/pre_order?merchant_id=5399355381712172
 }
 ``` 
 
-- 请求方式：POST /v2/pre_order?merchant_id=#{merchant_id}
+- 请求方式：POST /v2/pay/pre_order?merchant_id=#{merchant_id}
 - 认证方式：[RSA](#rsa)
 
 URL请求参数
@@ -1014,7 +1014,7 @@ POST /v2/pay/pre_order_detail?merchant_id=5399355381712172
 }
 ``` 
 
-- 请求方式：POST /v2/pre_order_detail?merchant_id=#{merchant_id}
+- 请求方式：POST /v2/pay/pre_order_detail?merchant_id=#{merchant_id}
 - 认证方式：[RSA](#rsa)
 
 创建预下单订单后可以调用查询接口查询该笔预下单订单状态，一笔预下单订单可能对应多笔支付订单（最多只有一笔成功支付订单），调用查询后可获得支付订单mch_trade_id，如需对预下单进行退款，请调用[支付订单退款接口](#refund)
