@@ -78,6 +78,29 @@ created_at <br> **必填** <br> `int` | 平台交易创建时间，时间戳，�
 platform_merchant_id <br> **必填** <br> `string` | 平台商户编号，如：6044885632395970
 nonce_str <br> **必填** <br> `string` | 随机数，如有重复通知，随机数会不一样，如：5bebca4301c911491e29643b
 
+### 分销易子账簿销户 Cmbc ecp destroy
+
+```
+DELETE /cms/merchants/8902061980649594/cmbc_ecp
+```
+
+> 响应示例
+
+```shell
+{
+    "code": 0,
+    "msg": "0000, 子账簿销户成功!",
+    "data": {  ……  }
+}
+```
+
+通过此接口可以对分销易子账簿进行销户，销户成功后无法通过此帐号入账
+
+认证方式：[Login](#login)
+
+请求URL：DELETE /cms/merchants/#{merchant_id}/cmbc_ecp
+
+
 
 ### 查询实体账户资金明细
 
