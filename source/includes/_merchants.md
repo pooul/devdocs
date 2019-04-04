@@ -88,7 +88,7 @@ ccb_info <br> **可选** <br> `object` | 申请建行微信支付时必传，请
 
 请求参数 | 描述
 -- | -- 
-short_name <br> **必填** <br> `string`  | 商户简称，经营名称，如：平克文化
+short_name <br> **部分必填** <br> `string`  | 商户简称，经营名称，如：平克文化
 service_call <br> **可选** <br> `string`  | 服务电话，如：0755-82857285
 area_code <br> **可选** <br> `string`  | 行政区划代码，[参考民政部最新的区划代码](http://www.mca.gov.cn/article/sj/xzqh/2018/)，如：440309
 province <br> **必填** <br> `string`  | 经营地址所在省，如：广东省
@@ -225,7 +225,7 @@ ccb_info <br> **可选** <br> `object` | 申请建行微信支付时必传 [Merc
 
 请求参数 | 描述
 -- | -- 
-short_name <br> **必填** <br> `string`  | 商户简称，经营名称，如：平克文化
+short_name <br> **部分必填** <br> `string`  | 商户简称，经营名称，如：平克文化
 service_call <br> **可选** <br> `string`  | 服务电话，如：0755-82857285
 area_code <br> **可选** <br> `string`  | 行政区划代码，[参考民政部最新的区划代码](http://www.mca.gov.cn/article/sj/xzqh/2018/)，如：440309
 province <br> **可选** <br> `string`  | 经营地址所在省，如：广东省
@@ -485,7 +485,7 @@ owner <br> **必填** <br> `object` | 所有人/法人信息参数集合，licen
 
 请求参数 | 描述
 -- | -- 
-short_name <br> **必填** <br> `string`  | 商户简称，经营名称，如：平克文化
+short_name <br> **部分必填** <br> `string`  | 商户简称，经营名称，如：平克文化
 service_call <br> **可选** <br> `string`  | 服务电话，如：0755-82857285
 area_code <br> **可选** <br> `string`  | 行政区划代码，[参考民政部最新的区划代码](http://www.mca.gov.cn/article/sj/xzqh/2018/)，如：440309
 province <br> **可选** <br> `string`  | 经营地址所在省，如：广东省
@@ -632,7 +632,7 @@ owner <br> **必填** <br> `object` | 所有人/法人信息参数集合，licen
 
 请求参数 | 描述
 -- | -- 
-short_name <br> **必填** <br> `string`  | 商户简称，经营名称，如：平克文化
+short_name <br> **部分必填** <br> `string`  | 商户简称，经营名称，如：平克文化
 service_call <br> **可选** <br> `string`  | 服务电话，如：0755-82857285
 area_code <br> **可选** <br> `string`  | 行政区划代码，[参考民政部最新的区划代码](http://www.mca.gov.cn/article/sj/xzqh/2018/)，如：440309
 province <br> **可选** <br> `string`  | 经营地址所在省，如：广东省
