@@ -79,7 +79,7 @@ parent_id <br> **必填** <br> `string` | Pooul为合作伙伴分配的合作伙
 partner_mch_id <br> **可选** <br> `string` | 合作伙伴自定义商户编号，如：988765
 note <br> **可选** <br> `string` | 商户备注信息
 license_type <br> **必填** <br> `int` | 营业类型：1. 企业; 2. 个体工商户，3. 个人
-business <br> **可选** <br> `object` | 商户经营信息参数集合，请参考[Merchant business 参数](#merchant-business)
+business <br> **部分必填** <br> `object` | 商户经营信息参数集合，请参考[Merchant business 参数](#merchant-business)
 corporate <br> **可选** <br> `object` | 营业执照信息参数集合，license_type为3时不需传，请参考[Merchant corporate 参数](#merchant-corporate)
 owner <br> **必填** <br> `object` | 所有人/法人信息参数集合，license_type为3时为所有人信息，license_type为1、2时为营业执照法人信息，请参考[Merchant owner 参数](#merchant-owner)
 ccb_info <br> **可选** <br> `object` | 申请建行微信支付时必传，请参考：[Merchant ccb info 参数](#merchant-ccb-info)
@@ -88,7 +88,7 @@ ccb_info <br> **可选** <br> `object` | 申请建行微信支付时必传，请
 
 请求参数 | 描述
 -- | -- 
-short_name <br> **部分必填** <br> `string`  | 商户简称，经营名称，如：平克文化
+short_name <br> **必填** <br> `string`  | 商户简称，经营名称，如：平克文化
 service_call <br> **可选** <br> `string`  | 服务电话，如：0755-82857285
 area_code <br> **可选** <br> `string`  | 行政区划代码，[参考民政部最新的区划代码](http://www.mca.gov.cn/article/sj/xzqh/2018/)，如：440309
 province <br> **必填** <br> `string`  | 经营地址所在省，如：广东省
@@ -216,7 +216,7 @@ curl -X PUT /cms/merchants/:_id \
 -- | -- 
 note <br> **可选** <br> `string` | 商户备注信息
 license_type <br> **必填** <br> `int` | 营业类型：1. 企业; 2. 个体工商户，3. 个人
-business <br> **可选** <br> `object` | 商户经营信息参数集合，请参考[Merchant business 参数](#merchant-business)
+business <br> **部分必填** <br> `object` | 商户经营信息参数集合，请参考[Merchant business 参数](#merchant-business)
 corporate <br> **可选** <br> `object` | 营业执照信息参数集合，license_type为3时不需传，请参考[Merchant corporate 参数](#merchant-corporate)
 owner <br> **必填** <br> `object` | 所有人/法人信息参数集合，license_type为3时为所有人信息，license_type为1、2时为营业执照法人信息，请参考[Merchant owner 参数](#merchant-owner)
 ccb_info <br> **可选** <br> `object` | 申请建行微信支付时必传 [Merchant ccb info 参数](#merchant-ccb-info)
@@ -225,7 +225,7 @@ ccb_info <br> **可选** <br> `object` | 申请建行微信支付时必传 [Merc
 
 请求参数 | 描述
 -- | -- 
-short_name <br> **部分必填** <br> `string`  | 商户简称，经营名称，如：平克文化
+short_name <br> **必填** <br> `string`  | 商户简称，经营名称，如：平克文化
 service_call <br> **可选** <br> `string`  | 服务电话，如：0755-82857285
 area_code <br> **可选** <br> `string`  | 行政区划代码，[参考民政部最新的区划代码](http://www.mca.gov.cn/article/sj/xzqh/2018/)，如：440309
 province <br> **可选** <br> `string`  | 经营地址所在省，如：广东省
@@ -477,7 +477,7 @@ partner_mch_id <br> **可选** <br> `string` | 平台商户自定义商户编号
 note <br> **可选** <br> `string` | 商户备注信息
 license_type <br> **必填** <br> `int` | 营业类型：1. 企业; 2. 个体工商户，3. 个人
 arrears <br> **可选** <br> `boolean`  | 是否允许结余为负，true为允许，false为不允许，默认为 false
-business <br> **可选** <br> `object` | 商户经营信息参数集合，请参考[Merchant business 参数](#merchant-business)
+business <br> **部分必填** <br> `object` | 商户经营信息参数集合，请参考[Merchant business 参数](#merchant-business)
 corporate <br> **可选** <br> `object` | 营业执照信息参数集合，license_type为3时不需传，请参考[Merchant corporate 参数](#merchant-corporate)
 owner <br> **必填** <br> `object` | 所有人/法人信息参数集合，license_type为3时为所有人信息，license_type为1、2时为营业执照法人信息，请参考[Merchant owner 参数](#merchant-owner)
 
@@ -485,7 +485,7 @@ owner <br> **必填** <br> `object` | 所有人/法人信息参数集合，licen
 
 请求参数 | 描述
 -- | -- 
-short_name <br> **部分必填** <br> `string`  | 商户简称，经营名称，如：平克文化
+short_name <br> **必填** <br> `string`  | 商户简称，经营名称，如：平克文化
 service_call <br> **可选** <br> `string`  | 服务电话，如：0755-82857285
 area_code <br> **可选** <br> `string`  | 行政区划代码，[参考民政部最新的区划代码](http://www.mca.gov.cn/article/sj/xzqh/2018/)，如：440309
 province <br> **可选** <br> `string`  | 经营地址所在省，如：广东省
@@ -624,7 +624,7 @@ curl -X PUT /cms/merchants/:_id \
 -- | -- 
 note <br> **可选** <br> `string` | 商户备注信息
 license_type <br> **必填** <br> `int` | 营业类型：1. 企业; 2. 个体工商户，3. 个人
-business <br> **可选** <br> `object` | 商户经营信息参数集合，请参考[Merchant business 参数](#merchant-business)
+business <br> **部分必填** <br> `object` | 商户经营信息参数集合，请参考[Merchant business 参数](#merchant-business)
 corporate <br> **可选** <br> `object` | 营业执照信息参数集合，license_type为3时不需传，请参考[Merchant corporate 参数](#merchant-corporate)
 owner <br> **必填** <br> `object` | 所有人/法人信息参数集合，license_type为3时为所有人信息，license_type为1、2时为营业执照法人信息，请参考[Merchant owner 参数](#merchant-owner)
 
@@ -632,7 +632,7 @@ owner <br> **必填** <br> `object` | 所有人/法人信息参数集合，licen
 
 请求参数 | 描述
 -- | -- 
-short_name <br> **部分必填** <br> `string`  | 商户简称，经营名称，如：平克文化
+short_name <br> **必填** <br> `string`  | 商户简称，经营名称，如：平克文化
 service_call <br> **可选** <br> `string`  | 服务电话，如：0755-82857285
 area_code <br> **可选** <br> `string`  | 行政区划代码，[参考民政部最新的区划代码](http://www.mca.gov.cn/article/sj/xzqh/2018/)，如：440309
 province <br> **可选** <br> `string`  | 经营地址所在省，如：广东省
