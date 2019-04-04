@@ -105,7 +105,7 @@ DELETE /cms/merchants/8902061980649594/cmbc_ecp
 ### 查询实体账户资金明细
 
 ```
-GET /cms/cmbc_ecp/fund_account?merchant_id=2339779661268962&date_start=20180723&date_end=20180724&page_size=15&page_num=1
+GET /cmbc_ecp/fund_details?merchant_id=2339779661268962&date_start=20180723&date_end=20180724&page_size=15&page_no=1
 ```
 
 > 响应示例
@@ -145,7 +145,7 @@ GET /cms/cmbc_ecp/fund_account?merchant_id=2339779661268962&date_start=20180723&
 
 认证方式：[Login](#login)
 
-请求URL：GET /cms/cmbc_ecp/fund_account
+请求URL：GET /cmbc_ecp/fund_details
 
 URL参数说明
 
@@ -155,7 +155,7 @@ merchant_id | 要查询的平台商户编号
 date_start | 起始日期，如：20180723
 date_end | 结束日期，如：20180724
 page_size | 默认为20条，如：15
-page_num | 第几页
+page_no | 第几页
 
 
 ## 银企直连
@@ -163,7 +163,7 @@ page_num | 第几页
 ### 查询实体账户明细
 
 ```
-GET /cms/cmbc_yq/fund_account?merchant_id=2339779661268962&date_start=20180723&date_end=20180724&start_no=1&end_no=10
+GET /cms/merchants/2339779661268962/cmbc_yq_account?date_start=20180723&date_end=20180724&start_no=1&end_no=10
 ```
 
 > 响应示例
@@ -207,7 +207,7 @@ GET /cms/cmbc_yq/fund_account?merchant_id=2339779661268962&date_start=20180723&d
 
 认证方式：[Login](#login)
 
-请求URL：GET /cms/cmbc_yq/fund_account
+请求URL：GET /cms/merchants/#{平台商户merchant_id}/cmbc_yq_account
 
 URL参数说明
 
