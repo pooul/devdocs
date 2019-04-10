@@ -195,7 +195,7 @@ password  <br> **必填** <br> `string` | 登录密码
 > Request（post、put、get、delete等）URL
 
 ```shell
-curl -X POST https://json.pooulcloud.cn/cms/merchants \
+curl -X POST /cms/merchants \
 -H "Content-Type: application/json" \
 -H "Authorization: #{Authorization}" \
 -d' {
