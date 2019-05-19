@@ -324,6 +324,7 @@ curl -X PUT /cms/merchants/5399355381712172/public_key \
 ### 3. 获取普尔公钥
 
 下载普尔公钥：
+认证方式：无须认证
 
 ```
 GET /cms/pooul_public_key
@@ -334,7 +335,6 @@ GET /cms/pooul_public_key
 ```shell
 curl -X GET /cms/pooul_public_key \
 -H "Content-Type: application/json" \
--H "Authorization: #{Authorization}"
 ```
 
 > 响应
