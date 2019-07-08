@@ -7,20 +7,6 @@
 - [C#版](http://net.demo.pooul.com/)
 - [请求支付DEMO下载](http://res.pooul.com/pooul-demo.tar.gz)
 
-## 支付状态码 Trade status code
-
-支付状态以参数 trade_state 来判定，请参考下方支付状态码说明：
-
-trade_state | 说明
---|--
-0|交易成功
-1|转入退款：支付成功后调用退款接口转入退款，只代表退款业务提交成功，具体退款状态请调用退款查询接口
-2|未支付：交易订单生成后未支付
-3|已关闭：交易生成后未支付，订单已关闭
-4|已完结：交易支付成功，已完结，不可发起退款
-5|已撤销：交易支付确认失败
-6|支付中：用于反扫，当用户需要输入密码时的状态
-
 ## 统一支付 Pay order
 
 
@@ -591,6 +577,62 @@ Body请求参数
 mch_trade_id <br> **必填** <br> `string` | 商户订单号
 nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
 
+
+## 支付结果通知 Pay notify
+
+> 通知示例
+
+```json
+{
+  "code": 0,
+  "data": {
+    "trade_id": "5c00a57001c9110e2a5c9932",
+    "attach": "Alex",
+    "mch_trade_id": "alex.scan.19",
+    "merchant_id": "3117531860086147",
+    "pay_type": "wechat.scan",
+    "total_fee": 1,
+    "trade_state": 0,
+    "trade_info": "支付成功, "
+  },
+  "nonce_str": "5c00a5b901c9110e2a5c9933"
+}
+```
+
+支付完成后，系统会把相关支付结果和用户信息POST方式将支付结果以JWT密文的方式发送给商户请求支付时提交的 notify_url 地址，商户接收后需要JWT解密为json格式并使用普尔公钥验证签名，并响应字符串"success"（大小写皆可）。
+
+对后台通知交互时，如果Pooul收到商户的应答不是成功或响应不正确，系统会认为通知失败，系统会通过一定的策略定期重新发起通知，尽可能提高通知的成功率，但系统不保证通知最终能成功。 （在48小时内最多发送10次通知， 通知间隔时间一般为：1m, 1m, 2m, 5m ,10m, 1h, 2h, 6h, 12h, 24h，备注：m代表分钟，h代表小时）
+
+注意：同样的通知可能会多次发送给商户系统。商户系统必须能够正确处理重复的通知。
+推荐的做法是，当收到通知进行处理时，首先检查对应业务数据的状态，判断该通知是否已经处理过，如果没有处理过再进行处理，如果处理过直接返回结果成功。在对业务数据进行状态检查和处理之前，要采用数据锁进行并发控制，以避免函数重入造成的数据混乱。
+
+特别提醒：商户系统对于支付结果通知的内容一定要做签名验证，并校验返回的订单金额是否与商户侧的订单金额一致，防止数据泄漏导致出现“假通知”，造成资金损失。
+
+通知参数描述
+
+参数|	描述
+--|--
+trade_id <br> **必填** <br> `string` | 普尔平台单号
+mch_trade_id  <br> **必填** <br> `string` | 商户订单号
+merchant_id  <br> **必填** <br> `string` | 发起支付的商户编号
+pay_type  <br> **必填** <br> `string` | 支付类型，如：wechat.scan
+trade_state  <br> **必填** <br> `string` | 交易状态，[查看状态码](#trade-status-code)
+total_fee  <br> **必填** <br> `int` | 交易金额，单位为分
+
+## 支付状态码 Trade status code
+
+支付状态以参数 trade_state 来判定，请参考下方支付状态码说明：
+
+trade_state | 说明
+--|--
+0|交易成功
+1|转入退款：支付成功后调用退款接口转入退款，只代表退款业务提交成功，具体退款状态请调用退款查询接口
+2|未支付：交易订单生成后未支付
+3|已关闭：交易生成后未支付，订单已关闭
+4|已完结：交易支付成功，已完结，不可发起退款
+5|已撤销：交易支付确认失败
+6|支付中：用于反扫，当用户需要输入密码时的状态
+
 ## 关闭订单 Close
 
 >  POST /v2/pay/close?merchant_id=5399355381712172
@@ -791,7 +833,6 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 	"code": 0,
 	"msg": "success",
 	"data": {
-		"cash_fee": 9872,
 		"out_trade_id": "4200000114201806284156184664",
 		"total_fee": 9872,
 		"trade_id": "5b34b9a901c9112ae61fb8bc",
@@ -800,25 +841,13 @@ nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchan
 		"pay_type": "wechat.jsapi",
 		"trade_state": 1,
 		"trade_info": "转入退款, ",
-		"refunds": [
-			{
-				"refund_id": "5b34ba3d01c9112ae61fb8c1",
-				"mch_refund_id": "alextest.scan.112.1",
-				"refund_fee": 5,
-				"refund_state": 0
-			},
-			{
-				"refund_id": "5b34ba4f01c9112ae61fb8c5",
-				"mch_refund_id": "alextest.scan.112.1",
-				"refund_fee": 1283,
-				"refund_state": 0
-			},
-			{
-				"refund_id": "5b34ba5b01c9112ae61fb8c7",
-				"refund_fee": 4332,
-				"refund_state": 0
-			}
-		]
+		"refunds": {
+			"refund_id": "5b34ba3d01c9112ae61fb8c1",
+			"mch_refund_id": "alextest.scan.112.1",
+			"refund_fee": 5,
+			"refund_status": 0,
+			"refund_desc": "Alex Test",
+		}
 	}
 }
 ```
@@ -843,51 +872,44 @@ mch_refund_id <br> **必填** <br> `string` | 商户订单号
 nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
 
 
-## 支付结果通知 Pay notify
+## 退款结果通知 Refund notify
 
 > 通知示例
 
 ```json
 {
   "code": 0,
+  "msg": "success",
   "data": {
-    "trade_id": "5c00a57001c9110e2a5c9932",
-    "attach": "Alex",
-    "mch_trade_id": "alex.scan.19",
-    "merchant_id": "3117531860086147",
+    "trade_id": "5d22bd1d01c9112e00c4d601",
+    "mch_trade_id": "alex.wechat.scan.1",
+    "merchant_id": "1333259781809471",
     "pay_type": "wechat.scan",
-    "total_fee": 1,
-    "trade_state": 0,
-    "trade_info": "支付成功, "
-  },
-  "nonce_str": "5c00a5b901c9110e2a5c9933"
+    "refunds": {
+      "refund_id": "5d22bd1d01c9112e00c4d601",
+      "mch_refund_id": "alex.wechat.scan.1",
+      "refund_fee": 5,
+      "refund_desc": "Alex Test",
+      "refund_status": 0
+    }
+  }
 }
 ```
 
-支付完成后，系统会把相关支付结果和用户信息POST方式将支付结果以JWT密文的方式发送给商户请求支付时提交的 notify_url 地址，商户接收后需要JWT解密为json格式并使用普尔公钥验证签名，并响应字符串"success"（大小写皆可）。
+退款成功后系统会将退款成功信息发送给商户请求退款提交的notify_url，商户需要接收处理，方式与支付结果通知一样
 
-对后台通知交互时，如果Pooul收到商户的应答不是成功或响应不正确，系统会认为通知失败，系统会通过一定的策略定期重新发起通知，尽可能提高通知的成功率，但系统不保证通知最终能成功。 （在48小时内最多发送10次通知， 通知间隔时间一般为：1m, 1m, 2m, 5m ,10m, 1h, 2h, 6h, 12h, 24h，备注：m代表分钟，h代表小时）
 
-注意：同样的通知可能会多次发送给商户系统。商户系统必须能够正确处理重复的通知。
-推荐的做法是，当收到通知进行处理时，首先检查对应业务数据的状态，判断该通知是否已经处理过，如果没有处理过再进行处理，如果处理过直接返回结果成功。在对业务数据进行状态检查和处理之前，要采用数据锁进行并发控制，以避免函数重入造成的数据混乱。
+## 退款状态码 Refund status code
 
-特别提醒：商户系统对于支付结果通知的内容一定要做签名验证，并校验返回的订单金额是否与商户侧的订单金额一致，防止数据泄漏导致出现“假通知”，造成资金损失。
+退款状态以参数 refund_status 来判定，请参考下方退款状态码说明：
 
-通知参数描述
-
-参数|	描述
+refund_status | 说明
 --|--
-trade_id <br> **必填** <br> `string` | 普尔平台单号
-mch_trade_id  <br> **必填** <br> `string` | 商户订单号
-merchant_id  <br> **必填** <br> `string` | 发起支付的商户编号
-pay_type  <br> **必填** <br> `string` | 支付类型，如：wechat.scan
-trade_state  <br> **必填** <br> `string` | 交易状态，[查看状态码](#trade-status-code)
-total_fee  <br> **必填** <br> `int` | 交易金额，单位为分
+0|退款成功
+1|退款处理中
+2|退款关闭
+3|退款异常
 
-
-## 退款结果通知 Refund notify
-
-退款成功后系统会将退款成功状态发给商户，商户需要接收处理，方式与支付结果通知一样
 
 ## 预下单支付 Preorder pay
 
