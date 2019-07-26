@@ -713,6 +713,48 @@ _id <br> **选填** | 入驻商户编号（merchant_id）
 parent_id <br> **选填** | 父级商户编号，输入此参数查询该父级商户所有下一级入驻商户
 
 
+### 更新父级商户 Update parent
+
+```
+PUT /cms/merchants/:merchant_id/parent
+```
+> 请求示例
+
+```shell
+curl -X PUT /cms/merchants/7609332123096874/parent \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}" \
+-d' {
+    "parent_id": #新的父级商户编号
+}
+```
+
+
+> 响应示例
+
+```json
+{
+    "code": 0,
+    "msg": "success"    
+}
+```
+
+- 认证方式：基于Login权限，[查看Login认证说明](#login)
+- 所需权限：需要联系对接商务开通配置
+
+URL请求参数
+
+参数| 描述
+--|--
+merchant_id <br> **必填** | 要修改的入驻商户编号
+
+
+Body请求参数
+
+参数| 描述
+--|--
+parent_id <br> **选填** | 新的父级商户编号
+
 
 ## 银行卡 Bank cards
 
