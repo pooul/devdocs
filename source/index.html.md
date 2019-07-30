@@ -19,6 +19,7 @@ includes:
   - pay
   - cmbc_bank
   - merchants
+  - credit_orders
   - accounting
   - balances
   - appendix
