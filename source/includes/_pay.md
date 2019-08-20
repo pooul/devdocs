@@ -481,7 +481,7 @@ POST /v2/pay?merchant_id=5399355381712172
 4. 平台通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用[查询订单API](#query)
 
 
-### 定向转账支付 cmbc.transfer
+### 定向转账支付 ecp.transfer
 
 ```
 POST /v2/pay?merchant_id=5399355381712172
@@ -491,7 +491,7 @@ POST /v2/pay?merchant_id=5399355381712172
 
 ```json
 {
-	"pay_type":"cmbc.transfer",
+	"pay_type":"ecp.transfer",
 	"mch_trade_id":"alextest.alipay.scan.211",
 	"total_fee": 7622,
 	"notify_url":"https://md.pooul.com/v2_test/notify",

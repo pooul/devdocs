@@ -16,7 +16,7 @@ alipay.wap | 支付宝WAP支付
 alipay.app | 支付宝APP支付
 pooul.preorder | 预下单支付
 cmbc.fund | 转账支付
-cmbc.transfer | 定向转账支付
+ecp.transfer | 定向转账支付
 
 ## 网银互联联行号
 
