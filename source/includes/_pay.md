@@ -480,6 +480,75 @@ POST /v2/pay?merchant_id=5399355381712172
 3. 用户打开支付宝“扫一扫”扫描二维码，输入支付密码确认支付
 4. 平台通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用[查询订单API](#query)
 
+### 支付宝服务窗支付 alipay.jsapi 
+
+```
+POST /v2/pay?merchant_id=5399355381712172
+```
+
+> 请求示例
+
+```json
+{
+	"pay_type":"alipay.jsapi",
+	"mch_trade_id":"alipay.jsapi.4",
+	"total_fee": 10, 
+	"notify_url":"https://md.pooul.com/v2_test/notify",
+	"body":"alex test",
+	"device_info": "WEB",
+	"op_user_id": "1",
+	"attach": "自定义参数",
+	"sub_appid":"2016101502183655",
+	"sub_openid":"2088002053801335"
+}
+
+``` 
+
+> 响应
+
+```json
+{
+    "code": 0,
+    "msg": "Success",
+    "data": {
+        "trade_id": "5d661e1b01c911056e885765",
+        "actual_fee": 0,
+        "attach": "自定义参数",
+        "body": "alex test",
+        "mch_trade_id": "alipay.jsapi.4",
+        "merchant_id": "6428250771114139",
+        "pay_type": "alipay.jsapi",
+        "settle_fee": 10,
+        "total_fee": 10,
+        "trade_fee": 0,
+        "updated_at": 1566973468,
+        "pay_info": {
+            "trade_no": "2019082822001401330581360411"
+        },
+        "trade_state": 6,
+        "trade_info": "支付中, Success"
+    }
+}
+
+``` 
+
+用户在支付宝的场景进入商家H5页面，页面内唤起支付宝钱包完成支付
+
+Body需增加请求参数
+
+参数|	描述
+--|--
+sub_appid <br> **必填** <br> `string` | 与发起支付商户主体一致的支付宝应用appid
+sub_openid <br> **必填** <br> `string` | 通过网页授权获取用户信息，同步响应结果中的user_id，[获取方法](https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.8ujLD6&treeId=115&articleId=104114&docType=1)
+
+
+开发说明：
+
+1. 用户在商户H5页面点击使用支付宝支付
+2. 商户系统后台调用统一支付接口，获取 pay_info 中的 trade_no 信息
+2. 商户系统前端调用：H5页面调起支付API，输入上一步获得的trade_no参数，[参考文档](https://myjsapi.alipay.com/jsapi/native/trade-pay.html)
+3. 用户输入支付密码确认支付
+4. 系统通过发送异步消息通知商户后台系统支付结果，如未收到通知，调用[查询订单API](#query)
 
 ### 定向转账支付 ecp.transfer
 
