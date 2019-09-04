@@ -305,7 +305,46 @@ repay_fee <br> **必填** <br> `int` | 付款金额
 pay_type <br> **必填** <br> `string` | 支付类型，请参考：[查看支付类型编码](#pay-type)
 
 
+## 取消单条账单 Cancel credit order
 
+```
+PUT /cms/credit_orders/cancel?merchant_id=#{merchant_id}
+```
+
+> 请求示例
+
+```shell
+curl -X PUT /cms/credit_orders/5d4008f401c91124e94ed8f3 \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}"
+-d '{
+    "id":"5cfe6a7e01c91175926d53e0"
+}'
+```
+
+> 响应
+
+```json
+{
+    "code": 0,
+    "msg": "success"
+}
+```
+
+- 认证方式：基于Login权限，[查看Login认证说明](#login)
+- 请求方式：PUT /cms/credit_orders/cancel?merchant_id=#{merchant_id}
+
+URL请求参数
+
+请求参数 | 描述
+-- | -- 
+merchant_id <br> **必填** <br> `string` | 应收账单对应的入驻商户编号
+
+BODY请求参数
+
+请求参数 | 描述
+-- | -- 
+id <br> **必填** <br> `string` | 系统返回的应收账单ID
 
 
 
