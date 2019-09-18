@@ -229,7 +229,7 @@ over_fee <br> **可选** <br> `int` | 超额还款金额
 over_day <br> **可选** <br> `int` | 逾期天数
 status <br> **必填** <br> `int` | 状态：-1: 未结清, 0: 已结清, 2: 账单支付超额, 3: 账单已取消
 
-## 账单变更通知 Credit order notify
+## 账单变动通知 Credit order notify
 
 
 > 通知示例
