@@ -238,32 +238,18 @@ status <br> **必填** <br> `int` | 状态：-1: 未结清, 0: 已结清, 2: 账
 {
     "code": 0,
     "msg": "success",
-    "data": [
-        {
-            "_id": "5d400c7d01c9115e5f9d5bd7",
-            "biz_id": "5d400c7701c91157b39d5bd7",
-            "body": "test",
-            "created_at": 1564478589,
-            "credit_order_id": "5d4008f401c91124e94ed8f3",
-            "merchant_id": "6188991921802721",
-            "order_at": 1564477684,
-            "pay_type": "wechat.jsminipg",
-            "repay_fee": 1,
-            "updated_at": 1564478589
-        },
-        {
-            "_id": "5d400c8a01c9115e5f9d5bdd",
-            "biz_id": "5d400c8501c9115e5f9d5bd9",
-            "body": "test",
-            "created_at": 1564478602,
-            "credit_order_id": "5d4008f401c91124e94ed8f3",
-            "merchant_id": "6188991921802721",
-            "order_at": 1564477684,
-            "pay_type": "wechat.jsminipg",
-            "repay_fee": 2,
-            "updated_at": 1564478602
-        }
-    ]
+    "data": {
+        "credit_order_id": "5d820f3901c911340ab7a7a7",
+        "body": "账单",
+        "expire_at": "2019-09-30",
+        "merchant_id": "2464813728374774",
+        "reduct_fee": 0,
+        "repay_fee": -1000,
+        "start_at": "2019-09-18",
+        "status": 3,
+        "total_fee": -3000
+    },
+    "nonce_str": "5d82132101c91159ba470b45"
 }
 ```
 
