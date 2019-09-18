@@ -195,7 +195,7 @@ curl -X GET /cms/credit_orders/5d4008f401c91124e94ed8f3 \
 ```
 
 - 认证方式：基于Login权限，[查看Login认证说明](#login)
-- 请求方式：POST /cms/credit_orders/#{credit_order_id}
+- 请求方式：GET /cms/credit_orders/#{credit_order_id}
 
 URL请求参数
 
