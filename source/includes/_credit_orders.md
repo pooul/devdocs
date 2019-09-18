@@ -145,7 +145,7 @@ merchant_id <br> **可选** <br> `string` | 账单对应的入驻商户编号
 parent_merchant_id <br> **可选** <br> `string` | 账单对应的父级商户编号
 expire_at_begin <br> **可选** <br> `string` | 账单到期日期筛选开始时间，格式为 yyyy-mm-dd，如：2019-07-01
 expire_at_finish <br> **可选** <br> `string` | 账单到期日期筛选结束时间，格式为 yyyy-mm-dd，如：2019-07-31
-status <br> **可选** <br> `int` | 账单状态：-1: 初始化, 0: 已还清, 2: 超额还款, 3: 取消欠单
+status <br> **可选** <br> `int` | 账单状态：-1: 未结清, 0: 已结清, 2: 账单支付超额, 3: 账单已取消
 
 ## 查询单条账单 Retrieve credit order
 
@@ -211,39 +211,28 @@ _id <br> **必填** <br> `string` | 应收账单ID
 body <br> **必填** <br> `string` | 账单备注
 created_at <br> **必填** <br> `int` | 创建时间，为10位 UNIX 时间戳，如：1530759545
 updated_at <br> **必填** <br> `int` | 更新时间，为10位 UNIX 时间戳，如：1530759545
-start_at <br> **必填** <br> `string` | 账单周期开始时间，格式为：yyyy-mm-dd，如：2019-07-01
-expire_at <br> **必填** <br> `string` | 账单周期结束时间，格式为：yyyy-mm-dd，如：2019-07-01
-mch_credit_id <br> **必填** <br> `string` | 自定义账单编号
+start_at <br> **可选** <br> `string` | 账单周期开始时间，格式为：yyyy-mm-dd，如：2019-07-01
+expire_at <br> **可选** <br> `string` | 账单周期结束时间，格式为：yyyy-mm-dd，如：2019-07-01
+mch_credit_id <br> **可选** <br> `string` | 自定义账单编号
 merchant_id <br> **必填** <br> `string` | 账单对应入驻商户编号
-merchant_short_name <br> **必填** <br> `string` | 入驻商户简称
-notify_url <br> **必填** <br> `string` | 账单核销成功后通知地址
-parent_merchant_id <br> **必填** <br> `string` | 父级商户编号
-parent_merchant_short_name <br> **必填** <br> `string` | 父级商户简称
+merchant_short_name <br> **可选** <br> `string` | 入驻商户简称
+notify_url <br> **可选** <br> `string` | 账单核销成功后通知地址
+parent_merchant_id <br> **可选** <br> `string` | 父级商户编号
+parent_merchant_short_name <br> **可选** <br> `string` | 父级商户简称
 platform_merchant_id <br> **必填** <br> `string` | 平台商户编号
-reduct_fee <br> **必填** <br> `int` | 减免金额
-repay_fee <br> **必填** <br> `int` | 账单已收金额
-total_fee <br> **必填** <br> `int` | 账单总金额
-surplus_fee <br> **必填** <br> `int` | 账单未付金额
+reduct_fee <br> **可选** <br> `int` | 减免金额
+repay_fee <br> **可选** <br> `int` | 正数账单为账单已收金额，负数账单为账单已抵扣金额
+total_fee <br> **必填** <br> `int` | 账单总金额，可以为正数或者负数
+surplus_fee <br> **可选** <br> `int` | 正数为账单未付金额，负数账单为账单未抵扣金额
 surplus_day <br> **必填** <br> `int` | 账单剩余天数
-over_fee <br> **必填** <br> `int` | 超额还款金额
-over_day <br> **必填** <br> `int` | 逾期天数
-status <br> **必填** <br> `int` | 状态：-1: 初始化, 0: 已还清, 2: 超额还款, 3: 取消欠单
+over_fee <br> **可选** <br> `int` | 超额还款金额
+over_day <br> **可选** <br> `int` | 逾期天数
+status <br> **必填** <br> `int` | 状态：-1: 未结清, 0: 已结清, 2: 账单支付超额, 3: 账单已取消
 
-## 查询账单还款流水 Retrieve credit order records
+## 账单变更通知 Credit order notify
 
-```
-GET /cms/credit_orders/5d4008f401c91124e94ed8f3/records
-```
 
-> 请求示例
-
-```shell
-curl -X GET /cms/credit_orders/5d4008f401c91124e94ed8f3/records \
--H "Content-Type: application/json" \
--H "Authorization: #{Authorization}"
-```
-
-> 响应
+> 通知示例
 
 ```json
 {
@@ -278,31 +267,28 @@ curl -X GET /cms/credit_orders/5d4008f401c91124e94ed8f3/records \
 }
 ```
 
-通过此接口可以查询到某一条应收账单的付款明细，如果一笔账单分为多次付款会返回多条记录。
+当账单发生状态或者金额变动后，系统会把相关最新的账单信息以 POST 方法使用 JWT 密文的方式发送给商户创建账单时提交的 notify_url 地址，商户接收后需要JWT解密为json格式并使用普尔公钥验证签名，并响应字符串"success"（大小写皆可）。
 
-- 认证方式：基于Login权限，[查看Login认证说明](#login)
-- 请求方式：GET /cms/credit_orders/#{credit_order_id}/records
+对后台通知交互时，如果Pooul收到商户的应答不是成功或响应不正确，系统会认为通知失败，系统会通过一定的策略定期重新发起通知，尽可能提高通知的成功率，但系统不保证通知最终能成功。 （在48小时内最多发送10次通知， 通知间隔时间一般为：1m, 1m, 2m, 5m ,10m, 1h, 2h, 6h, 12h, 24h，备注：m代表分钟，h代表小时）
 
-URL请求参数
+注意：同样的通知可能会多次发送给商户系统。商户系统必须能够正确处理重复的通知。 推荐的做法是，当收到通知进行处理时，首先检查对应业务数据的状态，判断该通知是否已经处理过，如果没有处理过再进行处理，如果处理过直接返回结果成功。在对业务数据进行状态检查和处理之前，要采用数据锁进行并发控制，以避免函数重入造成的数据混乱。
 
-请求参数 | 描述
+特别提醒：商户系统对于通知结果的内容一定要做签名验证，并校验返回的账单金额是否与商户侧的金额一致，防止数据泄漏导致出现“假通知”，造成资金损失。
+
+通知参数说明
+
+通知参数 | 描述
 -- | -- 
-credit_order_id <br> **必填** <br> `string` | 应收账单ID
-
-响应参数说明
-
-响应参数 | 描述
--- | -- 
-_id <br> **必填** <br> `string` | 付款流水ID
-credit_order_id <br> **必填** <br> `string` | 付款流水对应的应收账单ID
-biz_id <br> **必填** <br> `string` | 支付业务单号
-body <br> **必填** <br> `string` | 支付备注
-created_at <br> **必填** <br> `int` | 创建时间，为10位 UNIX 时间戳，如：1530759545
-updated_at <br> **必填** <br> `int` | 更新时间，为10位 UNIX 时间戳，如：1530759545
-order_at <br> **必填** <br> `int` | 付款时间，为10位 UNIX 时间戳，如：1530759545
+_id <br> **必填** <br> `string` | 应收账单ID
+body <br> **必填** <br> `string` | 账单备注
+start_at <br> **可选** <br> `string` | 账单周期开始时间，格式为：yyyy-mm-dd，如：2019-07-01
+expire_at <br> **可选** <br> `string` | 账单周期结束时间，格式为：yyyy-mm-dd，如：2019-07-01
 merchant_id <br> **必填** <br> `string` | 账单对应入驻商户编号
-repay_fee <br> **必填** <br> `int` | 付款金额
-pay_type <br> **必填** <br> `string` | 支付类型，请参考：[查看支付类型编码](#pay-type)
+platform_merchant_id <br> **必填** <br> `string` | 平台商户编号
+repay_fee <br> **可选** <br> `int` | 正数账单为账单已收金额，负数账单为账单已抵扣金额
+total_fee <br> **必填** <br> `int` | 账单总金额，可以为正数或者负数
+surplus_fee <br> **可选** <br> `int` | 正数为账单未付金额，负数账单为账单未抵扣金额
+status <br> **必填** <br> `int` | 状态：-1: 未结清, 0: 已结清, 2: 账单支付超额, 3: 账单已取消
 
 
 ## 取消单条账单 Cancel credit order
