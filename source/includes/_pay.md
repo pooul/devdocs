@@ -1112,5 +1112,52 @@ POST /v2/pay/pre_order_detail?merchant_id=5399355381712172
 
 创建预下单订单后可以调用查询接口查询该笔预下单订单状态，一笔预下单订单可能对应多笔支付订单（最多只有一笔成功支付订单），调用查询后可获得支付订单mch_trade_id，如需对预下单进行退款，请调用[支付订单退款接口](#refund)
 
+pre_state说明
 
+- -1: 初始化(未支付)
+- 0: 支付成功
+- 3: 已关闭
+- 6: 支付中
+
+### 预下单订单关闭 Close preorder
+
+```
+POST /v2/pay/pre_order_close?merchant_id=5399355381712172
+```
+
+> 请求示例
+
+```json
+{
+	"mch_pre_id":"alextest.pre_order.17"
+}
+``` 
+
+> 响应
+
+```json
+{
+    "code": 0,
+    "msg": "success"
+}
+``` 
+
+- 请求方式：POST /v2/pay/pre_order_close?merchant_id=#{merchant_id}
+- 认证方式：[RSA](#rsa)
+
+创建预下单订单后，如果pre_state为 -1（初始话）可以调用关闭接口关闭该笔预下单订单，pre_state为其他值是不能关闭
+
+URL请求参数
+
+参数|	描述
+--|--
+merchant_id <br> **必填** | 发起预下单支付的商户编号，16位数字，由Pooul分配
+
+
+Body公共请求参数
+
+参数|	描述
+--|--
+nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
+mch_pre_id <br> **必填** <br> `string` | 商户订单号，在同一个merchant_id 下每次请求必须为唯一，如：alextest.scan.113
 
