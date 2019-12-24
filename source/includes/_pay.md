@@ -1023,7 +1023,7 @@ POST /v2/pay/pre_order?merchant_id=5399355381712172
     "code": 0,
     "msg": "success",
     "data": {
-        "pay_url": "https://m.pooul.com/preorder?pay_order_id=5c7a539901c9114317edac34"
+        "pay_url": "http://mm.pooulcloud.cn/pre_order?merchant_id=1333259781809471&pre_order_id=5e01803501c91141709db961"
 }
 ``` 
 
