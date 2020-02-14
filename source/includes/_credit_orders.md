@@ -17,7 +17,8 @@ curl -X POST /cms/credit_orders?merchant_id=6188991921802721 \
 -d '{
 	"mch_credit_id":"alextest",
 	"total_fee": 9888,
-	"expire_at": "2019-07-31",
+    "start_at": "2019-06-20",
+    "expire_at": "2019-07-31",
 	"body": "test",
 	"notify_url": "https://md.pooul.com/v2_test/notify"
 }'
@@ -38,6 +39,7 @@ Body请求参数
 -- | -- 
 mch_credit_id <br> **必填** <br> `string` | 自定义账单编号
 total_fee <br> **必填** <br> `int` | 账单金额，单位为分
+start_at <br> **可选** <br> `string` | 账单开始日期，格式为 yyyy-mm-dd，如：2019-06-20
 expire_at <br> **必填** <br> `string` | 账单到期日期，格式为 yyyy-mm-dd，如：2019-07-31
 body <br> **可选** <br> `string` | 账单备注
 notify_url <br> **可选** <br> `string` | 账单核销成功后通知地址

@@ -59,7 +59,7 @@ Pooul API 采用 REST 风格设计。所有接口请求地址都是可预期的�
 > 请求示例
 
 ```shell
-curl "/cms/balances/history?page_size=2&last_id=770&merchant_id=5399355381712172" \
+curl "/cms/balances/history?page_size=2&last_created_at=1535612047&merchant_id=5399355381712172" \
 -H "Authorization: #{Authorization}"
 ```
 
@@ -98,14 +98,14 @@ curl "/cms/balances/history?page_size=2&last_id=770&merchant_id=5399355381712172
 }
 ```
 
-部分接口返回list对象支持分页，例如：[查询交易记录](#pay-orders)、[查询记账明细](#balances-list)，这些list拥有相同的数据结构，Pooul 是基于 cursor 的分页机制，使用参数 last_id 来决定列表从何处开始。
+部分接口返回list对象支持分页，例如：[查询交易记录](#pay-orders)、[查询记账明细](#balances-list)，这些list拥有相同的数据结构，Pooul 是基于 cursor 的分页机制，使用参数 last_created_at 来决定列表从何处开始。
 
 URL请求参数
 
 参数| 描述
 --|--
 page_size <br> **选填** | 每页可以返回多少数据，限制范围是从 1~100 项，默认是 15 项。
-last_id <br> **选填** | 在分页时使用的指针，决定了列表的第一项从何处开始。假设你的一次请求返回列表的最后一项的 id 是 obj_end，你可以使用 last_id = obj_end 去获取下一页。
+last_created_at <br> **选填** | 在分页时使用的指针，决定了列表的第一项从何处开始。假设你的一次请求返回列表的最后一项的 created_at 是 obj_end，你可以使用 last_created_at = obj_end 去获取下一页。
 
 
 ## 协议状态码 Status code
@@ -187,8 +187,8 @@ password  <br> **必填** <br> `string` | 登录密码
 
 使用用户名与密码调用登录接口获取 Authorization, 在登录成功以后，下发 Authorization 在http头
 
-- Authorization 默认有效期为 30 分钟，如果用户在使用的情况下，自动会延长 Authorization 的有效时间，
-- 如果持续 30 分钟以上没有任何操作，重新操作 Authorization 会失效，这时需要重新登录获取新的 Authorization
+- Authorization 默认有效期为 24 小时，如果用户在使用的情况下，自动会延长 Authorization 的有效时间，
+- 如果持续 24 小时以上没有任何操作，重新操作 Authorization 会失效，这时需要重新登录获取新的 Authorization
 
 ### 3. 提交请求头带上 Authorization
 
@@ -227,7 +227,7 @@ OpenSSL>rsa -in rsa_private.pem -pubout -out rsa_public.pem
 OpenSSL>pkcs8 -topk8 -inform PEM -in rsa_private.pem -outform PEM -nocrypt -out rsa_private_pkcs8.pem  
 ```
 
-我们建议可以使用OpenSSL(https://www.openssl.org/) 工具命令生成RSA证书（2048位），请参考右侧示例，或取得信任的密钥生成工具来生成密钥。
+我们建议可以使用OpenSSL(https://www.openssl.org/) 工具命令生成RSA证书（2048位），请参考右侧示例，或取得信任的密钥生成工具来生成密钥，[支付宝密钥生成工具](https://docs.open.alipay.com/291/105971)。
 
 经过示例中的步骤，开发者可以在当前文件夹中（OpenSSL运行文件夹），看到 rsa_private.pem（开发者RSA私钥，非Java语言适用）、rsa_private_pkcs8.pem（pkcs8格式开发者RSA私钥，Java语言适用）和 rsa_public.pem（开发者RSA公钥）3个文件。开发者将私钥保留，上传商户公钥给普尔，用于验证签名。
 
