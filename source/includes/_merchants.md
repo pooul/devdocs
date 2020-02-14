@@ -267,7 +267,7 @@ POST /cms/merchants/search?
 > 请求示例
 
 ```shell
-curl -X POST /cms/merchants/search?last_id=:_id&page_size=30 \
+curl -X POST /cms/merchants/search?last_created_at=:created_at&page_size=30 \
 -H "Content-Type: application/json" \
 -H "Authorization: #{Authorization}"
 -d '{
@@ -303,7 +303,7 @@ URL请求参数
 参数| 描述
 --|--
 page_size <br> **选填** | 每页可以返回多少数据，限制范围是从 1~100 项，默认是 15 项。
-last_id <br> **选填** | 在分页时使用的指针，决定了列表的第一项从何处开始。假设你的一次请求返回列表的最后一项的 id 是 obj_end，你可以使用 last_id = obj_end 去获取下一页。
+last_created_at <br> **选填** | 在分页时使用的指针，决定了列表的第一项从何处开始。假设你的一次请求返回列表的最后一项的 created_at 是 obj_end，你可以使用 last_created_at = obj_end 去获取下一页。
 
 
 Body请求参数
@@ -666,7 +666,7 @@ POST /cms/merchants/search?
 > 请求示例
 
 ```shell
-curl -X POST /cms/merchants/search?last_id=:_id&page_size=30 \
+curl -X POST /cms/merchants/search?last_created_at=:created_at&page_size=30 \
 -H "Content-Type: application/json" \
 -H "Authorization: #{Authorization}"
 -d '{
@@ -702,7 +702,7 @@ URL请求参数
 参数| 描述
 --|--
 page_size <br> **选填** | 每页可以返回多少数据，限制范围是从 1~100 项，默认是 15 项。
-last_id <br> **选填** | 在分页时使用的指针，决定了列表的第一项从何处开始。假设你的一次请求返回列表的最后一项的 id 是 obj_end，你可以使用 last_id = obj_end 去获取下一页。
+last_created_at <br> **选填** | 在分页时使用的指针，决定了列表的第一项从何处开始。假设你的一次请求返回列表的最后一项的 created_at 是 obj_end，你可以使用 last_created_at = obj_end 去获取下一页。
 
 
 Body请求参数
