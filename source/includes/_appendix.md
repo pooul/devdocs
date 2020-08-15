@@ -165,50 +165,92 @@ ecp.transfer | 定向转账支付
 313492070005  | 开封市商业银行       
 313458000013  | 潍坊银行          
 
-## CCB 商户行业类别 industry category
-
-类别代码 | 行业类别
---|--
-01 |  第三方支付类
-02 |  投资理财类
-03 |  电子客票类
-04 |  生活百货类
-05 |  大宗商品类
-06 |  教育培训类
-07 |  旅游宾馆类
-08 |  餐饮娱乐类
-09 |  公共事业缴费类
-10 |  医疗保健类
-11 |  游戏通讯类
-12 |  公益事业类
-13 |  其他类
 
 
-## CCB 商户行业子类别 industry sub category
+## 上传图片 Upload image
 
-类别代码 | 行业类别
---|--
-01001 | 第三方支付
-02001 | 基金
-02002 | 保险
-02003 | 证券
-02004 | 黄金
-02005 | 其他
-03001 | 电子客票
-04001 | 生活百货
-05001 | 大宗商品
-06001 | 人力资源考务
-06002 | 教育考务
-06003 | 学校杂费
-06004 | 机构培训
-06005 | 其他
-07001 | 旅游宾馆
-08001 | 餐饮娱乐
-09001 | 公共事业缴费
-10001 | 医疗保健
-11001 | 游戏
-11002 | 通讯
-11003 | 其他
-12001 | 公益事业类
-13001 | 其他
+通过此功能上传下属商户资料照片，包含经营场所照片、公司证件照片、法人证件照片、银行照片，具体取值参考 input 取值方式
+
+- 第一步：获取七牛上传图片的Token
+- 第二步：调用七牛图片上传接口
+
+### 获得七牛Token
+
+> 请求示例
+
+```shell
+curl -X GET /cms/qiniu/upload_token?merchant_id=1002928391013363 \
+-H "Content-Type: application/json" \
+-H "Authorization: #{Authorization}" 
+```
+
+> 响应示例
+
+```json
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "bucket": "merchant-info",
+        "token": "mwy4ThDku0ltbD7Fxu6rSSK7KVlsiC-ieUo3S0ng:quX_6S-8IWQYmkRyMkCTRjAgPLI=:eyJzY29wZSI6Im1lcmNoYW50LWluZm8iLCJkZWFkbGluZSI6MTU0MzU3ODUxMCwiY2FsbGJhY2tVcmwiOiJodHRwczovL2FwaS1kZXYucG9vdWwuY29tL3dlYi9ub3RpZmllcy9xaW5pdSIsImNhbGxiYWNrQm9keSI6IntcInVzZXJfaWRcIjozMDEsXCJtZXJjaGFudF9pZFwiOlwiMTAwMjkyODM5MTAxMzM2M1wiLFwiaW1nX3R5cGVcIjpcIiQoeDppbWdfdHlwZSlcIixcImJhbmtfY2FyZF9pZFwiOlwiJCh4OmJhbmtfY2FyZF9pZClcIixcImtleVwiOlwiJChrZXkpXCIsXCJtaW1lX3R5cGVcIjpcIiQobWltZVR5cGUpXCJ9IiwiY2FsbGJhY2tCb2R5VHlwZSI6ImFwcGxpY2F0aW9uL2pzb24ifQ==",
+        "expired_at": 1543578510
+    }
+}
+```
+- 请求方式：GET /cms/qiniu/upload_token?merchant_id=:merchant_id
+- 认证方式：基于Login权限，[查看Login认证说明](#login)
+
+合作伙伴使用此功能可以获取下属商户到七牛上传图片的Token
+
+### 上传图片至七牛
+
+
+> DEMO
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>test qiniu</title>
+  </head>
+  <body>
+    <form method="post" action="http://up-z2.qiniup.com/" enctype="multipart/form-data">
+      <!-- <input name="key" type="hidden" value="12231321312"> -->
+      <input name="x:img_type" type="hidden" value="0">
+      <!-- <input name="x:bank_no" type="hidden" value="1"> -->
+      <input name="token" type="hidden" value="mwy4ThDku0ltbD7Fxu6rSSK7KVlsiC-ieUo3S0ng:IOHsZcuNVSNNp3iF3mTyXOZHY7Q=:eyJzY29wZSI6Im1lcmNoYW50LWluZm8iLCJkZWFkbGluZSI6MTU0MzMxNTQyMiwiY2FsbGJhY2tVcmwiOiJodHRwczovL2FwaS1kZXYucG9vdWwuY29tL3dlYi9ub3RpZmllcy9xaW5pdSIsImNhbGxiYWNrQm9keSI6IntcInVzZXJfaWRcIjozMDEsXCJtZXJjaGFudF9pZFwiOlwiODg3MzM1MzcwMjgzNTM1N1wiLFwiaW1nX3R5cGVcIjpcIiQoeDppbWdfdHlwZSlcIixcImJhbmtfY2FyZF9pZFwiOlwiJCh4OmJhbmtfY2FyZF9pZClcIixcImtleVwiOlwiJChrZXkpXCIsXCJtaW1lX3R5cGVcIjpcIiQobWltZVR5cGUpXCJ9IiwiY2FsbGJhY2tCb2R5VHlwZSI6ImFwcGxpY2F0aW9uL2pzb24ifQ==">
+      <!-- <input name="crc32" type="hidden" />
+      <input name="accept" type="hidden" /> -->
+      <input name="file" type="file" />
+      <button type='submit'>上传</button>
+    </form>
+  </body>
+</html>
+```
+
+使用表单上传的方式，参考[七牛开发文档](https://developer.qiniu.com/kodo/manual/1234/upload-types)
+
+input 取值方式
+
+- 经营场所照片：`<input name="x:img_type" type="hidden" value="0">`
+- 营业执照等资质照片：`<input name="x:img_type" type="hidden" value="1">`
+- 负责人/法人证件照片：`<input name="x:img_type" type="hidden" value="2">`
+- 银行卡照片：`<input name="x:bank_card_id" type="hidden" value="{此处填写创建好的银行卡信息ID}">`
+
+
+
+
+
+
+
+
 
