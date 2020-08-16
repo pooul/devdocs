@@ -31,8 +31,14 @@ under the License.
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><%= current_page.data.title || "API Documentation" %></title>
 
-    <style>
-      <%= Rouge::Themes::MonokaiSublime.render(:scope => '.highlight') %>
+    <style media="screen">
+      <%= Rouge::Themes::MonokaiSublimeSlate.render(:scope => '.highlight') %>
+    </style>
+    <style media="print">
+      * {
+        transition:none!important;
+      }
+      <%= Rouge::Themes::Base16::Solarized.render(:scope => '.highlight') %>
     </style>
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
@@ -41,16 +47,12 @@ under the License.
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-12044506-16"></script>
+
+    <% if current_page.data.code_clipboard %>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-12044506-16');
+      $(function() { setupCodeCopy(); });
     </script>
-
+    <% end %>
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
@@ -79,31 +81,22 @@ under the License.
         </div>
         <ul class="search-results"></ul>
       <% end %>
-      <div id="toc" class="toc-list-h1">
+      <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
           <li>
-            <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:content].to_s.parameterize %>"><%= h1[:content] %></a>
+            <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
             <% if h1[:children].length > 0 %>
               <ul class="toc-list-h2">
                 <% h1[:children].each do |h2| %>
                   <li>
-                    <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:content].to_s.parameterize %>"><%= h2[:content] %></a>
-                    <% if h2[:children].length > 0 %>
-                      <ul class="toc-list-h3">
-                        <% h2[:children].each do |h3| %>
-                          <li>
-                            <a href="#<%= h3[:id] %>" class="toc-h3 toc-link" data-title="<%= h3[:content].to_s.parameterize %>"><%= h3[:content] %></a>
-                          </li>
-                        <% end %>
-                      </ul>
-                    <% end %>
+                    <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>"><%= h2[:content] %></a>
                   </li>
                 <% end %>
               </ul>
             <% end %>
           </li>
         <% end %>
-      </div>
+      </ul>
       <% if current_page.data.toc_footers %>
         <ul class="toc-footer">
           <% current_page.data.toc_footers.each do |footer| %>
