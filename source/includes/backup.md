@@ -847,8 +847,91 @@ GET /cms/withdraw/details/#{withdraw_id，对外转账平台业务单号}
 - 费用说明：暂时免费（具体费用咨询民生银行各网点）
 
 
+## 定向转账支付 ecp.transfer
+
+```
+POST /v2/pay?merchant_id=5399355381712172
+```
+
+> 请求示例
+
+```json
+{
+    "pay_type":"ecp.transfer",
+    "mch_trade_id":"alextest.alipay.scan.211",
+    "total_fee": 7622,
+    "notify_url":"https://md.pooul.com/v2_test/notify",
+    "body":"This's Subjects Alex test",
+    "store_id":"9527"
+}
+``` 
+
+> 响应
+
+```json
+{
+    "code": 0,
+    "msg": "SUCCESS,OK",
+    "data": {
+        "trade_id": "5c7a43f401c9114317edac30",
+        "attach": "自定义参数",
+        "mch_trade_id": "alextest.jsapi.89",
+        "merchant_id": "1333259781809471",
+        "pay_type": "wechat.jsapi",
+        "total_fee": 80,
+        "pay_info": "{\"fund_acc_name\":\"深圳市普尔瀚达科技有限公司\",\"fund_acc\":9902000016241739,\"ecp_bank_branch\":\"民生银行广州分行\"}",
+        "trade_state": 6,
+        "trade_info": "支付中, SUCCESS,OK"
+    },
+    "time_elapsed": 0.6233
+}
+
+``` 
 
 
+使用此功能可以实现商户提交支付请求时，系统根据订单请求分配订单对应虚拟帐号，付款人转账至此帐号完成支付，用于解决大额付款的需求
+
+![image](http://img.pooul.com/cmbc_transfer_up.png)
+
+### 核销订单 Write off
+
+>  POST /v2/pay/writeoff?merchant_id=5399355381712172
+
+```json
+{
+    "mch_trade_id": #商户订单号
+    "nonce_str": #随机字符串
+}
+``` 
+> 响应
+
+```json
+{
+    "code": 0为成功，非0为失败
+    "msg":
+}
+
+```
+
+定向转账支付方式专用，其他支付类型不适用
+
+支付订单可以调用核销订单接口对订单对应的虚拟账户进行销户，包括：支付中/ 部分支付/ 全额支付/ 超额支付的订单，核销成功后将不能再对改订单的子账簿帐号进行转账
+
+请求方式：POST /v2/pay/writeoff?
+
+URL请求参数
+
+参数| 描述
+--|--
+merchant_id <br> **必填** | 发起支付的商户编号，16位数字，由普尔瀚达分配
+
+
+Body请求参数
+
+参数| 描述
+--|--
+mch_trade_id <br> **必填** <br> `string` | 商户订单号
+nonce_str  <br> **必填** <br> `string` | 随机字符串，在同一个merchant_id 下每次请求必须为唯一，如：wZovMzOCaTJaicnL
 
 
 

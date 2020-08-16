@@ -47,7 +47,14 @@ under the License.
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
-
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-12044506-16"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-12044506-16');
+    </script>
     <% if current_page.data.code_clipboard %>
     <script>
       $(function() { setupCodeCopy(); });
@@ -89,7 +96,18 @@ under the License.
               <ul class="toc-list-h2">
                 <% h1[:children].each do |h2| %>
                   <li>
+
                     <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>"><%= h2[:content] %></a>
+                    <% if h2[:children].length > 0 %>
+                      <ul class="toc-list-h3">
+                        <% h2[:children].each do |h3| %>
+                          <li>
+                            <a href="#<%= h3[:id] %>" class="toc-h3 toc-link" data-title="<%= h3[:title] %>"><%= h3[:content] %></a>
+                          </li>
+                        <% end %>
+                      </ul>
+                    <% end %>
+
                   </li>
                 <% end %>
               </ul>

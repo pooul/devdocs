@@ -16,11 +16,10 @@ toc_footers:
 
 includes:
   - basic
-  - pay
-  - cmbc_bank
   - merchants
-  - credit_orders
+  - pay
   - accounting
+  - credit_orders
   - balances
   - appendix
   - faq

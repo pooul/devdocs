@@ -1,4 +1,4 @@
-# 附录
+# 附录 Appendixes
 
 ## Pay Type 支付类型编码
 pay_type | 参数说明

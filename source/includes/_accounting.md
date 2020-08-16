@@ -1,4 +1,4 @@
-# 账务 Accounting
+# 交易查询 Accounting
 
 - 认证方式：基于Login权限，[查看Login认证说明](#login)
 - 所需权限：账务查询
